@@ -1,1 +1,1 @@
-  [Preview Site](https://codeyogi-v1-utkarsh.netlify.app/login){:target="_blank"}
+  [Preview Site](https://codeyogi-v1-utkarsh.netlify.app/login){:target="_blank" rel="noopener"}
