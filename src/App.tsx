@@ -23,6 +23,7 @@ function App() {
         <NotFoundPage/>
       </Route>
     </Switch>
+    
     </BrowserRouter>
   );
 }
