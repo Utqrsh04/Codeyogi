@@ -1,35 +1,27 @@
 import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import DashboardPage from './Pages/Dashboard.page';
-import LoginPage from './Pages/Login.page';
-import RecordingsPage from './Pages/Recordings.page';
-import SignupPage from './Pages/Signup.page';
+import AppContainerPage from './Pages/AppContainer.page';
+import AuthPage from './Pages/Auth.page';
+import NotFoundPage from './Pages/NotFound.page';
 
 function App() {
   return (
     <BrowserRouter>
     <Switch>
-
       <Route path="/" exact>
         <Redirect to="/login" ></Redirect>
       </Route>
 
-      <Route path="/login" >
-        <LoginPage/>
-      </Route>
-      
-      <Route path="/signup" >
-        <SignupPage/>
+      <Route path={["/login" , "/signup"]} exact >
+        <AuthPage/>
       </Route>
 
-      <Route path="/dashboard" >
-        <DashboardPage/>
+      <Route path={["/dashboard" , "/recordings" , "/batch/:batchNumber/lecture/:lectureNumber"]} exact >
+        <AppContainerPage/>
       </Route>
-      
-      <Route path="/recordings" >
-        <RecordingsPage/>
+      <Route>
+        <NotFoundPage/>
       </Route>
-      
     </Switch>
     </BrowserRouter>
   );
