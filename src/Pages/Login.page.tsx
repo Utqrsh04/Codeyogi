@@ -24,7 +24,7 @@ const Login: FC<Props> = (props) => {
           <div className="rounded-md shadow-sm -space-y-px">
             <div className=" flex flex-row ">
               <label htmlFor="email-address" className="sr-only">
-                Email address
+                Username
               </label>
               <FaUserAlt className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" />
               <input
