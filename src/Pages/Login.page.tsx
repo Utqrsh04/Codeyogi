@@ -32,24 +32,25 @@ const Login: FC<Props> = (props) => {
     });
 
   return (
-    <div className=" w-1/2 h-screen">
-      <div className=" mx-auto text-center pt-10 ">
+    <div className=" lg:w-1/2 h-screen text-center flex-col mx-auto">
+      <div className=" text-center min-w-max  pt-5 ">
         <h2 className=" text-4xl ">
-          Log in to <p className=" inline text-blue-500 ">Codeyogi</p>
+          Log in to{" "}
+          <p className=" inline font-semibold text-blue-500 ">Codeyogi</p>
         </h2>
-        <h2 className=" pt-5 ">
+        <h2 className="font-medium pt-3 ">
           New Here?{" "}
           <Link to="/signup">
-            <span className=" text-blue-500">Create an Account</span>
+            <span className=" underline text-blue-500">Create an Account</span>
           </Link>
         </h2>
       </div>
 
-      <div className=" w-1/2 mx-auto pt-32 ">
+      <div className="px-3 pt-10 lg:mx-auto">
         <form className="mt-8 space-y-6 " onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div className=" flex flex-row ">
+          <div className="shadow-sm px-10 mx-5 w-11/12 space-y-3">
+            <div className="flex flex-row ">
               <label htmlFor="email-address" className="sr-only">
                 Email
               </label>
@@ -65,9 +66,11 @@ const Login: FC<Props> = (props) => {
                 placeholder="Email"
               />
             </div>
-            {touched.email && (
-              <div className=" text-red-700 "> {errors.email}</div>
-            )}
+
+            <div className=" text-red-700 text-left text-sm h-5 ">
+              {" "}
+              {errors.email}
+            </div>
             <div className=" flex flex-row items-center">
               <label htmlFor="password" className="sr-only">
                 Password
@@ -87,40 +90,49 @@ const Login: FC<Props> = (props) => {
                 placeholder="Password"
               />
             </div>
-            {touched.password && (
-              <div className=" text-red-700 "> {errors.password}</div>
-            )}
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="text-sm">
-              <Link
-                to="/forgot-password"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                Forgot your password?
-              </Link>
+            <div className=" text-red-700 text-left text-sm h-5 ">
+              {" "}
+              {errors.password}
             </div>
           </div>
 
-          <div className="w-20  ">
+          <div className="sm:flex mx-5 justify-around items-center space-y-5 ">
+            <div className="text-base pt-5 font-medium">
+              <Link to="/forgot-password">Show Password</Link>
+              <label className=" px-3 ">
+                <input type="checkbox" name="ShowPassword" id="ShowPassword" />
+              </label>
+            </div>
+
             <button
               type="submit"
-              className=" group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className=" sm:w-28 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
               Log in
             </button>
             {isSubmitting && <FaSpinner className=" mt-3 animate-spin " />}
           </div>
         </form>
-        <h2 className=" text-blue-500 pt-20 font-semibold ">
-          © 2021 All Rights Reserved.
-        </h2>
-        <Link to="/dashboard">
-          <span className=" font-semibold text-black">Go to Dashboard</span>
-        </Link>
+
+        <div className=" mt-10 text-center space-y-3">
+          <div>
+            <Link
+              to="/forgot-password"
+              className="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Forgot Password
+            </Link>
+          </div>
+          <div>
+            <Link to="/dashboard">
+              <span className=" font-semibold text-black">Go to Dashboard</span>
+            </Link>
+          </div>
+        </div>
       </div>
+      <h2 className=" text-blue-500 mt-16 font-semibold ">
+        © 2021 All Rights Reserved.
+      </h2>
     </div>
   );
 };

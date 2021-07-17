@@ -4,8 +4,7 @@ interface Props{};
 
 const AuthHero : FC<Props> = (props) => {
   return (
-    <div className=" h-screen w-1/2 bg-hero-auth ">
-      
+    <div className=" h-screen w-1/2 bg-hero-auth hidden lg:block ">
     </div>
   );
 }
