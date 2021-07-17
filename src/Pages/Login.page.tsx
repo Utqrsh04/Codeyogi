@@ -108,9 +108,9 @@ const Login: FC<Props> = (props) => {
               type="submit"
               className=" sm:w-28 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
+              {isSubmitting && <FaSpinner className="animate-spin mr-5 " />}
               Log in
             </button>
-            {isSubmitting && <FaSpinner className=" mt-3 animate-spin " />}
           </div>
         </form>
 
