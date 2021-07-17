@@ -1,50 +1,39 @@
-import React, { FC, memo, useState } from "react";
+import { FC, memo } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FaLock, FaSpinner, FaUserAlt } from "react-icons/fa";
 import * as yup from "yup";
+import { useFormik } from "formik";
 
 interface Props {}
 
 const Login: FC<Props> = (props) => {
-
-  const [data, setData] = useState({ email: "", password: "" });
-  const [touched, setTouched] = useState({ email: false, password: false });
-  const [submitting, setSubmitting] = useState(false);
-
   const history = useHistory();
 
-  const handleChnage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData({ ...data, [event.target.name]: event.target.value });
-  };
-
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    setTouched({ ...touched, [event.target.name]: true });
-  };
-
-  let emailError = "";
-  let passwordError = "";
-
-  // const emailValidator = yup.string().required().email();
-  // const passwordValidator = yup.string().required().min(8);
-
-  const formValidator = yup.object().shape({
-    email : yup.string().required().email() ,
-    password : yup.string().required().min(8)
-  });  
-
-  
-
-  if (!data.email) {
-    emailError = "Email Address is Required";
-  } else if (!data.email.endsWith("@gmail.com" || "@yahoo.com")) {
-    emailError = "Please enter a valid email";
-  }
-
-  if (!data.password) { 
-    passwordError = "Password is Required";
-  } else if (data.password.length < 8) {
-    passwordError = "Please should be atleast 8 characters long";
-  }
+  const {
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    values,
+    touched,
+    isSubmitting,
+    errors,
+  } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().required().email(),
+      password: yup.string().required().min(8),
+    }),
+    onSubmit: (data ) => {
+      console.log(`Form Submitting ${data}`);
+      setTimeout(() => {
+        console.log(`Form Submitted SucessFully`);
+        history.push("/dashboard");
+      }, 2000);
+    },
+  });
 
   return (
     <div className=" w-1/2 h-screen">
@@ -61,21 +50,7 @@ const Login: FC<Props> = (props) => {
       </div>
 
       <div className=" w-1/2 mx-auto pt-32 ">
-        <form
-          className="mt-8 space-y-6 "
-          onSubmit={(event) => {
-            event.preventDefault();
-
-            if (emailError || passwordError) return;
-
-            setSubmitting(true);
-            setTimeout(() => {
-              console.log(data);
-              // setSubmitting(false);
-              history.push("/dashboard");
-            }, 2000);
-          }}
-        >
+        <form className="mt-8 space-y-6 " onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div className=" flex flex-row ">
@@ -88,8 +63,8 @@ const Login: FC<Props> = (props) => {
                 name="email"
                 type="email"
                 autoComplete="email"
-                value={data.email}
-                onChange={handleChnage}
+                value={values.email}
+                onChange={handleChange}
                 onBlur={handleBlur}
                 required
                 className="appearance-none rounded-none relative block w-full px-5 py-2  placeholder-gray-400
@@ -98,7 +73,7 @@ const Login: FC<Props> = (props) => {
               />
             </div>
             {touched.email && (
-              <div className=" text-red-700 "> {emailError}</div>
+              <div className=" text-red-700 "> {errors.email}</div>
             )}
             <div className=" flex flex-row items-center">
               <label htmlFor="password" className="sr-only">
@@ -114,8 +89,8 @@ const Login: FC<Props> = (props) => {
                 name="password"
                 type="password"
                 autoComplete="current-password"
-                value={data.password}
-                onChange={handleChnage}
+                value={values.password}
+                onChange={handleChange}
                 onBlur={handleBlur}
                 required
                 className="appearance-none rounded-none relative block w-full px-5 py-2 placeholder-gray-400 text-gray-900 rounded-b-md font-bold focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -123,7 +98,7 @@ const Login: FC<Props> = (props) => {
               />
             </div>
             {touched.password && (
-              <div className=" text-red-700 "> {passwordError}</div>
+              <div className=" text-red-700 "> {errors.password}</div>
             )}
           </div>
 
@@ -141,15 +116,12 @@ const Login: FC<Props> = (props) => {
           <div className="w-20  ">
             <button
               type="submit"
-              disabled = {!formValidator.isValidSync(data)}
               className=" group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
               Log in
             </button>
-            {submitting && (
-              <FaSpinner className=" mt-3 animate-spin "></FaSpinner>
-            )}
+            {isSubmitting && <FaSpinner className=" mt-3 animate-spin " />}
           </div>
         </form>
         <h2 className=" text-blue-500 pt-20 font-semibold ">
