@@ -1,15 +1,16 @@
 import React, { FC, memo, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FaLock, FaSpinner, FaUserAlt } from "react-icons/fa";
+import * as yup from "yup";
 
 interface Props {}
 
 const Login: FC<Props> = (props) => {
+
   const [data, setData] = useState({ email: "", password: "" });
-
   const [touched, setTouched] = useState({ email: false, password: false });
-
   const [submitting, setSubmitting] = useState(false);
+
   const history = useHistory();
 
   const handleChnage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,13 +24,23 @@ const Login: FC<Props> = (props) => {
   let emailError = "";
   let passwordError = "";
 
+  // const emailValidator = yup.string().required().email();
+  // const passwordValidator = yup.string().required().min(8);
+
+  const formValidator = yup.object().shape({
+    email : yup.string().required().email() ,
+    password : yup.string().required().min(8)
+  });  
+
+  
+
   if (!data.email) {
     emailError = "Email Address is Required";
   } else if (!data.email.endsWith("@gmail.com" || "@yahoo.com")) {
     emailError = "Please enter a valid email";
   }
 
-  if (!data.password) {
+  if (!data.password) { 
     passwordError = "Password is Required";
   } else if (data.password.length < 8) {
     passwordError = "Please should be atleast 8 characters long";
@@ -130,6 +141,7 @@ const Login: FC<Props> = (props) => {
           <div className="w-20  ">
             <button
               type="submit"
+              disabled = {!formValidator.isValidSync(data)}
               className=" group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
