@@ -9,31 +9,27 @@ interface Props {}
 const Login: FC<Props> = (props) => {
   const history = useHistory();
 
-  const {
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    values,
-    touched,
-    isSubmitting,
-    errors,
-  } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: yup.object().shape({
-      email: yup.string().required().email(),
-      password: yup.string().required().min(8),
-    }),
-    onSubmit: (data ) => {
-      console.log(`Form Submitting ${data}`);
-      setTimeout(() => {
-        console.log(`Form Submitted SucessFully`);
-        history.push("/dashboard");
-      }, 2000);
-    },
-  });
+  const { getFieldProps, handleSubmit, touched, isSubmitting, errors } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema: yup.object().shape({
+        email: yup.string().required().email(),
+        password: yup
+          .string()
+          .required()
+          .min(8, ({ min }) => `Must be ${min} characters or more`),
+      }),
+      onSubmit: (data) => {
+        console.log(`Form Submitting ${data}`);
+        setTimeout(() => {
+          console.log(`Form Submitted SucessFully`);
+          history.push("/dashboard");
+        }, 2000);
+      },
+    });
 
   return (
     <div className=" w-1/2 h-screen">
@@ -60,12 +56,9 @@ const Login: FC<Props> = (props) => {
               <FaUserAlt className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" />
               <input
                 id="email-address"
-                name="email"
                 type="email"
                 autoComplete="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                {...getFieldProps("email")}
                 required
                 className="appearance-none rounded-none relative block w-full px-5 py-2  placeholder-gray-400
                  text-gray-900 font-bold rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -86,12 +79,9 @@ const Login: FC<Props> = (props) => {
 
               <input
                 id="password"
-                name="password"
                 type="password"
                 autoComplete="current-password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                {...getFieldProps("password")}
                 required
                 className="appearance-none rounded-none relative block w-full px-5 py-2 placeholder-gray-400 text-gray-900 rounded-b-md font-bold focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
