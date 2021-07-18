@@ -24,7 +24,7 @@ const Dashboard: FC<Props> = (props) => {
         </button>
         <h2 className="pl-2 ">Dashboard / Admin</h2>
         <Link to="/recordings" className=" text-sm mx-auto text-center text-blue-900 ">
-          <span className="bg-yellow-200 p-1">Go to Recordings</span>
+          <span className="rounded-md bg-yellow-200 p-1">Go to Recordings</span>
         </Link>
         <div className=" px-2 w-36 h-16 mt-4 py-2">
           <Dropdown

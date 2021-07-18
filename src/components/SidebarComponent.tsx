@@ -33,7 +33,7 @@ const SidebarComponent: FC<Props> = (props) => {
                     active ? " text-blue-600" : "text-gray-900"
                   } group flex rounded-md justify-center items-center w-full px-2 py-2 text-sm`}
                 >
-                  Sales
+                  Stats
                 </button>
               )}
             </Menu.Item>

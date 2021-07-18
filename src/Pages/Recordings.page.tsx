@@ -23,7 +23,7 @@ const Recordings: FC<Props> = (props) => {
         </button>
         <h2 className="pl-3 ">Recordings</h2>
         <Link to="/dashboard" className=" mx-auto text-blue-900 ">
-          <span className="rounded-lg bg-yellow-200 px-3 py-2">
+          <span className="rounded-lg text-sm bg-yellow-200 px-1 py-1">
             Go to Dashboard
           </span>
         </Link>
