@@ -9,31 +9,30 @@ interface Props {}
 const Login: FC<Props> = (props) => {
   const history = useHistory();
 
-  const { getFieldProps, handleSubmit, touched, isSubmitting, errors } =
-    useFormik({
-      initialValues: {
-        email: "",
-        password: "",
-      },
-      validationSchema: yup.object().shape({
-        email: yup.string().required().email(),
-        password: yup
-          .string()
-          .required()
-          .min(8, ({ min }) => `Must be ${min} characters or more`),
-      }),
-      onSubmit: (data) => {
-        console.log(`Form Submitting ${data}`);
-        setTimeout(() => {
-          console.log(`Form Submitted SucessFully`);
-          history.push("/dashboard");
-        }, 2000);
-      },
-    });
+  const { getFieldProps, handleSubmit, isSubmitting, errors } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().required().email(),
+      password: yup
+        .string()
+        .required()
+        .min(8, ({ min }) => `Must be ${min} characters or more`),
+    }),
+    onSubmit: (data) => {
+      console.log(`Form Submitting ${data}`);
+      setTimeout(() => {
+        console.log(`Form Submitted Sucessfully`);
+        history.push("/dashboard");
+      }, 2000);
+    },
+  });
 
   return (
     <div className=" lg:w-1/2 h-screen text-center flex-col mx-auto">
-      <div className=" text-center min-w-max  pt-5 ">
+      <div className=" text-center min-w-max pt-8 ">
         <h2 className=" text-4xl ">
           Log in to{" "}
           <p className=" inline font-semibold text-blue-500 ">Codeyogi</p>
@@ -49,7 +48,7 @@ const Login: FC<Props> = (props) => {
       <div className="px-3 pt-10 lg:mx-auto">
         <form className="mt-8 space-y-6 " onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
-          <div className="shadow-sm px-10 mx-5 w-11/12 space-y-3">
+          <div className="px-10 mx-5 w-11/12 space-y-3">
             <div className="flex flex-row ">
               <label htmlFor="email-address" className="sr-only">
                 Email
@@ -62,11 +61,11 @@ const Login: FC<Props> = (props) => {
                 {...getFieldProps("email")}
                 required
                 className="appearance-none rounded-none relative block w-full px-5 py-2  placeholder-gray-400
-                 text-gray-900 font-bold rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                 text-gray-900 font-bold focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email"
               />
             </div>
-
+            <div className=" h-px  bg-gray-300 "></div>
             <div className=" text-red-700 text-left text-sm h-5 ">
               {" "}
               {errors.email}
@@ -86,12 +85,13 @@ const Login: FC<Props> = (props) => {
                 autoComplete="current-password"
                 {...getFieldProps("password")}
                 required
-                className="appearance-none rounded-none relative block w-full px-5 py-2 placeholder-gray-400 text-gray-900 rounded-b-md font-bold focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-5 py-2  placeholder-gray-400
+                text-gray-900 font-bold focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
               />
             </div>
+            <div className=" h-px bg-gray-300 "></div>
             <div className=" text-red-700 text-left text-sm h-5 ">
-              {" "}
               {errors.password}
             </div>
           </div>
@@ -106,7 +106,7 @@ const Login: FC<Props> = (props) => {
 
             <button
               type="submit"
-              className=" sm:w-28 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="sm:w-auto w-full group relative flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               {isSubmitting && <FaSpinner className="animate-spin mr-5 " />}
               Log in
@@ -130,7 +130,7 @@ const Login: FC<Props> = (props) => {
           </div>
         </div>
       </div>
-      <h2 className=" text-blue-500 mt-16 font-semibold ">
+      <h2 className=" text-blue-700 mt-20 text-sm font-semibold ">
         © 2021 All Rights Reserved.
       </h2>
     </div>
