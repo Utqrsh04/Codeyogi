@@ -46,7 +46,10 @@ const Login: FC<Props> = (props) => {
       </div>
 
       <div className="px-3 pt-10 lg:mx-auto">
-        <form className="mt-8 space-y-6 " onSubmit={handleSubmit}>
+        <form
+          className="mt-8 px-10 space-y-6 "
+          onSubmit={handleSubmit}
+        >
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="px-10 mx-5 w-11/12 space-y-3">
             <div className="flex flex-row ">
@@ -96,8 +99,8 @@ const Login: FC<Props> = (props) => {
             </div>
           </div>
 
-          <div className="sm:flex mx-5 justify-around items-center space-y-5 ">
-            <div className="text-base pt-5 font-medium">
+          <div className="sm:flex mx-auto justify-around items-center space-y-5 ">
+            <div className="text-base mx-auto pt-5 font-medium">
               <Link to="/forgot-password">Show Password</Link>
               <label className=" px-3 ">
                 <input type="checkbox" name="ShowPassword" id="ShowPassword" />
@@ -106,10 +109,10 @@ const Login: FC<Props> = (props) => {
 
             <button
               type="submit"
-              className="sm:w-auto w-full group relative flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="sm:w-auto w-60 group mx-auto relative flex justify-center py-2 sm:px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               {isSubmitting && <FaSpinner className="animate-spin mr-5 " />}
-              Log in
+              <h1>Log in</h1>
             </button>
           </div>
         </form>
