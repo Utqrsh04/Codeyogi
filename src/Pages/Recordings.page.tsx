@@ -15,18 +15,15 @@ const Recordings: FC<Props> = (props) => {
   };
 
   return (
-    <div className=" h-screen w-screen bg-gray-100">
+    <div className=" h-screen text-center bg-gray-100">
       <Header />
-      <div className="bg-white text-gray-700 h-14 flex flex-row items-center">
-        <button className=" mx-5 w-6 h-6" onClick={toggleSidebar}>
-          <GiHamburgerMenu />
-        </button>
-        <h2 className="pl-3 ">Recordings</h2>
-        <Link to="/dashboard" className=" mx-auto text-blue-900 ">
-          <span className="rounded-lg text-sm bg-yellow-200 px-1 py-1">
-            Go to Dashboard
-          </span>
-        </Link>
+      <div className="bg-white px-5 text-gray-700 h-14 flex flex-row items-center justify-between">
+        <div className=" flex justify-around ">
+          <button className=" mx-1 w-6 h-6" onClick={toggleSidebar}>
+            <GiHamburgerMenu />
+          </button>
+          <h2 className="font-semibold">Recordings</h2>
+        </div>
         <div className=" w-40 h-16 mt-4 py-2">
           <Dropdown
             menuBtn="Settings"
@@ -34,7 +31,10 @@ const Recordings: FC<Props> = (props) => {
           />
         </div>
       </div>
-      <Sidebar classes={sidebarClass}/>
+      <Sidebar classes={sidebarClass} />
+      <Link to="/dashboard" className="bg-red-400 text-blue-900 ">
+        Go to Dashboard
+      </Link>
     </div>
   );
 };

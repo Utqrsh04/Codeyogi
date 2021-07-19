@@ -15,18 +15,16 @@ const Dashboard: FC<Props> = (props) => {
   };
 
   return (
-    <div className=" h-screen w-screen bg-gray-100">
+    <div className="h-screen text-center bg-gray-100">
       <Header />
-
-      <div className="bg-white text-gray-700 h-14 flex flex-row justify-evenly items-center">
-        <button className=" mx-5 w-6 h-6" onClick={toggleSidebar}>
-          <GiHamburgerMenu />
-        </button>
-        <h2 className="pl-2 ">Dashboard / Admin</h2>
-        <Link to="/recordings" className=" text-sm mx-auto text-center text-blue-900 ">
-          <span className="rounded-md bg-yellow-200 p-1">Go to Recordings</span>
-        </Link>
-        <div className=" px-2 w-36 h-16 mt-4 py-2">
+      <div className="bg-white px-5 text-gray-700 h-14 flex flex-row justify-between items-center">
+      <div className=" flex justify-around ">
+          <button className=" mx-1 w-6 h-6" onClick={toggleSidebar}>
+            <GiHamburgerMenu />
+          </button>
+          <h2 className="font-semibold">Dashboard</h2>
+        </div>
+        <div className="w-40 h-16 mt-4 py-2">
           <Dropdown
             menuBtn="Settings"
             items={["Settings", "Mail", "Print", "Download", "Share"]}
@@ -34,6 +32,9 @@ const Dashboard: FC<Props> = (props) => {
         </div>
       </div>
       <Sidebar classes={sidebarClass} />
+      <Link to="/recordings" className="bg-red-400 text-blue-900 ">
+        Go to Recordings
+      </Link>
     </div>
   );
 };
