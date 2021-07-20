@@ -8,7 +8,7 @@ interface Props {
   icon: ReactElement;
 }
 
-const StepSidebarComponent: FC<Props> = ({ menu, items, icon }) => {
+const StepSidebarDropdown: FC<Props> = ({ menu, items, icon }) => {
   return (
     <Menu as="div" className="">
       <div>
@@ -55,6 +55,6 @@ const StepSidebarComponent: FC<Props> = ({ menu, items, icon }) => {
   );
 };
 
-StepSidebarComponent.defaultProps = {};
+StepSidebarDropdown.defaultProps = {};
 
-export default memo(StepSidebarComponent);
+export default memo(StepSidebarDropdown);
