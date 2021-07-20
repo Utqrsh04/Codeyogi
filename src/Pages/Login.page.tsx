@@ -3,32 +3,34 @@ import { Link, useHistory } from "react-router-dom";
 import { FaLock, FaSpinner, FaUserAlt } from "react-icons/fa";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import Input from "../components/Input";
 
 interface Props {}
 
 const Login: FC<Props> = (props) => {
   const history = useHistory();
 
-  const { getFieldProps, handleSubmit, isSubmitting, errors } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: yup.object().shape({
-      email: yup.string().required().email(),
-      password: yup
-        .string()
-        .required()
-        .min(8, ({ min }) => `Must be ${min} characters or more`),
-    }),
-    onSubmit: (data) => {
-      console.log(`Form Submitting ${data}`);
-      setTimeout(() => {
-        console.log(`Form Submitted Sucessfully`);
-        history.push("/dashboard");
-      }, 2000);
-    },
-  });
+  const { getFieldProps, handleSubmit, touched, isSubmitting, errors } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema: yup.object().shape({
+        email: yup.string().required().email(),
+        password: yup
+          .string()
+          .required()
+          .min(8),
+      }),
+      onSubmit: (data) => {
+        console.log(`Form Submitting ${data}`);
+        setTimeout(() => {
+          console.log(`Form Submitted Sucessfully`);
+          history.push("/dashboard");
+        }, 2000);
+      },
+    });
 
   return (
     <div className=" lg:w-1/2 h-screen text-center flex-col mx-auto">
@@ -46,57 +48,32 @@ const Login: FC<Props> = (props) => {
       </div>
 
       <div className="px-3 pt-10 lg:mx-auto">
-        <form
-          className="mt-8 px-10 space-y-6 "
-          onSubmit={handleSubmit}
-        >
+        <form className="mt-8 px-10 space-y-6 " onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="px-10 mx-5 w-11/12 space-y-3">
-            <div className="flex flex-row ">
-              <label htmlFor="email-address" className="sr-only">
-                Email
-              </label>
-              <FaUserAlt className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" />
-              <input
-                id="email-address"
-                type="email"
-                autoComplete="email"
-                {...getFieldProps("email")}
-                required
-                className="appearance-none rounded-none relative block w-full px-5 py-2  placeholder-gray-400
-                 text-gray-900 font-bold focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email"
-              />
-            </div>
-            <div className=" h-px  bg-gray-300 "></div>
-            <div className=" text-red-700 text-left text-sm h-5 ">
-              {" "}
-              {errors.email}
-            </div>
-            <div className=" flex flex-row items-center">
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <FaLock
-                className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                aria-hidden="true"
-              />
+            <Input
+              id="email"
+              type="email"
+              autoComplete="current-email"
+              required
+              touched={touched.email}
+              error={errors.email}
+              {...getFieldProps("email")}
+              placeholder="Email"
+              icon={<FaUserAlt />}
+            />
 
-              <input
-                id="password"
-                type="password"
-                autoComplete="current-password"
-                {...getFieldProps("password")}
-                required
-                className="appearance-none rounded-none relative block w-full px-5 py-2  placeholder-gray-400
-                text-gray-900 font-bold focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
-            </div>
-            <div className=" h-px bg-gray-300 "></div>
-            <div className=" text-red-700 text-left text-sm h-5 ">
-              {errors.password}
-            </div>
+            <Input
+              id="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              touched={touched.password}
+              error={errors.password}
+              {...getFieldProps("password")}
+              placeholder="Password"
+              icon={<FaLock />}
+            />
           </div>
 
           <div className="sm:flex mx-auto justify-around items-center space-y-5 ">
