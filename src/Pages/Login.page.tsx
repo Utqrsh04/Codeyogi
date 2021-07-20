@@ -110,7 +110,7 @@ const Login: FC<Props> = (props) => {
           </div>
         </div>
       </div>
-      <h2 className=" text-blue-700 mt-20 text-sm font-semibold ">
+      <h2 className=" text-blue-700 mt-16 text-sm font-semibold ">
         © 2021 All Rights Reserved.
       </h2>
     </div>
