@@ -3,34 +3,38 @@ import { Link, useHistory } from "react-router-dom";
 import { FaLock, FaSpinner, FaUserAlt } from "react-icons/fa";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import Input from "../components/Input";
+import Input from "../components/Input/Input";
+import Button from "../components/Button/Button.";
+import { HiLockClosed } from "react-icons/hi";
 
 interface Props {}
 
 const Login: FC<Props> = (props) => {
   const history = useHistory();
 
-  const { getFieldProps, handleSubmit, touched, isSubmitting, errors } =
-    useFormik({
-      initialValues: {
-        email: "",
-        password: "",
-      },
-      validationSchema: yup.object().shape({
-        email: yup.string().required().email(),
-        password: yup
-          .string()
-          .required()
-          .min(8),
-      }),
-      onSubmit: (data) => {
-        console.log(`Form Submitting ${data}`);
-        setTimeout(() => {
-          console.log(`Form Submitted Sucessfully`);
-          history.push("/dashboard");
-        }, 2000);
-      },
-    });
+  const {
+    getFieldProps,
+    handleSubmit,
+    touched,
+    isSubmitting,
+    errors,
+  } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: yup.object().shape({
+      email: yup.string().required().email(),
+      password: yup.string().required().min(8),
+    }),
+    onSubmit: (data) => {
+      console.log(`Form Submitting ${data}`);
+      setTimeout(() => {
+        console.log(`Form Submitted Sucessfully`);
+        history.push("/dashboard");
+      }, 2000);
+    },
+  });
 
   return (
     <div className=" lg:w-1/2 h-screen text-center flex-col mx-auto">
@@ -84,13 +88,14 @@ const Login: FC<Props> = (props) => {
               </label>
             </div>
 
-            <button
+            {/* <button
               type="submit"
               className="sm:w-auto w-60 group mx-auto relative flex justify-center py-2 sm:px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               {isSubmitting && <FaSpinner className="animate-spin mr-5 " />}
               <h1>Log in</h1>
-            </button>
+            </button> */}
+            <Button Icon={HiLockClosed}>Sign In</Button>
           </div>
         </form>
 
