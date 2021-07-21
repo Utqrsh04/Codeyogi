@@ -21,9 +21,9 @@ const Xyz = {
   },
 };
 
-export const main = (args: any) => <Button {...args}></Button>;
+export const button = (args: any) => <Button {...args}></Button>;
 
-main.args = {
+button.args = {
   children: "Sign in",
   className: "",
   disabled: false,
