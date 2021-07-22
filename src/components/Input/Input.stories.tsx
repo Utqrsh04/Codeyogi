@@ -2,6 +2,7 @@ import Input from "./Input";
 import "../../index.css";
 import { FaLock, FaUserAlt } from "react-icons/fa";
 import { FiAtSign } from "react-icons/fi";
+import { string } from "yup";
 
 const icons = { FaLock, FaUserAlt, FiAtSign };
 
@@ -17,15 +18,16 @@ const func = {
         type: "select",
       },
     },
+    
   }
 };
 
 export const input = (args: any) => <Input {...args}></Input>;
 
 input.args = {
-  error : "This field is required",
+  placeholder : string,
   Icon: FaLock,
-  touched : false ,
+  error : "This field is required",
 };
 
 export default func;

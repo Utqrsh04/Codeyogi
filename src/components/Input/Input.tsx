@@ -6,6 +6,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   touched?: boolean;
   error?: string;
   Icon: IconType;
+  placeholder : string;
 }
 
 const Input: FC<Props> = ({
