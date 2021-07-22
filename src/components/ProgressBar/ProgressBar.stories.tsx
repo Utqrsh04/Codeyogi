@@ -12,7 +12,7 @@ const func = {
 export const Progress = (args: any) => <ProgressBar {...args}></ProgressBar>;
 
 Progress.args = {
-  progress : 50,
+  progress : 70,
 };
 
 export default func;

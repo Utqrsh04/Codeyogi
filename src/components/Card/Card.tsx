@@ -1,20 +1,21 @@
 import { FC, memo } from "react";
-import Avatar from "./Avatar";
+import AvatarStack from "./AvatarStack";
 
 interface Props {
-  avatars: number;
-  progress?: number;
+  avatars: string[];
+  progress: number;
 }
 
 const Card: FC<Props> = ({ avatars, progress }) => {
-  let more = 0;
-  let displayMore = true;
-  if (avatars > 4) {
-    more = avatars - 4;
-  }
-
-  if (more === 0) displayMore = false;
-
+  avatars = [
+    "https://www.lifeofpix.com/wp-content/uploads/2016/12/avatar.png",
+    "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+    "https://images.unsplash.com/photo-1553867745-6e038d085e86?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=513&q=80",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIAmQSLj7TZA-rgBipOxmlEfEPaMJ3Fb2DltKHXlPvxLCoRTUqZ753AeEoKobOQzMWMP0&usqp=CAU",
+    ...avatars,
+  ];
+  
   return (
     <div className="space-y-4 border max-w-md border-blue-200 shadow-xl rounded-xl px-4 py-6 ">
       <div className=" flex justify-between ">
@@ -23,22 +24,12 @@ const Card: FC<Props> = ({ avatars, progress }) => {
           In Progress
         </h1>
       </div>
-      <div className=" flex -space-x-4 items-center">
-        <Avatar />
-        <Avatar />
-        <Avatar />
-        <Avatar />
-        {displayMore && (
-          <span className="hover:-translate-y-1 transform  duration-500 rounded-full px-2 
-          py-0.5 shadow-md text-sm bg-white text-blue-600">
-            +{more} More
-          </span>
-        )}
-      </div>
+      <AvatarStack avatars={avatars} />
       <div className=" space-y-3">
         <h2 className="w-9 ml-auto mr-6 text-blue-600 ">{progress}%</h2>
-        <div className="bg-gray-100 rounded-full">
-          <div className=" h-2 w-6/12 bg-blue-700 rounded-full "></div>
+        <div className="bg-gray-200 rounded-full">
+          <div className=" h-2  bg-blue-700 rounded-full " 
+         style={{width: `${progress}%`}} ></div>
         </div>
       </div>
     </div>
@@ -46,7 +37,7 @@ const Card: FC<Props> = ({ avatars, progress }) => {
 };
 
 Card.defaultProps = {
-  avatars: 9,
+  avatars: []
 };
 
 export default memo(Card);

@@ -15,8 +15,9 @@ const ProgressBar: FC<Props> = ({progress}) => {
     <>
       <div className="space-y-3">
         <h2 className="w-9 ml-auto mr-6 ">{progress}%</h2>
-        <div className="bg-gray-100 rounded-full">
-          <div className={"h-3 bg-blue-700 rounded-full "+ classname}></div>
+        <div className="bg-gray-200 rounded-full">
+          <div className=" h-2  bg-blue-700 rounded-full " 
+         style={{width: `${progress}%`}} ></div>
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes, memo, ReactElement } from "react";
+import { FC, InputHTMLAttributes, memo } from "react";
 import { IconType } from "react-icons";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
