@@ -64,7 +64,7 @@ const Login: FC<Props> = (props) => {
               error={errors.email}
               {...getFieldProps("email")}
               placeholder="Email"
-              icon={<FaUserAlt />}
+              Icon={FaUserAlt}
             />
 
             <Input
@@ -76,7 +76,7 @@ const Login: FC<Props> = (props) => {
               error={errors.password}
               {...getFieldProps("password")}
               placeholder="Password"
-              icon={<FaLock />}
+              Icon={FaLock}
             />
           </div>
 

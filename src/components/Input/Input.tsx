@@ -1,10 +1,11 @@
 import { FC, InputHTMLAttributes, memo, ReactElement } from "react";
+import { IconType } from "react-icons";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
   touched?: boolean;
   error?: string;
-  icon: ReactElement;
+  Icon: IconType;
 }
 
 const Input: FC<Props> = ({
@@ -12,7 +13,7 @@ const Input: FC<Props> = ({
   error,
   className,
   placeholder,
-  icon,
+  Icon,
   id,
   ...rest
 }) => {
@@ -24,9 +25,7 @@ const Input: FC<Props> = ({
             {placeholder}
           </label>
         )}
-        <div className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400">
-          {icon}
-        </div>
+        <Icon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"/>
         <input
           id={id}
           {...rest}
