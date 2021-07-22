@@ -3,10 +3,10 @@ import { IconType } from "react-icons";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
-  touched?: boolean;
+  placeholder : string;
   error?: string;
   Icon: IconType;
-  placeholder : string;
+  touched?: boolean;
 }
 
 const Input: FC<Props> = ({

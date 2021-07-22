@@ -1,4 +1,5 @@
 import { FC, memo } from "react";
+import ProgressBar from "../ProgressBar/ProgressBar";
 import AvatarStack from "./AvatarStack";
 
 interface Props {
@@ -15,7 +16,7 @@ const Card: FC<Props> = ({ avatars, progress }) => {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIAmQSLj7TZA-rgBipOxmlEfEPaMJ3Fb2DltKHXlPvxLCoRTUqZ753AeEoKobOQzMWMP0&usqp=CAU",
     ...avatars,
   ];
-  
+
   return (
     <div className="space-y-4 border max-w-md border-blue-200 shadow-xl rounded-xl px-4 py-6 ">
       <div className=" flex justify-between ">
@@ -25,19 +26,14 @@ const Card: FC<Props> = ({ avatars, progress }) => {
         </h1>
       </div>
       <AvatarStack avatars={avatars} />
-      <div className=" space-y-3">
-        <h2 className="w-9 ml-auto mr-6 text-blue-600 ">{progress}%</h2>
-        <div className="bg-gray-200 rounded-full">
-          <div className=" h-2  bg-blue-700 rounded-full " 
-         style={{width: `${progress}%`}} ></div>
-        </div>
-      </div>
+
+      <ProgressBar progress={progress} />
     </div>
   );
 };
 
 Card.defaultProps = {
-  avatars: []
+  avatars: [],
 };
 
 export default memo(Card);

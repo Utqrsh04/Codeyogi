@@ -81,7 +81,7 @@ const Login: FC<Props> = (props) => {
           </div>
 
           <div className="sm:flex mx-auto justify-around items-center space-y-5 ">
-            <div className="text-base mx-auto pt-5 font-medium">
+            <div className="text-base mx-auto pt-3 font-medium">
               <Link to="/forgot-password">Show Password</Link>
               <label className=" px-3 ">
                 <input type="checkbox" name="ShowPassword" id="ShowPassword" />
