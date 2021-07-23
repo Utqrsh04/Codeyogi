@@ -1,9 +1,8 @@
 import { FC, memo, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from "react-router-dom";
 import Dropdown from "../components/Dropdown";
 import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 interface Props {}
 
@@ -26,15 +25,14 @@ const Recordings: FC<Props> = (props) => {
         </div>
         <div className=" w-40 h-16 mt-4 py-2">
           <Dropdown
-            menuBtn="Settings"
             items={["Settings", "Mail", "Print", "Download", "Share"]}
-          />
+            needArrowIcon={true}
+          >
+            Settings
+          </Dropdown>
         </div>
       </div>
       <Sidebar classes={sidebarClass} />
-      <Link to="/dashboard" className="bg-red-400 text-blue-900 ">
-        Go to Dashboard
-      </Link>
     </div>
   );
 };

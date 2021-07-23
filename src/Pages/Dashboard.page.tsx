@@ -1,9 +1,9 @@
 import { FC, memo, useState } from "react";
-import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar/Sidebar";
 import Dropdown from "../components/Dropdown";
 import Header from "../components/Header";
+import ListGroup from "../components/ListGroup";
 
 interface Props {}
 
@@ -15,10 +15,10 @@ const Dashboard: FC<Props> = (props) => {
   };
 
   return (
-    <div className="h-screen text-center bg-gray-100">
+    <div className="h-screen text-center w-screen ">
       <Header />
-      <div className="bg-white px-5 text-gray-700 h-14 flex flex-row justify-between items-center">
-      <div className=" flex justify-around ">
+      <div className="bg-white sm:px-5 px-2 text-gray-700 h-14 flex flex-row justify-between items-center">
+        <div className=" flex justify-around ">
           <button className=" mx-1 w-6 h-6" onClick={toggleSidebar}>
             <GiHamburgerMenu />
           </button>
@@ -26,15 +26,17 @@ const Dashboard: FC<Props> = (props) => {
         </div>
         <div className="w-40 h-16 mt-4 py-2">
           <Dropdown
-            menuBtn="Settings"
             items={["Settings", "Mail", "Print", "Download", "Share"]}
-          />
+            needArrowIcon={true}
+          >
+            Settings
+          </Dropdown>
         </div>
       </div>
-      <Sidebar classes={sidebarClass} />
-      <Link to="/recordings" className="bg-red-400 text-blue-900 ">
-        Go to Recordings
-      </Link>
+      <section className="bg-blue-200 w-full h-full">
+        <Sidebar classes={sidebarClass} />
+        <ListGroup />
+      </section>
     </div>
   );
 };

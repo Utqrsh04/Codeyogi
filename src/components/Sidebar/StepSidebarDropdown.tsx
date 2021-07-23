@@ -1,29 +1,30 @@
-import { Fragment, FC, memo, ReactElement } from "react";
+import { Fragment, FC, memo } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Menu, Transition } from "@headlessui/react";
+import { IconType } from "react-icons";
 
 interface Props {
   menu: string;
   items: string[];
-  icon: ReactElement;
+  Icon: IconType;
 }
 
-const StepSidebarDropdown: FC<Props> = ({ menu, items, icon }) => {
+const StepSidebarDropdown: FC<Props> = ({ menu, items, Icon }) => {
   return (
     <Menu as="div" className="">
       <div>
         <Menu.Button className="inline-flex ease-in-out justify-between w-40 px-3 py-3 text-sm font-medium text-black bg-white rounded-md hover:bg-gray-300 ">
-          <div className="w-5 h-5 text-gray-800">{icon}</div>
+          <Icon className="w-5 h-5 text-gray-800" />
           <h1>{menu}</h1>
           <MdKeyboardArrowDown className=" my-auto" />
         </Menu.Button>
       </div>
       <Transition
         as={Fragment}
-        enter="transition ease-in-out duration-300"
+        enter="transition ease-in-out duration-500"
         enterFrom="transform opacity-0 scale-95"
         enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in-out duration-200"
+        leave="transition ease-in-out duration-300"
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
@@ -32,10 +33,9 @@ const StepSidebarDropdown: FC<Props> = ({ menu, items, icon }) => {
             {items.map((data, index) => {
               // console.log(data, index);
               return (
-                <Menu.Item>
+                <Menu.Item key={index}>
                   {({ active }) => (
                     <button
-                      key={index}
                       className={`${
                         active
                           ? "bg-violet-500  text-blue-600"

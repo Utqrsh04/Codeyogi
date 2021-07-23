@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { FaLock, FaSpinner, FaUserAlt } from "react-icons/fa";
+import { FaLock, FaUserAlt } from "react-icons/fa";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import Input from "../components/Input/Input";
@@ -15,8 +15,8 @@ const Login: FC<Props> = (props) => {
   const {
     getFieldProps,
     handleSubmit,
-    touched,
     isSubmitting,
+    touched,
     errors,
   } = useFormik({
     initialValues: {
@@ -88,14 +88,9 @@ const Login: FC<Props> = (props) => {
               </label>
             </div>
 
-            {/* <button
-              type="submit"
-              className="sm:w-auto w-60 group mx-auto relative flex justify-center py-2 sm:px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              {isSubmitting && <FaSpinner className="animate-spin mr-5 " />}
-              <h1>Log in</h1>
-            </button> */}
-            <Button Icon={HiLockClosed}>Sign In</Button>
+            <Button Icon={HiLockClosed} isSubmmiting={isSubmitting}>
+              Sign In
+            </Button>
           </div>
         </form>
 

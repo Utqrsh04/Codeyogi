@@ -3,18 +3,18 @@ import { Menu, Transition } from "@headlessui/react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 interface Props {
-  items: string[] ;
-  menuBtn: string;
+  items: string[];
+  children?: string;
+  needArrowIcon?: boolean;
 }
-const Dropdown: FC<Props> = ({ items, menuBtn }) => {
-
+const Dropdown: FC<Props> = ({ items, children, needArrowIcon }) => {
   return (
-    <div className="w-40 fixed ">
-      <Menu as="div" className="relative inline-block ">
+    <div className="w-36 ">
+      <Menu as="div" className=" inline-block ">
         <div>
           <Menu.Button className="inline-flex justify-center w-full px-3 py-2 text-sm font-medium text-black border border-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            {menuBtn}
-            <MdKeyboardArrowDown className=" my-auto" />
+            {children}
+            {needArrowIcon && <MdKeyboardArrowDown className=" my-auto" />}
           </Menu.Button>
         </div>
         <Transition
@@ -26,15 +26,14 @@ const Dropdown: FC<Props> = ({ items, menuBtn }) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute w-28 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="px-1 py-1 ">
               {items.map((data, index) => {
                 // console.log(data, index);
                 return (
-                  <Menu.Item>
+                  <Menu.Item key={index}>
                     {({ active }) => (
                       <button
-                        key={index}
                         className={`${
                           active
                             ? "bg-violet-500  text-blue-600"
@@ -56,7 +55,6 @@ const Dropdown: FC<Props> = ({ items, menuBtn }) => {
 };
 
 Dropdown.defaultProps = {
-  menuBtn: "Dropdown",
   items: ["item1", "item2", "item3", "item4"],
 };
 
