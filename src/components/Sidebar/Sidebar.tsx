@@ -14,7 +14,7 @@ interface Props {
 
 const Sidebar: FC<Props> = ({ classes }) => {
   return (
-    <div className="absolute rounded-lg flex-col bg-gray-200">
+    <div className="z-50">
       <Transition
         as={Fragment}
         show={!classes}
@@ -25,11 +25,11 @@ const Sidebar: FC<Props> = ({ classes }) => {
         leaveFrom="opacity-100 translate-x-0 "
         leaveTo="opacity-0 -translate-x-14 "
       >
-        <div className="space-y-2 px-5 py-5 ">
+        <div className="w-52 space-y-2 rounded-lg bg-gray-200 px-5  py-5 ">
           <StepSidebarDropdown
             menu="Form"
             items={["Chat", "Mailbox", "Todo List", "Notes", "Scrumboard"]}
-            Icon={AiOutlineForm }
+            Icon={AiOutlineForm}
           />
           <StepSidebarDropdown
             menu="Elements"
@@ -37,16 +37,16 @@ const Sidebar: FC<Props> = ({ classes }) => {
             Icon={AiOutlineThunderbolt}
           />
           <StepSidebar menu="Authentication" Icon={FiLock} />
-          <StepSidebar menu="DataTables" Icon={ImStack } />
-          <StepSidebar menu="Widgets" Icon={IoMdDesktop } />
-          <StepSidebar menu="Pages" Icon={IoMdDocument } />
+          <StepSidebar menu="DataTables" Icon={ImStack} />
+          <StepSidebar menu="Widgets" Icon={IoMdDesktop} />
+          <StepSidebar menu="Pages" Icon={IoMdDocument} />
           <StepSidebarDropdown
             menu="Components"
             items={["Tabs", "Accordians", "Modal", "Cards", "Counter"]}
             Icon={GrCube}
           />
 
-          <StepSidebar menu="Maps" Icon={FiMap } />
+          <StepSidebar menu="Maps" Icon={FiMap} />
           <StepSidebar menu="Charts" Icon={FiPieChart} />
         </div>
       </Transition>

@@ -27,16 +27,18 @@ const ListGroup: FC<Props> = (props) => {
     },
   ];
   return (
-    <div className="border">
-      {details.map((data, index) => (
-        <List
-          key={index}
-          idx={index}
-          Name={data.Name}
-          Profession={data.Group}
-        />
-      ))}
-    </div>
+    <>
+      <div className="absolute sm:relative mx-auto">
+        {details.map((data, index) => (
+          <List
+            key={index}
+            idx={index}
+            Name={data.Name}
+            Profession={data.Group}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 

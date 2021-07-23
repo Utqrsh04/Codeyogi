@@ -20,7 +20,7 @@ const List: FC<Props> = ({idx, Name , Profession}) => {
     
   return (
     <>
-      <div className={" px-3 h-14 w-96 flex items-center " + themeClass}>
+      <div className={" px-3 h-14 w-80 border border-gray-200 flex items-center " + themeClass}>
         <img className=" w-10 h-10 rounded-full "
           src="https://www.lifeofpix.com/wp-content/uploads/2016/12/avatar.png"
           alt=""
