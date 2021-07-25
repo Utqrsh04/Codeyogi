@@ -104,9 +104,14 @@ const Login: FC<Props> = (props) => {
           </div>
         </div>
       </div>
-      <h2 className=" text-blue-700 mt-16 text-sm font-semibold ">
+      <p className=" mt-8 sm:mt-20 mx-auto w-3/4 text-sm font-semibold ">
         © 2021 All Rights Reserved.
-      </h2>
+        <p className=" text-blue-700 inline "> Codeyogi </p>
+        is a product of Designreset.
+        <p className=" text-blue-700 inline"> Cookie Preferences </p>,
+        <p className=" text-blue-700 inline "> Privacy </p>, and
+        <p className=" text-blue-700 inline"> Terms. </p>
+      </p>
     </div>
   );
 };

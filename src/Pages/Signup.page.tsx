@@ -8,7 +8,7 @@ import Input from "../components/Input/Input";
 import Button from "../components/Button/Button.";
 import { HiLockClosed } from "react-icons/hi";
 
-interface Props { }
+interface Props {}
 
 const Signup: FC<Props> = (props) => {
   const history = useHistory();
@@ -97,13 +97,20 @@ const Signup: FC<Props> = (props) => {
               {isSubmitting && <FaSpinner className="animate-spin mr-5 " />}
               Sign up
             </button> */}
-            <Button Icon={HiLockClosed} isSubmmiting={isSubmitting}>Sign Up</Button>
+            <Button Icon={HiLockClosed} isSubmmiting={isSubmitting}>
+              Sign Up
+            </Button>
           </div>
         </form>
       </div>
-      <h2 className=" text-blue-700 mt-16 text-sm font-semibold ">
+      <p className=" mt-8 sm:mt-12 mx-auto w-3/4 text-sm font-semibold ">
         © 2021 All Rights Reserved.
-      </h2>
+        <p className=" text-blue-700 inline "> Codeyogi </p>
+        is a product of Designreset.
+        <p className=" text-blue-700 inline"> Cookie Preferences </p>,
+        <p className=" text-blue-700 inline "> Privacy </p>, and
+        <p className=" text-blue-700 inline"> Terms. </p>
+      </p>
     </div>
   );
 };
