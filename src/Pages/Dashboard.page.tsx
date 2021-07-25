@@ -4,14 +4,14 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import Dropdown from "../components/Dropdown";
 import Header from "../components/Header";
 import ListCard from "../components/ListCard/ListCard";
-import { fetchGroups, Logout } from "../api";
+import { fetchGroups, GroupResponse, Logout } from "../api";
 import Button from "../components/Button/Button.";
 import { FiLock } from "react-icons/fi";
 
 interface Props {}
 
 const Dashboard: FC<Props> = (props) => {
-  const [userData, setuserData] = useState([]);
+  const [userData, setuserData] = useState<GroupResponse[]>();
   const [search, setSearch] = useState("");
 
   const [sidebarClass, setsidebarClass] = useState<boolean>(false);
@@ -22,7 +22,7 @@ const Dashboard: FC<Props> = (props) => {
 
   useEffect(() => {
     fetchGroups({ status: "all-groups", query: search }).then((data) => {
-      // console.log("Dashboard ", data);
+      console.log("Dashboard ", data);
       setuserData(data);
     });
   }, [search]);
@@ -73,7 +73,7 @@ const Dashboard: FC<Props> = (props) => {
       </div>
       <section className="space-x-5 flex">
         <Sidebar classes={sidebarClass} />
-        <ListCard data={userData} />
+        { (userData !== undefined ) &&  <ListCard data={userData} />}
         <div></div>
       </section>
     </div>

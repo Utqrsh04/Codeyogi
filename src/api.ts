@@ -104,8 +104,8 @@ export const fetchGroups = ( data : GroupRequest) => {
 
   return axios.get( url , {params : data } )
   .then( (response) => {
-    // console.log("API ",response.data)
-    return response.data;
+    // console.log("API ",response.data.data)
+    return response.data.data;
   }
   ).catch( (e) => console.error(e)
   )
