@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button.";
 import { HiLockClosed } from "react-icons/hi";
+import { login } from "../api";
 
 interface Props {}
 
@@ -28,11 +29,9 @@ const Login: FC<Props> = (props) => {
       password: yup.string().required().min(8),
     }),
     onSubmit: (data) => {
-      console.log(`Form Submitting ${data}`);
-      setTimeout(() => {
-        console.log(`Form Submitted Sucessfully`);
+      login(data).then(() => {
         history.push("/dashboard");
-      }, 2000);
+      });
     },
   });
 
@@ -101,11 +100,6 @@ const Login: FC<Props> = (props) => {
               className="font-medium text-indigo-600 hover:text-indigo-500"
             >
               Forgot Password
-            </Link>
-          </div>
-          <div>
-            <Link to="/dashboard">
-              <span className=" font-semibold text-black">Go to Dashboard</span>
             </Link>
           </div>
         </div>

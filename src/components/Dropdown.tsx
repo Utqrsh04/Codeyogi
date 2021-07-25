@@ -12,7 +12,7 @@ const Dropdown: FC<Props> = ({ items, children, needArrowIcon }) => {
     <div className="w-36 ">
       <Menu as="div" className=" inline-block ">
         <div>
-          <Menu.Button className="inline-flex justify-center w-full px-3 py-2 text-sm font-medium text-black border border-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          <Menu.Button className=" relative inline-flex justify-center w-full px-3 py-2 text-sm font-medium text-black border border-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             {children}
             {needArrowIcon && <MdKeyboardArrowDown className=" my-auto" />}
           </Menu.Button>
@@ -26,7 +26,7 @@ const Dropdown: FC<Props> = ({ items, children, needArrowIcon }) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="mt-2 origin-top-right relative z-40 bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="px-1 py-1 ">
               {items.map((data, index) => {
                 // console.log(data, index);

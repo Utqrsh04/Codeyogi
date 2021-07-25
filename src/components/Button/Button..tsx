@@ -33,7 +33,7 @@ const Button: FC<Props> = ({
       <button
         {...rest}
         className={
-          "w-auto group mx-auto relative flex items-center justify-between py-2 sm:px-4 text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2   " +
+          "w-auto group mx-auto relative flex items-center justify-between py-2 sm:px-3 text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2   " +
           themeClasses +
           " " +
           className
