@@ -33,7 +33,7 @@ const Button: FC<Props> = ({
       <button
         {...rest}
         className={
-          "w-auto group mx-auto relative flex items-center justify-between py-2 sm:px-3 px-1 text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2   " +
+          "w-auto group mx-auto relative flex items-center justify-between py-2 sm:px-3 text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2   " +
           themeClasses +
           " " +
           className
@@ -42,7 +42,7 @@ const Button: FC<Props> = ({
         {Icon && (
           // <span className=" left-0 px-1">
           <>
-            {isSubmmiting && <FaSpinner className="animate-spin -mx-2" />}
+            {isSubmmiting && <FaSpinner className="animate-spin ml-1 -mx-2" />}
             <Icon
               className={" w-5 h-5 mx-2 " + iconThemeClasses}
               aria-hidden="true"
