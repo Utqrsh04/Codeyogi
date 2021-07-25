@@ -6,7 +6,7 @@ interface Props {
   data: any;
 }
 
-const ListGroup: FC<Props> = ({ data }) => {
+const ListCard: FC<Props> = ({ data }) => {
   
   
   let details : GroupResponse[] = data.data
@@ -27,6 +27,6 @@ const ListGroup: FC<Props> = ({ data }) => {
   );
 };
 
-ListGroup.defaultProps = {};
+ListCard.defaultProps = {};
 
-export default memo(ListGroup);
+export default memo(ListCard);

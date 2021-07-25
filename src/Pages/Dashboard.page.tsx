@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Dropdown from "../components/Dropdown";
 import Header from "../components/Header";
-import ListGroup from "../components/ListCard/ListGroup";
+import ListCard from "../components/ListCard/ListCard";
 import { fetchGroups, Logout } from "../api";
 import Button from "../components/Button/Button.";
 import { FiLock } from "react-icons/fi";
@@ -73,7 +73,7 @@ const Dashboard: FC<Props> = (props) => {
       </div>
       <section className="space-x-5 flex">
         <Sidebar classes={sidebarClass} />
-        <ListGroup data={userData} />
+        <ListCard data={userData} />
         <div></div>
       </section>
     </div>
