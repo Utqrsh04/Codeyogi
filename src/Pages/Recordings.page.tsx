@@ -14,7 +14,7 @@ const Recordings: FC<Props> = (props) => {
   };
 
   return (
-    <div className=" h-screen text-center bg-gray-100">
+    <div className=" h-screen w-screen text-center bg-gray-100">
       <Header />
       <div className="bg-white px-5 text-gray-700 h-14 flex flex-row items-center justify-between">
         <div className=" flex justify-around ">
