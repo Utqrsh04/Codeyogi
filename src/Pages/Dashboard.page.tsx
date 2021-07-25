@@ -36,7 +36,7 @@ const Dashboard: FC<Props> = (props) => {
     <div className=" w-screen ">
       <div className="text-center ">
         <Header />
-        <div className="bg-white mb-2 sm:px-5 text-gray-700 h-14 flex flex-row justify-between items-center">
+        <div className="bg-white mb-2 sm:px-5 pr-16 text-gray-700 h-14 flex flex-row justify-between items-center">
           <div className=" flex items-center space-x-1 justify-evenly ">
             <button className=" m-2 w-6 h-6" onClick={toggleSidebar}>
               <GiHamburgerMenu />
