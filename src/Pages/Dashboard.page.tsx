@@ -1,19 +1,20 @@
 import { FC, memo, useEffect, useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Dropdown from "../components/Dropdown";
 import Header from "../components/Header";
 import ListCard from "../components/ListCard/ListCard";
-import { fetchGroups, GroupResponse, Logout } from "../api";
 import Button from "../components/Button/Button.";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { FiLock } from "react-icons/fi";
+import { Group } from "../models/Group";
+import { fetchGroups , Logout } from "../api/index";
 
 interface Props {}
 
 const Dashboard: FC<Props> = (props) => {
-  const [userData, setuserData] = useState<GroupResponse[]>();
+  const [userData, setuserData] = useState<Group[] | void > ();
   const [search, setSearch] = useState("");
-
+ 
   const [sidebarClass, setsidebarClass] = useState<boolean>(false);
 
   const toggleSidebar = () => {
@@ -29,7 +30,6 @@ const Dashboard: FC<Props> = (props) => {
 
   const handleChange = (e: any) => {
     setSearch(e.target.value);
-    // console.log(search);
   };
 
   return (
@@ -72,7 +72,7 @@ const Dashboard: FC<Props> = (props) => {
       </div>
       <section className="space-x-5 flex">
         <Sidebar classes={sidebarClass} />
-        { (userData !== undefined ) &&  <ListCard data={userData} />}
+        {userData !== undefined && <ListCard data={userData} />}
         <div></div>
       </section>
     </div>
