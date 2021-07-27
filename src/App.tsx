@@ -1,23 +1,37 @@
-import React from "react";
+import { FC, lazy, Suspense } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { LS_AUTH_TOKEN } from "./api/base";
-import AppContainerPage from "./Pages/AppContainer.page";
-import AuthPage from "./Pages/Auth.page";
+import AppContainerPageLazy from "./Pages/AppContainer/AppContainer.lazy";
 import NotFoundPage from "./Pages/NotFound.page";
 
-function App() {
+const AuthPagelazy = lazy(() => import("./Pages/Auth/Auth.page"));
 
+interface Props {}
+
+const App: FC<Props> = () => {
   const token = localStorage.getItem(LS_AUTH_TOKEN);
 
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
-          { token ? <Redirect to="/dashboard"/> : <Redirect to="/login"/> }
+          {token ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
         </Route>
 
         <Route path={["/login", "/signup"]} exact>
-          <AuthPage />
+          {token ? (
+            <Redirect to="/dashboard"/>
+          ) : (
+            <Suspense
+              fallback={
+                <div className="text-red-500 p-2 ">
+                  Loading Login Page
+                </div>
+              }
+            >
+              <AuthPagelazy />
+            </Suspense>
+          )}
         </Route>
 
         <Route
@@ -28,17 +42,27 @@ function App() {
           ]}
           exact
         >
-          <AppContainerPage />
+          <Suspense
+            fallback={
+              <div className=" text-red-500 text-center align-middle w-screen h-screen ">
+                Loading App Container Page
+              </div>
+            }
+          >
+            <AppContainerPageLazy />
+          </Suspense>
         </Route>
-        <Route path="/not-found">
+
+        <Route path="/not-found" exact>
           <NotFoundPage />
         </Route>
+
         <Route>
           <Redirect to="/not-found"></Redirect>
         </Route>
       </Switch>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

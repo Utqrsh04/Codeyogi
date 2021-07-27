@@ -4,9 +4,9 @@ import { FaLock, FaUserAlt } from "react-icons/fa";
 import { HiLockClosed } from "react-icons/hi";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import Input from "../components/Input/Input";
-import Button from "../components/Button/Button.";
-import { login } from "../api/auth";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button.";
+import { login } from "../../api/auth";
 
 interface Props {}
 
@@ -87,7 +87,7 @@ const Login: FC<Props> = (props) => {
               </label>
             </div>
 
-            <Button Icon={HiLockClosed} isSubmmiting={isSubmitting}>
+            <Button Icon={HiLockClosed} type="submit" isSubmmiting={isSubmitting}>
               Sign In
             </Button>
           </div>

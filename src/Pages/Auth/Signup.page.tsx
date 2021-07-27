@@ -4,8 +4,8 @@ import { FaLock, FaUserAlt } from "react-icons/fa";
 import { FiAtSign } from "react-icons/fi";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import Input from "../components/Input/Input";
-import Button from "../components/Button/Button.";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button.";
 import { HiLockClosed } from "react-icons/hi";
 
 interface Props {}

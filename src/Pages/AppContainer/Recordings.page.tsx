@@ -1,8 +1,8 @@
 import { FC, memo, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Dropdown from "../components/Dropdown";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar/Sidebar";
+import Dropdown from "../../components/Dropdown";
+import Header from "../../components/Header";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 interface Props {}
 

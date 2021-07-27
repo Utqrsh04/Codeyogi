@@ -1,18 +1,18 @@
 import { FC, memo, useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar/Sidebar";
-import Dropdown from "../components/Dropdown";
-import Header from "../components/Header";
-import ListCard from "../components/ListCard/ListCard";
-import Button from "../components/Button/Button.";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Dropdown from "../../components/Dropdown";
+import Header from "../../components/Header";
+import ListCard from "../../components/ListCard/ListCard";
+import Button from "../../components/Button/Button.";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FiLock } from "react-icons/fi";
-import { Group } from "../models/Group";
-import { fetchGroups , Logout } from "../api/index";
+import { Group } from "../../models/Group";
+import { fetchGroups , Logout } from "../../api/index";
 
 interface Props {}
 
 const Dashboard: FC<Props> = (props) => {
-  const [userData, setuserData] = useState<Group[] | void > ();
+  const [userData, setuserData] = useState<Group[] | void > ([]);
   const [search, setSearch] = useState("");
  
   const [sidebarClass, setsidebarClass] = useState<boolean>(false);

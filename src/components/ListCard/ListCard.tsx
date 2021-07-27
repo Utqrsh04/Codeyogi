@@ -3,7 +3,7 @@ import { Group } from "../../models/Group";
 import List from "./List";
 
 interface Props {
-  data: Group[];
+  data: Group[] ;
 }
 
 const ListCard: FC<Props> = ({ data }) => {
@@ -25,6 +25,8 @@ const ListCard: FC<Props> = ({ data }) => {
   );
 };
 
-ListCard.defaultProps = {};
+ListCard.defaultProps = {
+  data : []
+};
 
 export default memo(ListCard);
