@@ -7,14 +7,17 @@ import Button from "../../components/Button/Button.";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FiLock } from "react-icons/fi";
 import { Group } from "../../models/Group";
-import { fetchGroups , Logout } from "../../api/index";
+import { fetchGroups, Logout } from "../../api/index";
+import { User } from "../../models/User";
 
-interface Props {}
+interface Props {
+  user: User;
+}
 
-const Dashboard: FC<Props> = (props) => {
-  const [userData, setuserData] = useState<Group[] | void > ([]);
+const Dashboard: FC<Props> = ({ user }) => {
+  const [userData, setuserData] = useState<Group[] | void>([]);
   const [search, setSearch] = useState("");
- 
+
   const [sidebarClass, setsidebarClass] = useState<boolean>(false);
 
   const toggleSidebar = () => {
@@ -70,10 +73,14 @@ const Dashboard: FC<Props> = (props) => {
           </div>
         </div>
       </div>
+      <div className=" text-left mx-5 text-xl my-2 ">
+        <span className=" bg-blue-200 text-black p-2 rounded-xl font-semibold ">
+          Welcome {`${user.first_name} ${user.last_name}`}
+        </span>
+      </div>
       <section className="space-x-5 flex">
         <Sidebar classes={sidebarClass} />
-        {userData !== undefined && <ListCard data={userData} />}
-        <div></div>
+        { userData && <ListCard data={userData} />}
       </section>
     </div>
   );

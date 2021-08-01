@@ -33,3 +33,11 @@ export const Logout = () => {
 }
 
 
+interface meResponse {
+  data : User; 
+}
+
+export const me = () => {
+  const url = BASE_URL + "/me";
+  return axios.get<meResponse>(url).then( response => response.data.data )
+}

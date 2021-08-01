@@ -5,7 +5,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
   placeholder : string;
   error?: string;
-  Icon: IconType;
+  Icon?: IconType;
   touched?: boolean;
 }
 
@@ -26,7 +26,7 @@ const Input: FC<Props> = ({
             {placeholder}
           </label>
         )}
-        <Icon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"/>
+        { Icon && <Icon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"/>}
         <input
           id={id}
           {...rest}

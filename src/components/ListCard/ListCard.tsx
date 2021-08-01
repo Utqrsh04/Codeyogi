@@ -12,12 +12,12 @@ const ListCard: FC<Props> = ({ data }) => {
   return (
     <>
       <div className=" fixed sm:relative mx-auto w-72 sm:w-3/6">
-        { (data !== undefined ) && data.map((data, index) => (
+        { data.map((data, index) => (
           <List
             key={index}
             idx={index}
-            Name={data.creator.first_name}
-            Description={data.name}
+            Name={data.name}
+            Description={data.description}
             />
         ))}
       </div>
