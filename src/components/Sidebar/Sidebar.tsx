@@ -17,7 +17,7 @@ const Sidebar: FC<Props> = ({ classes }) => {
     <div className="z-50">
       <Transition
         as={Fragment}
-        show={!classes}
+        show={classes}
         enter="transform transition duration-[700ms]"
         enterFrom="opacity-0 -translate-x-14 "
         enterTo="opacity-100 translate-x-0 "

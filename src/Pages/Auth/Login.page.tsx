@@ -8,13 +8,17 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button.";
 import { login } from "../../api/auth";
 import { User } from "../../models/User";
+import { useDispatch } from "react-redux";
+import { meLoginAction } from "../../store";
 
 interface Props {
-  onLogin : (user : User) => void ;
+  onLogin: (user: User) => void;
 }
 
 const Login: FC<Props> = (props) => {
   const history = useHistory();
+
+  const dispatch = useDispatch();
 
   const {
     getFieldProps,
@@ -33,7 +37,7 @@ const Login: FC<Props> = (props) => {
     }),
     onSubmit: (data) => {
       login(data).then((u) => {
-        props.onLogin(u);
+        dispatch(meLoginAction(u));
         history.push("/dashboard");
       });
     },
@@ -91,7 +95,11 @@ const Login: FC<Props> = (props) => {
               </label>
             </div>
 
-            <Button Icon={HiLockClosed} type="submit" isSubmmiting={isSubmitting}>
+            <Button
+              Icon={HiLockClosed}
+              type="submit"
+              isSubmmiting={isSubmitting}
+            >
               Sign In
             </Button>
           </div>

@@ -1,16 +1,20 @@
-import { FC, memo, useState } from "react";
+import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useDispatch } from "react-redux";
 import Dropdown from "../../components/Dropdown";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import { meToggleSidebar, useAppSelector } from "../../store";
 
 interface Props {}
 
 const Recordings: FC<Props> = (props) => {
-  const [sidebarClass, setsidebarClass] = useState<boolean>(false);
+  const dispatch = useDispatch();
+
+  const sidebar = useAppSelector((state) => state.isSidebarOpen);
 
   const toggleSidebar = () => {
-    sidebarClass ? setsidebarClass(false) : setsidebarClass(true);
+    sidebar ? dispatch(meToggleSidebar(false)) : dispatch(meToggleSidebar(true));
   };
 
   return (
@@ -32,7 +36,7 @@ const Recordings: FC<Props> = (props) => {
           </Dropdown>
         </div>
       </div>
-      <Sidebar classes={sidebarClass} />
+      <Sidebar classes={sidebar} />
     </div>
   );
 };

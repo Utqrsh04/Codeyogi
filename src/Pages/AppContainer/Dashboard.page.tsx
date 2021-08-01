@@ -6,34 +6,35 @@ import ListCard from "../../components/ListCard/ListCard";
 import Button from "../../components/Button/Button.";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FiLock } from "react-icons/fi";
-import { Group } from "../../models/Group";
 import { fetchGroups, Logout } from "../../api/index";
-import { User } from "../../models/User";
+import { meFetchGroups, meToggleSidebar, useAppSelector } from "../../store";
+import { useDispatch } from "react-redux";
 
-interface Props {
-  user: User;
-}
+interface Props {}
 
-const Dashboard: FC<Props> = ({ user }) => {
-  const [userData, setuserData] = useState<Group[] | void>([]);
+const Dashboard: FC<Props> = () => {
   const [search, setSearch] = useState("");
 
-  const [sidebarClass, setsidebarClass] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const Groups = useAppSelector((state) => state.groups);
+  const user = useAppSelector((state) => state.me);
+  const sidebar = useAppSelector((state) => state.isSidebarOpen);
 
   const toggleSidebar = () => {
-    sidebarClass ? setsidebarClass(false) : setsidebarClass(true);
+    sidebar ? dispatch(meToggleSidebar(false)) : dispatch(meToggleSidebar(true));
   };
 
   useEffect(() => {
     fetchGroups({ status: "all-groups", query: search }).then((data) => {
-      console.log("Dashboard ", data);
-      setuserData(data);
+      console.log("Dashboard Component Groups ", data);
+      data && dispatch(meFetchGroups(data));
     });
-  }, [search]);
+  }, [search]); //eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (e: any) => {
     setSearch(e.target.value);
   };
+
 
   return (
     <div className=" w-screen ">
@@ -75,12 +76,12 @@ const Dashboard: FC<Props> = ({ user }) => {
       </div>
       <div className=" text-left mx-5 text-xl my-2 ">
         <span className=" bg-blue-200 text-black p-2 rounded-xl font-semibold ">
-          Welcome {`${user.first_name} ${user.last_name}`}
+          Welcome {`${user!.first_name} ${user!.last_name}`}
         </span>
       </div>
       <section className="space-x-5 flex">
-        <Sidebar classes={sidebarClass} />
-        { userData && <ListCard data={userData} />}
+        <Sidebar classes={sidebar} />
+        {Groups && <ListCard data={Groups} />}
       </section>
     </div>
   );

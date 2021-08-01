@@ -1,33 +1,30 @@
-import { FC, lazy, Suspense, useEffect, useState } from "react";
+import { FC, lazy, Suspense, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { me } from "./api";
 import { LS_AUTH_TOKEN } from "./api/base";
-import { User } from "./models/User";
 import AppContainerPageLazy from "./Pages/AppContainer/AppContainer.lazy";
 import NotFoundPage from "./Pages/NotFound.page";
+import { meFetchedAction, useAppSelector } from "./store";
 
 const AuthPagelazy = lazy(() => import("./Pages/Auth/Auth.page"));
 
-interface Props {
-
-}
+interface Props {}
 
 const App: FC<Props> = () => {
+  const user = useAppSelector((state) => state.me);
 
-  const [user, setUser] = useState<User>()
+  console.log("App Component User ", user);
+  const dispatch = useDispatch();
 
   const token = localStorage.getItem(LS_AUTH_TOKEN);
 
   useEffect(() => {
-    if(!token)
-      return; 
-    me().then( (u) => setUser(u)) 
-  }, []) //eslint-disable-line react-hooks/exhaustive-deps
+    if (!token) return;
+    me().then((u) => dispatch(meFetchedAction(u)));
+  }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
-  
-  
-  if(!user && token )
-    return <div> loading...</div>;
+  if (!user && token) return <div> loading...</div>;
 
   return (
     <Suspense
@@ -44,7 +41,7 @@ const App: FC<Props> = () => {
           </Route>
 
           <Route path={["/login", "/signup"]} exact>
-            {user ? <Redirect to="/dashboard" /> : <AuthPagelazy onLogin={setUser}/>}
+            {user ? <Redirect to="/dashboard" /> : <AuthPagelazy />}
           </Route>
 
           <Route
@@ -56,7 +53,7 @@ const App: FC<Props> = () => {
             ]}
             exact
           >
-            {token ? <AppContainerPageLazy user={user!} /> : <Redirect to="/login" />}
+            {token ? <AppContainerPageLazy /> : <Redirect to="/login" />}
           </Route>
 
           <Route path="/not-found" exact>
