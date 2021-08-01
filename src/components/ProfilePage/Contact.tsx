@@ -16,7 +16,7 @@ const Contact: FC<Props> = (props) => {
                 id="country"
                 className=" bg-white h-10 w-full border border-gray-400 rounded-lg"
               >
-                <option selected>United States</option>
+                <option defaultValue="United States">United States</option>
                 <option>India</option>
                 <option>Japan</option>
                 <option>China</option>

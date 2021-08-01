@@ -22,8 +22,8 @@ export const login = (data: LoginRequest) => {
   // console.log("Login ",data);
 
   return axios.post<LoginResponse>(url, data).then((response) => {
-    console.log(response.data);
-    localStorage.setItem( LS_AUTH_TOKEN , response.data.token)
+    console.log("Response and Token ", response.data);
+    localStorage.setItem(LS_AUTH_TOKEN, response.data.token)
     return response.data.user;
   });
 };
@@ -34,10 +34,14 @@ export const Logout = () => {
 
 
 interface meResponse {
-  data : User; 
+  data: User;
 }
 
 export const me = () => {
   const url = BASE_URL + "/me";
-  return axios.get<meResponse>(url).then( response => response.data.data )
+  return axios.get<meResponse>(url).then((response) => {
+    // console.log("Auth me ",response.data);
+    return response.data.data
+  }
+  )
 }

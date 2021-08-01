@@ -1,7 +1,6 @@
 import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
-import Dropdown from "../../components/Dropdown";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { meToggleSidebar, useAppSelector } from "../../store";
@@ -27,14 +26,7 @@ const Recordings: FC<Props> = (props) => {
           </button>
           <h2 className="font-semibold">Recordings</h2>
         </div>
-        <div className=" w-40 h-16 mt-4 py-2">
-          <Dropdown
-            items={["Settings", "Mail", "Print", "Download", "Share"]}
-            needArrowIcon={true}
-          >
-            Settings
-          </Dropdown>
-        </div>
+        
       </div>
       <Sidebar classes={sidebar} />
     </div>

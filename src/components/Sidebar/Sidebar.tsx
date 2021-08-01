@@ -14,7 +14,7 @@ interface Props {
 
 const Sidebar: FC<Props> = ({ classes }) => {
   return (
-    <div className="z-50">
+    <div className="z-40">
       <Transition
         as={Fragment}
         show={classes}
