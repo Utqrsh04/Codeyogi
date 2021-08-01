@@ -52,15 +52,15 @@ const DropDownHeader: FC<Props> = ({ imageUrl, Icon }) => {
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
-                    <a href="#" className="block px-4 py-2 text-sm">
-                      Account settings
+                    <a href="/not-found" className="block px-4 py-2 text-sm">
+                      Inbox
                     </a>
                   )}
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
-                    <a href="#" className="block px-4 py-2 text-sm">
-                      License
+                    <a href="/not-found" className="block px-4 py-2 text-sm">
+                      Lock Screen
                     </a>
                   )}
                 </Menu.Item>
