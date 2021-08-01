@@ -20,7 +20,7 @@ const initialState: AppState = {
 const ME_FETCH = "me/fetch";
 const ME_LOGIN = "me/login";
 const GROUP_FETCH = "fetchGroups";
-const TOGGLE_SIDEBAR = "toggleSidebar"; 
+const TOGGLE_SIDEBAR = "toggleSidebar";
 
 const reducer: Reducer<AppState, AnyAction> = (currentState = initialState, dispatchedAction: AnyAction) => {
 
@@ -30,9 +30,9 @@ const reducer: Reducer<AppState, AnyAction> = (currentState = initialState, disp
       return { ...currentState, me: dispatchedAction.payload }
 
     case GROUP_FETCH:
-      return {...currentState, groups : dispatchedAction.payload}    
+      return { ...currentState, groups: dispatchedAction.payload }
     case TOGGLE_SIDEBAR:
-      return {...currentState , isSidebarOpen: dispatchedAction.payload }
+      return { ...currentState, isSidebarOpen: dispatchedAction.payload }
     default:
       return currentState
   }
@@ -44,5 +44,5 @@ export const store = createStore(reducer,
 
 export const meFetchedAction = (u: User) => ({ type: ME_FETCH, payload: u });
 export const meLoginAction = (u: User) => ({ type: ME_LOGIN, payload: u })
-export const meFetchGroups = (data : Group[]) => ({type : GROUP_FETCH , payload :data})
-export const meToggleSidebar = (value : boolean) => ( { type : TOGGLE_SIDEBAR , payload : value})
+export const meFetchGroups = (data: Group[]) => ({ type: GROUP_FETCH, payload: data })
+export const meToggleSidebar = (bool: boolean) => ({ type: TOGGLE_SIDEBAR, payload: bool })

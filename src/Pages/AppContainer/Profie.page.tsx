@@ -3,9 +3,10 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import Dropdown from "../../components/Dropdown";
 import Header from "../../components/Header";
-import Input from "../../components/Input/Input";
 import About from "../../components/ProfilePage/About";
+import Contact from "../../components/ProfilePage/Contact";
 import GeneralInfo from "../../components/ProfilePage/GeneralInfo";
+import WorkPlatForms from "../../components/ProfilePage/WorkPlatForms";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { meToggleSidebar, useAppSelector } from "../../store";
 
@@ -24,7 +25,7 @@ const Profie: FC<Props> = (props) => {
 
   return (
     <div className="w-screen bg-gray-200">
-      <div className="text-center ">
+      <div className="text-center">
         <Header />
         <div className="bg-white mb-2 sm:px-5 sm:pr-10 pr-2 text-gray-700 h-14 flex flex-row justify-between items-center">
           <div className=" flex items-center space-x-1 justify-evenly ">
@@ -47,43 +48,18 @@ const Profie: FC<Props> = (props) => {
 
       <section className="space-x-5 flex">
         <Sidebar classes={sidebar} />
-        <div>
-          <div className="rounded-lg px-4">
-            <GeneralInfo />
-            <About />
-            {/* 
-              <div className=" my-5 p-3 bg-blue-200 items-center ">
-              <h3>Work Platforms</h3>
-                <div className=" p-4 ">
-                <div className="  ">
-                <h3>Platforms Title</h3>
-                <Input placeholder="Web Design" id="Platforms Title" />
-                </div>
-                <div className=" ">
-                <h3>Description</h3>
-                <div className="w-auto  box-border">
-                <textarea
-                className=" p-5 rounded-xl "
-                name="Description"
-                id="Description"
-                cols={110}
-                rows={8}
-                >
-                Duis aute irure dolor in reprehenderit in voluptate
-                velit esse eu fugiat nulla pariatur..
-                </textarea>
-                </div>
-                </div>
-                </div>
-                </div>
-              */}
-          </div>
-          <footer className="">
-            <div className="fixed w-96 bg-blue-400 rounded-t-lg bottom-0 text-center h-14 ">
-              SAVE CHANGES
-            </div>
-          </footer>
+
+        <div className="rounded-lg px-4 w-full">
+          <GeneralInfo />
+          <About />
+          <WorkPlatForms />
+          <Contact/>
         </div>
+        <footer className="">
+          <div className="fixed w-96 bg-blue-400 rounded-t-lg bottom-0 text-center h-14 ">
+            SAVE CHANGES
+          </div>
+        </footer>
       </section>
     </div>
   );

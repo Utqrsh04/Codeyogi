@@ -6,7 +6,7 @@ import { FaSpinner } from "react-icons/fa";
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: "Primary" | "Secondry" | "Danger";
   children: string;
-  Icon: IconType;
+  Icon?: IconType;
   isSubmmiting?: boolean;
 }
 
