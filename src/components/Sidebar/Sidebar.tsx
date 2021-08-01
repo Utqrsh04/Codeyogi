@@ -2,7 +2,7 @@ import { Fragment, FC, memo } from "react";
 import { Transition } from "@headlessui/react";
 import StepSidebarDropdown from "./StepSidebarDropdown";
 import StepSidebar from "./StepSidebar";
-import { FiLock, FiMap, FiPieChart } from "react-icons/fi";
+import { FiLock, FiHome, FiCpu, FiMap, FiPieChart } from "react-icons/fi";
 import { IoMdDesktop, IoMdDocument } from "react-icons/io";
 import { ImStack } from "react-icons/im";
 import { AiOutlineForm, AiOutlineThunderbolt } from "react-icons/ai";
@@ -26,6 +26,16 @@ const Sidebar: FC<Props> = ({ classes }) => {
         leaveTo="opacity-0 -translate-x-14 "
       >
         <div className="w-52 space-y-2 rounded-lg bg-gray-200 px-5  py-5 ">
+          <StepSidebarDropdown
+            menu="Dashboard"
+            items={["Sales", "Analytics"]}
+            Icon={FiHome}
+          />
+          <StepSidebarDropdown
+            menu="Apps"
+            items={["Chat", "Mailbox", "Todo List", "Notes", "Scrumboard"]}
+            Icon={FiCpu}
+          />
           <StepSidebarDropdown
             menu="Form"
             items={["Chat", "Mailbox", "Todo List", "Notes", "Scrumboard"]}

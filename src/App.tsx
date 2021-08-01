@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { me } from "./api";
 import { LS_AUTH_TOKEN } from "./api/base";
+import Loading from "./components/Loading";
 import AppContainerPageLazy from "./Pages/AppContainer/AppContainer.lazy";
 import NotFoundPage from "./Pages/NotFound.page";
 import { meFetchedAction, useAppSelector } from "./store";
@@ -24,16 +25,10 @@ const App: FC<Props> = () => {
     me().then((u) => dispatch(meFetchedAction(u)));
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!user && token) return <div> loading...</div>;
+  if (!user && token) return <Loading/>;<div> </div>
 
   return (
-    <Suspense
-      fallback={
-        <div className=" text-red-600 text-lg font-semibold text-center">
-          Loading ....
-        </div>
-      }
-    >
+    <Suspense fallback={<Loading />}>
       <BrowserRouter>
         <Switch>
           <Route path="/" exact>

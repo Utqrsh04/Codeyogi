@@ -48,13 +48,15 @@ const Profie: FC<Props> = (props) => {
           <WorkPlatForms />
           <Contact />
           <Social />
-          <footer className="h-14 w-5/6 flex justify-between px-20 bottom-0 fixed bg-purple-900 rounded-t-md">
-            <button className="mt-3 px-3 h-8 bg-blue-600 rounded-md ">
-              Reset All
-            </button>
-            <button className="mt-3 px-3 h-8 bg-blue-600 rounded-md ">
-              Save Changes
-            </button>
+          <footer className="h-14 w-1085 px-20 bottom-0 fixed bg-purple-900 rounded-t-md">
+            <div className=" flex mt-3 justify-between ">
+              <button className="px-3 h-8 shadow-lg text-white bg-blue-600 rounded-md ">
+                Reset All
+              </button>
+              <button className="px-3 h-8 bg-green-600 shadow-lg text-white rounded-md ">
+                Save Changes
+              </button>
+            </div>
           </footer>
         </div>
       </section>
