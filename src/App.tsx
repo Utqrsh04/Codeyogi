@@ -25,7 +25,7 @@ const App: FC<Props> = () => {
     me().then((u) => dispatch(meFetchedAction(u)));
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!user && token) return <Loading/>;<div> </div>
+  if (!user && token) return <Loading/>;
 
   return (
     <Suspense fallback={<Loading />}>
