@@ -1,6 +1,9 @@
 import { FC, memo } from "react";
+import { Bio } from "../../models/ProfileData";
 
-interface Props {}
+interface Props {
+  data? : Bio
+}
 
 const About: FC<Props> = (props) => {
   return (

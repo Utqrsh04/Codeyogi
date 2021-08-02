@@ -1,7 +1,10 @@
 import { FC, memo } from "react";
+import { General_Info } from "../../models/ProfileData";
 import Input from "../Input/Input";
 
-interface Props {}
+interface Props {
+  data? : General_Info;
+}
 
 const GeneralInfo: FC<Props> = (props) => {
   return (

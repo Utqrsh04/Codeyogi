@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { meToggleSidebar, useAppSelector } from "../../store";
+import { uiToggleSidebar, useAppSelector } from "../../store";
 
 interface Props {}
 
@@ -13,7 +13,7 @@ const Recordings: FC<Props> = (props) => {
   const sidebar = useAppSelector((state) => state.isSidebarOpen);
 
   const toggleSidebar = () => {
-    sidebar ? dispatch(meToggleSidebar(false)) : dispatch(meToggleSidebar(true));
+    sidebar ? dispatch(uiToggleSidebar(false)) : dispatch(uiToggleSidebar(true));
   };
 
   return (

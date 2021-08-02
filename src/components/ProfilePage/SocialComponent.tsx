@@ -1,9 +1,12 @@
 import { FC, memo } from "react";
 import { FaFacebookF, FaGithub, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { Social } from "../../models/ProfileData";
 
-interface Props {}
+interface Props {
+  data?:Social;
+}
 
-const Social: FC<Props> = (props) => {
+const SocialComponent: FC<Props> = (props) => {
   return (
     <>
       <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">
@@ -63,6 +66,6 @@ const Social: FC<Props> = (props) => {
   );
 };
 
-Social.defaultProps = {};
+SocialComponent.defaultProps = {};
 
-export default memo(Social);
+export default memo(SocialComponent);

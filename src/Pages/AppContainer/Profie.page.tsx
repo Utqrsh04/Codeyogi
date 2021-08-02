@@ -3,12 +3,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import Header from "../../components/Header";
 import About from "../../components/ProfilePage/About";
-import Contact from "../../components/ProfilePage/Contact";
+import ContactComponent from "../../components/ProfilePage/ContactComponent";
 import GeneralInfo from "../../components/ProfilePage/GeneralInfo";
-import Social from "../../components/ProfilePage/Social";
+import Social from "../../components/ProfilePage/SocialComponent";
 import WorkPlatForms from "../../components/ProfilePage/WorkPlatForms";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { meToggleSidebar, useAppSelector } from "../../store";
+import { getProfiledata } from "../../models/ProfileData";
+import { uiToggleSidebar, useAppSelector } from "../../store";
 
 interface Props {}
 
@@ -19,9 +20,16 @@ const Profie: FC<Props> = (props) => {
 
   const toggleSidebar = () => {
     sidebar
-      ? dispatch(meToggleSidebar(false))
-      : dispatch(meToggleSidebar(true));
+      ? dispatch(uiToggleSidebar(false))
+      : dispatch(uiToggleSidebar(true));
   };
+
+  // const profiledata = localStorage.getItem("intialData");
+  // profiledata && console.log("Profile Page Data", JSON.parse(profiledata));
+
+  const profiledata = getProfiledata();
+  console.log("Profile Page Data ", profiledata);
+   
 
   return (
     <div className="w-screen bg-gray-200">
@@ -46,9 +54,9 @@ const Profie: FC<Props> = (props) => {
           <GeneralInfo />
           <About />
           <WorkPlatForms />
-          <Contact />
+          <ContactComponent />
           <Social />
-          <footer className="h-14 w-1085 px-20 bottom-0 fixed bg-purple-900 rounded-t-md">
+          <footer className="h-14 md:w-3/4 xl:w-1085 px-20 bottom-0 fixed bg-purple-900 rounded-t-md">
             <div className=" flex mt-3 justify-between ">
               <button className="px-3 h-8 shadow-lg text-white bg-blue-600 rounded-md ">
                 Reset All

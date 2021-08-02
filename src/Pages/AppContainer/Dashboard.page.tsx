@@ -1,37 +1,47 @@
-import { FC, memo, useEffect, useState } from "react";
+import { FC, memo, useEffect } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header";
 import ListCard from "../../components/ListCard/ListCard";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { fetchGroups } from "../../api/index";
-import { meFetchGroups, meToggleSidebar, useAppSelector } from "../../store";
+import { meGroupQuery, uiToggleSidebar, useAppSelector } from "../../store";
 import { useDispatch } from "react-redux";
 
 interface Props {}
 
 const Dashboard: FC<Props> = () => {
-  const [search, setSearch] = useState("");
+  const searchQuery = useAppSelector((state) => state.groupQuery);
 
   const dispatch = useDispatch();
-  const Groups = useAppSelector((state) => state.groups);
-  const user = useAppSelector((state) => state.me);
+
+  const groups = useAppSelector((state) => {
+    const groupsIds = state.groupqueryMap[state.groupQuery] || [];
+    const groups = groupsIds.map((id) => state.groups[id]);
+    return groups;
+  });
+
+  const first_name = useAppSelector((state) => state.me!.first_name);
   const sidebar = useAppSelector((state) => state.isSidebarOpen);
 
   const toggleSidebar = () => {
     sidebar
-      ? dispatch(meToggleSidebar(false))
-      : dispatch(meToggleSidebar(true));
+      ? dispatch(uiToggleSidebar(false))
+      : dispatch(uiToggleSidebar(true));
   };
 
   useEffect(() => {
-    fetchGroups({ status: "all-groups", query: search }).then((data) => {
-      console.log("Dashboard Component Groups ", data);
-      data && dispatch(meFetchGroups(data));
+    fetchGroups({ status: "all-groups", query: searchQuery }).then((groups) => {
+      // console.log("Dashboard Component groups ", groups);
+      groups &&
+        dispatch({
+          type: "groups/query_completed",
+          payload: { groups: groups, searchQuery },
+        });
     });
-  }, [search]); //eslint-disable-line react-hooks/exhaustive-deps
+  }, [searchQuery]); //eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (e: any) => {
-    setSearch(e.target.value);
+    dispatch(meGroupQuery(e.target.value));
   };
 
   return (
@@ -47,11 +57,13 @@ const Dashboard: FC<Props> = () => {
           </div>
           <div className=" mx-4 flex my-2 text-center ">
             <span className="  sm:block bg-blue-200 px-1 text-black my-auto rounded-sm font-semibold ">
-              Welcome {`${user!.first_name} ${user!.last_name}`}
+              Welcome {`${first_name}`}
             </span>
             <div className="mx-1 flex rounded-lg items-center">
               <input
                 onChange={handleChange}
+                value={searchQuery}
+                type="text"
                 placeholder="Search"
                 className=" rounded-lg w-32 h-5 p-4 "
               />
@@ -62,7 +74,7 @@ const Dashboard: FC<Props> = () => {
 
       <section className="space-x-5 flex">
         <Sidebar classes={sidebar} />
-        {Groups && <ListCard data={Groups} />}
+        {groups && <ListCard data={groups} />}
       </section>
     </div>
   );

@@ -7,34 +7,63 @@ export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
 
 export interface AppState {
   me?: User,
-  groups: Group[],
   isSidebarOpen: boolean,
+
+  groupQuery: string;
+  groupqueryMap: { [Keyword: string]: number[] };
+
+  groups: { [id: number]: Group },
 }
 
 const initialState: AppState = {
   me: undefined,
-  groups: [],
   isSidebarOpen: true,
+
+  groupQuery: "",
+  groupqueryMap: {},
+  groups: {},
 }
 
 const ME_FETCH = "me/fetch";
 const ME_LOGIN = "me/login";
-const GROUP_FETCH = "fetchGroups";
-const TOGGLE_SIDEBAR = "toggleSidebar";
+const UI_TOGGLE_SIDEBAR = "ui/toggleSidebar";
 
-const reducer: Reducer<AppState, AnyAction> = (currentState = initialState, dispatchedAction: AnyAction) => {
+const ME_GROUP_QUERY = "groups/query";
+const ME_GROUP_QUERY_COMPLETED = "groups/query_completed";
 
-  switch (dispatchedAction.type) {
+const reducer: Reducer<AppState, AnyAction> = (
+  state = initialState, action: AnyAction
+) => {
+  switch (action.type) {
     case ME_FETCH:
     case ME_LOGIN:
-      return { ...currentState, me: dispatchedAction.payload }
+      return { ...state, me: action.payload }
 
-    case GROUP_FETCH:
-      return { ...currentState, groups: dispatchedAction.payload }
-    case TOGGLE_SIDEBAR:
-      return { ...currentState, isSidebarOpen: dispatchedAction.payload }
+    case UI_TOGGLE_SIDEBAR:
+      return { ...state, isSidebarOpen: action.payload }
+
+    case ME_GROUP_QUERY:
+      return { ...state, groupQuery: action.payload }
+
+    case ME_GROUP_QUERY_COMPLETED:
+      const groups = action.payload.groups as Group[];
+      const groupIDs = groups.map(g => g.id)
+
+      const groupMap = groups.reduce((prev, group) => {
+        return { ...prev, [group.id]: group }
+      }, {})
+
+      return {
+        ...state, groupqueryMap: {
+          ...state.groupqueryMap,
+          [action.payload.searchQuery]: groupIDs
+        },
+        groups: { ...state.groups, ...groupMap }
+      };
+
+
     default:
-      return currentState
+      return state
   }
 
 }
@@ -44,5 +73,6 @@ export const store = createStore(reducer,
 
 export const meFetchedAction = (u: User) => ({ type: ME_FETCH, payload: u });
 export const meLoginAction = (u: User) => ({ type: ME_LOGIN, payload: u })
-export const meFetchGroups = (data: Group[]) => ({ type: GROUP_FETCH, payload: data })
-export const meToggleSidebar = (bool: boolean) => ({ type: TOGGLE_SIDEBAR, payload: bool })
+export const uiToggleSidebar = (bool: boolean) => ({ type: UI_TOGGLE_SIDEBAR, payload: bool })
+export const meGroupQuery = (groupQuery: string) => ({ type: ME_GROUP_QUERY, payload: groupQuery })
+

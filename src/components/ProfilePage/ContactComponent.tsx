@@ -1,8 +1,11 @@
 import { FC, memo } from "react";
+import { Contact } from "../../models/ProfileData";
 
-interface Props {}
+interface Props {
+  data?:Contact;
+}
 
-const Contact: FC<Props> = (props) => {
+const ContactComponent: FC<Props> = (props) => {
   return (
     <>
       <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">
@@ -81,6 +84,6 @@ const Contact: FC<Props> = (props) => {
   );
 };
 
-Contact.defaultProps = {};
+ContactComponent.defaultProps = {};
 
-export default memo(Contact);
+export default memo(ContactComponent);

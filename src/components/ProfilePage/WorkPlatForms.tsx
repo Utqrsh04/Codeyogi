@@ -1,7 +1,10 @@
 import { FC, memo } from "react";
+import { Work_Platform } from "../../models/ProfileData";
 import Button from "../Button/Button.";
 
-interface Props {}
+interface Props {
+  data? : Work_Platform
+}
 
 const WorkPlatForms: FC<Props> = (props) => {
   return (
