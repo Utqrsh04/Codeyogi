@@ -1,8 +1,15 @@
+import { bindActionCreators } from "redux";
 import { Group } from "../models/Group";
+import { store } from "../store";
+import { GROUP_QUERY, GROUP_QUERY_COMPLETED } from "./action.constants"
 
-export const GROUP_QUERY = "groups/query";
-export const GROUP_QUERY_COMPLETED = "groups/query_completed";
+export const QueryAction = (query: string) => ({ type: GROUP_QUERY, payload: query })
 
-export const QueryAction = (groupQuery: string) => ({ type: GROUP_QUERY, payload: groupQuery })
+export const QueryCompleted = (query: string, groups: Group[]) => ({ type: GROUP_QUERY_COMPLETED, payload: { query, groups } })
 
-export const QueryCompleted = (groupQuery: string , groups : Group[]) => ({ type: GROUP_QUERY_COMPLETED, payload: {groupQuery , groups} })
+
+
+export const groupActions = bindActionCreators({
+  query: QueryAction,
+  queryCompleted: QueryCompleted
+}, store.dispatch);

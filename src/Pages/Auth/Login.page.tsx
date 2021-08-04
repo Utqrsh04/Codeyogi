@@ -8,17 +8,14 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button.";
 import { login } from "../../api/auth";
 import { User } from "../../models/User";
-import { useDispatch } from "react-redux";
-import { meLoginAction } from "../../actions/auth.actions";
+import { authActions } from "../../actions/auth.actions";
 
 interface Props {
   onLogin: (user: User) => void;
 }
 
-const Login: FC<Props> = (props) => {
+const Login: FC<Props> = () => {
   const history = useHistory();
-
-  const dispatch = useDispatch();
 
   const {
     getFieldProps,
@@ -37,7 +34,7 @@ const Login: FC<Props> = (props) => {
     }),
     onSubmit: (data) => {
       login(data).then((u) => {
-        dispatch(meLoginAction(u));
+        authActions.login(u);
         history.push("/dashboard");
       });
     },

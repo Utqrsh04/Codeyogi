@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { UI_TOGGLE_SIDEBAR } from "../actions/sidebar.actions";
+import { UI_TOGGLE_SIDEBAR } from "../actions/action.constants";
 
 export interface toggleSidebar {
   isOpen: boolean

@@ -5,27 +5,18 @@ import ListCard from "../../components/ListCard/ListCard";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { fetchGroups } from "../../api/index";
 import { useAppSelector } from "../../store";
-import { useDispatch } from "react-redux";
-import { uiToggleSidebar } from "../../actions/sidebar.actions";
-import { QueryAction } from "../../actions/groups.actions";
+import { groupActions } from "../../actions/groups.actions";
+import { sidebarActions } from "../../actions/sidebar.actions";
 
 interface Props {}
 
 const Dashboard: FC<Props> = () => {
-  const dispatch = useDispatch();
-
   const query = useAppSelector((state) => state.groups.query);
 
   const first_name = useAppSelector(
     (state) => state.user.byId[state.auth.id!].first_name
   );
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
-
-  const toggleSidebar = () => {
-    sidebar
-      ? dispatch(uiToggleSidebar(false))
-      : dispatch(uiToggleSidebar(true));
-  };
 
   const groups = useAppSelector((state) => {
     const groupsIds = state.groups.queryMap[state.groups.query] || [];
@@ -36,17 +27,9 @@ const Dashboard: FC<Props> = () => {
   useEffect(() => {
     fetchGroups({ status: "all-groups", query: query }).then((groups) => {
       // console.log("Dashboard Component groups ", groups);
-      groups &&
-        dispatch({
-          type: "groups/query_completed",
-          payload: { groups: groups, query },
-        });
+      groups && groupActions.queryCompleted(query, groups);
     });
   }, [query]); //eslint-disable-line react-hooks/exhaustive-deps
-
-  const handleChange = (e: any) => {
-    dispatch(QueryAction(e.target.value));
-  };
 
   return (
     <div className=" w-screen ">
@@ -54,7 +37,14 @@ const Dashboard: FC<Props> = () => {
         <Header />
         <div className="bg-white mb-2 sm:px-4 sm:pr-8 pr-2 text-gray-700 h-14 flex flex-row items-center">
           <div className=" flex items-center space-x-1 justify-evenly ">
-            <button className=" m-2 w-6 h-6" onClick={toggleSidebar}>
+            <button
+              className=" m-2 w-6 h-6"
+              onClick={() =>
+                sidebar
+                  ? sidebarActions.sidebar(false)
+                  : sidebarActions.sidebar(true)
+              }
+            >
               <GiHamburgerMenu />
             </button>
             <h2 className="font-semibold">Dashboard</h2>
@@ -65,7 +55,7 @@ const Dashboard: FC<Props> = () => {
             </span>
             <div className="mx-1 flex rounded-lg items-center">
               <input
-                onChange={handleChange}
+                onChange={(e: any) => groupActions.query(e.target.value)}
                 value={query}
                 type="text"
                 placeholder="Search"

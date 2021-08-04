@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useDispatch } from "react-redux";
 import Header from "../../components/Header";
 import About from "../../components/ProfilePage/About";
 import Contact from "../../com../../components/ProfilePage/Contact";
@@ -11,19 +10,12 @@ import WorkPlatForms from "../../components/ProfilePage/WorkPlatForms";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { getProfiledata } from "../../models/ProfileData";
 import { useAppSelector } from "../../store";
-import { uiToggleSidebar } from "../../actions/sidebar.actions";
+import { sidebarActions } from "../../actions/sidebar.actions";
 
 interface Props {}
 
 const Profie: FC<Props> = (props) => {
-  const dispatch = useDispatch();
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
-
-  const toggleSidebar = () => {
-    sidebar
-      ? dispatch(uiToggleSidebar(false))
-      : dispatch(uiToggleSidebar(true));
-  };
 
   // const profiledata = localStorage.getItem("intialData");
   // profiledata && console.log("Profile Page Data", JSON.parse(profiledata));
@@ -44,7 +36,14 @@ const Profie: FC<Props> = (props) => {
         <Header />
         <div className="bg-white mb-2 sm:px-5 sm:pr-10 pr-2 text-gray-700 h-14 flex flex-row justify-between items-center">
           <div className=" flex items-center space-x-1 justify-evenly ">
-            <button className=" m-2 w-6 h-6" onClick={toggleSidebar}>
+            <button
+              className=" m-2 w-6 h-6"
+              onClick={() =>
+                sidebar
+                  ? sidebarActions.sidebar(false)
+                  : sidebarActions.sidebar(true)
+              }
+            >
               <GiHamburgerMenu />
             </button>
             <h2 className="font-semibold">Users / Account Settings</h2>
