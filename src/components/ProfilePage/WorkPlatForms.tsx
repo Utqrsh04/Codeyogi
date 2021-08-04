@@ -3,10 +3,10 @@ import { Work_Platform } from "../../models/ProfileData";
 import Button from "../Button/Button.";
 
 interface Props {
-  data? : Work_Platform
+  data : Work_Platform
 }
 
-const WorkPlatForms: FC<Props> = (props) => {
+const WorkPlatForms: FC<Props> = ({data}) => {
   return (
     <>
       <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">
@@ -19,14 +19,16 @@ const WorkPlatForms: FC<Props> = (props) => {
             <h3 className=" text-sm font-light ">Platforms Title</h3>
             <input
               type="text"
-              className=" w-full border border-gray-400 rounded-lg h-12 "
+              defaultValue={data.platforms_title}
+              className=" w-full border p-2 border-gray-400 rounded-lg h-12 "
             />
           </div>
           <div>
             <h3 className=" text-sm font-light ">Description </h3>
             <input
               type="text"
-              className=" w-full border border-gray-400 rounded-lg h-44 "
+              defaultValue={data.description}
+              className=" w-full border p-2 border-gray-400 rounded-lg h-44 "
             />
           </div>
         </div>

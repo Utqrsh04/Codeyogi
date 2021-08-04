@@ -2,10 +2,10 @@ import { FC, memo } from "react";
 import { Contact } from "../../models/ProfileData";
 
 interface Props {
-  data?:Contact;
+  data:Contact;
 }
 
-const ContactComponent: FC<Props> = (props) => {
+const ContactComponent: FC<Props> = ({data}) => {
   return (
     <>
       <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">
@@ -19,7 +19,7 @@ const ContactComponent: FC<Props> = (props) => {
                 id="country"
                 className=" bg-white h-10 w-full border border-gray-400 rounded-lg"
               >
-                <option defaultValue="United States">United States</option>
+                <option defaultValue={data.country}>United States</option>
                 <option>India</option>
                 <option>Japan</option>
                 <option>China</option>
@@ -33,8 +33,9 @@ const ContactComponent: FC<Props> = (props) => {
               <input
                 type="text"
                 id="address"
-                placeholder="New York"
-                className=" h-10 w-full border border-gray-400 rounded-lg"
+                defaultValue={data.address}
+                placeholder=""
+                className=" h-10 w-full p-2 border border-gray-400 rounded-lg"
               />
             </div>
           </div>
@@ -44,8 +45,9 @@ const ContactComponent: FC<Props> = (props) => {
               <input
                 type="text"
                 id="location"
-                placeholder="jkhsafkj"
-                className=" h-10 w-full border border-gray-400 rounded-lg  "
+                defaultValue={data.location}
+                placeholder=""
+                className=" h-10 w-full p-2 border border-gray-400 rounded-lg  "
               />
             </div>
             <div className="mx-4 sm:w-2/6 space-y-1">
@@ -53,8 +55,9 @@ const ContactComponent: FC<Props> = (props) => {
               <input
                 type=""
                 id="PhoneNumber"
-                placeholder="76127846433"
-                className=" h-10 w-full border border-gray-400 rounded-lg"
+                placeholder=""
+                defaultValue={data.phone}
+                className=" h-10 w-full p-2 border border-gray-400 rounded-lg"
               />
             </div>
           </div>
@@ -64,8 +67,9 @@ const ContactComponent: FC<Props> = (props) => {
               <input
                 type="email"
                 id="email"
-                placeholder="jimmy@gmail.com"
-                className=" h-10 w-full border border-gray-400 rounded-lg  "
+                defaultValue={data.email}
+                placeholder=""
+                className=" h-10 w-full p-2 border border-gray-400 rounded-lg  "
               />
             </div>
             <div className="mx-4 sm:w-2/6 space-y-1">
@@ -74,7 +78,7 @@ const ContactComponent: FC<Props> = (props) => {
                 type="url"
                 id="url"
                 placeholder="Write your website"
-                className=" h-10 w-full border border-gray-400 rounded-lg"
+                className=" h-10 w-full p-2 border border-gray-400 rounded-lg"
               />
             </div>
           </div>

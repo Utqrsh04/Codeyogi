@@ -2,10 +2,10 @@ import { FC, memo } from "react";
 import { Bio } from "../../models/ProfileData";
 
 interface Props {
-  data? : Bio
+  data: Bio;
 }
 
-const About: FC<Props> = (props) => {
+const About: FC<Props> = ({ data }) => {
   return (
     <>
       <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">
@@ -13,7 +13,11 @@ const About: FC<Props> = (props) => {
         <div className=" my-6 mx-8 ">
           <h3 className=" text-sm font-light ">Bio</h3>
           <div className=" pt-2">
-          <input type="text" className=" w-full border border-gray-400 rounded-lg h-44 "/>
+            <input
+              type="text"
+              defaultValue={data.text}
+              className=" w-full text-center p-2 border border-gray-400 rounded-lg h-44 "
+            />
           </div>
         </div>
       </div>

@@ -1,4 +1,3 @@
-import { Url } from "url";
 
 export interface ProfileData {
 
@@ -13,7 +12,7 @@ export interface ProfileData {
 export interface General_Info {
   first_name: string;
   last_name: string;
-  dob: Date;
+  dob: string;
   profession: string;
 
 }
@@ -33,7 +32,7 @@ export interface Contact {
   location: string
   phone: number;
   email: string;
-  website: Url
+  website: string
 
 }
 
@@ -50,7 +49,7 @@ export interface Social {
 const general_info = {
   first_name: "Jimmy",
   last_name: "Turner",
-  dob: "20/01/1989",
+  dob: "1989-01-20",
   profession: "Web Developer",
 }
 
@@ -86,7 +85,7 @@ const social_links = {
 }
 
 export const IntialProfileData = {
-  general_info ,
+  general_info,
   bio,
   work_platforms,
   contact,

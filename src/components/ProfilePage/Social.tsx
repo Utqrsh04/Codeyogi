@@ -3,10 +3,10 @@ import { FaFacebookF, FaGithub, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { Social } from "../../models/ProfileData";
 
 interface Props {
-  data?:Social;
+  data:Social;
 }
 
-const SocialComponent: FC<Props> = (props) => {
+const SocialComponent: FC<Props> = ({data}) => {
   return (
     <>
       <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">
@@ -20,8 +20,8 @@ const SocialComponent: FC<Props> = (props) => {
               <input
                 type="text"
                 id="linkedIn"
-                placeholder="jimmy_turner_411"
-                className=" h-10 w-full border border-gray-400 rounded-lg"
+                defaultValue={data.linkedin}
+                className=" h-10 w-full border p-2 border-gray-400 rounded-lg"
               />
             </div>
             <div className="mx-4 sm:w-2/6 flex space-x-2 items-center">
@@ -31,8 +31,8 @@ const SocialComponent: FC<Props> = (props) => {
               <input
                 type="text"
                 id="github"
-                placeholder="@jturner"
-                className=" h-10 w-full border border-gray-400 rounded-lg"
+                defaultValue={data.github}
+                className=" h-10 w-full border p-2 border-gray-400 rounded-lg"
               />
             </div>
           </div>
@@ -44,8 +44,8 @@ const SocialComponent: FC<Props> = (props) => {
               <input
                 type="text"
                 id="twitter"
-                placeholder="@jimmy411"
-                className=" h-10 w-full border border-gray-400 rounded-lg  "
+                defaultValue={data.twitter}
+                className=" h-10 w-full border p-2 border-gray-400 rounded-lg  "
               />
             </div>
             <div className="mx-4 sm:w-2/6 flex space-x-2 items-center space-y-1">
@@ -55,8 +55,8 @@ const SocialComponent: FC<Props> = (props) => {
               <input
                 type="text"
                 id="facebook"
-                placeholder="jimmy turner"
-                className=" h-10 w-full border border-gray-400 rounded-lg"
+                defaultValue={data.facebook}
+                className=" h-10 w-full border p-2 border-gray-400 rounded-lg"
               />
             </div>
           </div>

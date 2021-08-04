@@ -9,7 +9,7 @@ import Button from "../../components/Button/Button.";
 import { login } from "../../api/auth";
 import { User } from "../../models/User";
 import { useDispatch } from "react-redux";
-import { meLoginAction } from "../../store";
+import { meLoginAction } from "../../actions/auth.actions";
 
 interface Props {
   onLogin: (user: User) => void;

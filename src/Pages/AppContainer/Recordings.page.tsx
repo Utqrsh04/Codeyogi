@@ -1,19 +1,22 @@
 import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
+import { uiToggleSidebar } from "../../actions/sidebar.actions";
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { uiToggleSidebar, useAppSelector } from "../../store";
+import { useAppSelector } from "../../store";
 
 interface Props {}
 
 const Recordings: FC<Props> = (props) => {
   const dispatch = useDispatch();
 
-  const sidebar = useAppSelector((state) => state.isSidebarOpen);
+  const sidebar = useAppSelector((state) => state.sidebar.isOpen);
 
   const toggleSidebar = () => {
-    sidebar ? dispatch(uiToggleSidebar(false)) : dispatch(uiToggleSidebar(true));
+    sidebar
+      ? dispatch(uiToggleSidebar(false))
+      : dispatch(uiToggleSidebar(true));
   };
 
   return (
@@ -26,7 +29,6 @@ const Recordings: FC<Props> = (props) => {
           </button>
           <h2 className="font-semibold">Recordings</h2>
         </div>
-        
       </div>
       <Sidebar classes={sidebar} />
     </div>

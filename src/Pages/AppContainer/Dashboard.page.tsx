@@ -4,24 +4,22 @@ import Header from "../../components/Header";
 import ListCard from "../../components/ListCard/ListCard";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { fetchGroups } from "../../api/index";
-import { meGroupQuery, uiToggleSidebar, useAppSelector } from "../../store";
+import { useAppSelector } from "../../store";
 import { useDispatch } from "react-redux";
+import { uiToggleSidebar } from "../../actions/sidebar.actions";
+import { QueryAction } from "../../actions/groups.actions";
 
 interface Props {}
 
 const Dashboard: FC<Props> = () => {
-  const searchQuery = useAppSelector((state) => state.groupQuery);
-
   const dispatch = useDispatch();
 
-  const groups = useAppSelector((state) => {
-    const groupsIds = state.groupqueryMap[state.groupQuery] || [];
-    const groups = groupsIds.map((id) => state.groups[id]);
-    return groups;
-  });
+  const query = useAppSelector((state) => state.groups.query);
 
-  const first_name = useAppSelector((state) => state.me!.first_name);
-  const sidebar = useAppSelector((state) => state.isSidebarOpen);
+  const first_name = useAppSelector(
+    (state) => state.user.byId[state.auth.id!].first_name
+  );
+  const sidebar = useAppSelector((state) => state.sidebar.isOpen);
 
   const toggleSidebar = () => {
     sidebar
@@ -29,24 +27,30 @@ const Dashboard: FC<Props> = () => {
       : dispatch(uiToggleSidebar(true));
   };
 
+  const groups = useAppSelector((state) => {
+    const groupsIds = state.groups.queryMap[state.groups.query] || [];
+    const groups = groupsIds.map((id) => state.groups.byId[id]);
+    return groups;
+  });
+
   useEffect(() => {
-    fetchGroups({ status: "all-groups", query: searchQuery }).then((groups) => {
+    fetchGroups({ status: "all-groups", query: query }).then((groups) => {
       // console.log("Dashboard Component groups ", groups);
       groups &&
         dispatch({
           type: "groups/query_completed",
-          payload: { groups: groups, searchQuery },
+          payload: { groups: groups, query },
         });
     });
-  }, [searchQuery]); //eslint-disable-line react-hooks/exhaustive-deps
+  }, [query]); //eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChange = (e: any) => {
-    dispatch(meGroupQuery(e.target.value));
+    dispatch(QueryAction(e.target.value));
   };
 
   return (
     <div className=" w-screen ">
-      <div className="text-center ">
+      <div className="text-center w-full fixed z-40">
         <Header />
         <div className="bg-white mb-2 sm:px-4 sm:pr-8 pr-2 text-gray-700 h-14 flex flex-row items-center">
           <div className=" flex items-center space-x-1 justify-evenly ">
@@ -62,7 +66,7 @@ const Dashboard: FC<Props> = () => {
             <div className="mx-1 flex rounded-lg items-center">
               <input
                 onChange={handleChange}
-                value={searchQuery}
+                value={query}
                 type="text"
                 placeholder="Search"
                 className=" rounded-lg w-32 h-5 p-4 "
@@ -72,7 +76,7 @@ const Dashboard: FC<Props> = () => {
         </div>
       </div>
 
-      <section className="space-x-5 flex">
+      <section className="space-x-5 flex relative top-28">
         <Sidebar classes={sidebar} />
         {groups && <ListCard data={groups} />}
       </section>
