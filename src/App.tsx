@@ -5,18 +5,16 @@ import { meFetchedAction } from "./actions/auth.actions";
 import { me } from "./api";
 import { LS_AUTH_TOKEN } from "./api/base";
 import Loading from "./components/Loading";
+import { useMe } from "./hooks/useLoggedInUser";
 import AppContainerPageLazy from "./Pages/AppContainer/AppContainer.lazy";
 import NotFoundPage from "./Pages/AppContainer/NotFound.page";
-import { useAppSelector } from "./store";
 
 const AuthPagelazy = lazy(() => import("./Pages/Auth/Auth.page"));
 
 interface Props {}
 
 const App: FC<Props> = () => {
-  const user = useAppSelector(
-    (state) => state.auth.id && state.user.byId[state.auth.id]
-  );
+  const user = useMe();
 
   console.log("App Component User ", user);
   const dispatch = useDispatch();
@@ -46,6 +44,8 @@ const App: FC<Props> = () => {
             path={[
               "/dashboard",
               "/recordings",
+              "/groups",
+              "/groupdata/:id",
               "/profile",
               "/batch/:batchNumber/lecture/:lectureNumber",
             ]}

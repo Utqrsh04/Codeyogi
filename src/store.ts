@@ -5,7 +5,7 @@ import { groupReducer } from "./reducers/groups.reducer";
 import { sidebarReducer } from "./reducers/sidebar.reducer";
 import { userReducer } from "./reducers/users.reducer";
 
-type AppState = ReturnType<typeof reducer>;
+export type AppState = ReturnType<typeof reducer>;
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
 
 

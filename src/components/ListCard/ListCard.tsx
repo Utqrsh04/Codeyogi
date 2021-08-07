@@ -3,22 +3,21 @@ import { Group } from "../../models/Group";
 import List from "./List";
 
 interface Props {
-  data: Group[] ;
+  data: Group[];
 }
 
 const ListCard: FC<Props> = ({ data }) => {
-  
-  
   return (
     <>
       <div className=" fixed sm:relative mx-auto w-72 sm:w-3/6">
-        { data.map((data, index) => (
+        {data.map((data, index) => (
           <List
             key={index}
-            idx={index}
+            index={index}
+            id={data.id}
             Name={data.name}
             Description={data.description}
-            />
+          />
         ))}
       </div>
     </>
@@ -26,7 +25,7 @@ const ListCard: FC<Props> = ({ data }) => {
 };
 
 ListCard.defaultProps = {
-  data : []
+  data: [],
 };
 
 export default memo(ListCard);

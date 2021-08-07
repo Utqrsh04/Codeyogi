@@ -1,17 +1,24 @@
 import { FC, memo } from "react";
+import { useHistory } from "react-router-dom";
 
 interface Props {
-  idx: number;
+  index: number;
   Name?: string;
   Description?: string;
+  id: number;
 }
 
-const List: FC<Props> = ({ idx, Name, Description }) => {
+const List: FC<Props> = ({ index, Name, Description, id }) => {
   let themeClass = "";
-  if (idx % 2 === 0) themeClass = " bg-gray-200 ";
+  if (index % 2 === 0) themeClass = " bg-gray-200 ";
   else themeClass = "bg-white";
 
-  // console.log(idx , Name , Description);
+  // console.log(id, Name);
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push(`/groupdata/${id}`);
+  };
 
   return (
     <div
@@ -26,7 +33,9 @@ const List: FC<Props> = ({ idx, Name, Description }) => {
         alt=""
       />
       <div className=" px-2 text-left ">
-        <h1 className=" font-medium ">{Name}</h1>
+        <button type="button" onClick={handleClick}>
+          {Name}
+        </button>
         <h2 className=" text-xs ">{Description}</h2>
       </div>
     </div>
@@ -34,7 +43,7 @@ const List: FC<Props> = ({ idx, Name, Description }) => {
 };
 
 List.defaultProps = {
-  idx: 1,
+  index: 1,
   Name: "Utkarsh",
   Description: "Software Developer",
 };
