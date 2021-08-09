@@ -7,6 +7,7 @@ import { sidebarActions } from "../../actions/sidebar.actions";
 import { useMe } from "../../hooks/useLoggedInUser";
 import { useFormik } from "formik";
 import { updateMe } from "../../api";
+import grpImg from "../../images/grpImg.jpg";
 
 interface Props {}
 
@@ -20,8 +21,8 @@ const Profie: FC<Props> = (props) => {
     initialValues: {
       first_name: user!.first_name,
       last_name: user!.last_name,
-      // birth_year: user!.birth_year || "",
-      // bio: user!.bio,
+      phone_number: user!.phone_number,
+      gender: user!.gender,
     },
     onSubmit: (data) => {
       updateMe(data).then((data) => {
@@ -66,10 +67,7 @@ const Profie: FC<Props> = (props) => {
               <h3 className=" font-medium text-lg ">GENERAL INFORMATION</h3>
               <div className="space-x-2 flex items-center mx-5 ">
                 <div className=" text-center w-32 h-32 space-y-4 m-4 ">
-                  <img
-                    src="https://profilemagazine.com/wp-content/uploads/2020/04/Ajmere-Dale-Square-thumbnail.jpg"
-                    alt=""
-                  />
+                  <img src={grpImg} alt="" />
                   <h4 className=" text-blue-700 text-sm">Upload Picture</h4>
                 </div>
                 <div className=" w-px bg-gray-300 h-40"></div>
@@ -81,7 +79,6 @@ const Profie: FC<Props> = (props) => {
                         type="text"
                         className=" w-full border p-2 border-gray-400 rounded-lg h-10 "
                         id="first_name"
-                        // value={user!.first_name}
                         {...getFieldProps("first_name")}
                       />
                     </div>
@@ -91,31 +88,32 @@ const Profie: FC<Props> = (props) => {
                         type="text"
                         className=" w-full border p-2 border-gray-400 rounded-lg h-10 "
                         id="lastName"
-                        // value={user!.last_name}
                         {...getFieldProps("last_name")}
                       />
                     </div>
                   </div>
-                  {/* <div className="mx-4 sm:w-2/6 space-y-1">
-                    <h4 className=" text-sm font-light "> Birth Year</h4>
+                  <div className="mx-4 sm:w-2/6 space-y-1 mt-2">
+                    <h4 className=" text-sm font-light "> Phone Number</h4>
                     <input
-                      className=" h-10 px-2"
+                      className=" w-full border p-2 border-gray-400 rounded-lg h-10"
                       type="text"
-                      id="birth_year"
-                      // value={user!.birth_year}
-                      {...getFieldProps("birth_year")}
+                      id="phone_number"
+                      // value={user!.phone_number}
+                      {...getFieldProps("phone_number")}
                     />
-                  </div> */}
-                  {/* <div className="mx-4 mt-2 w-9/12 space-y-1">
-                    <h4 className=" text-sm font-light ">Bio </h4>
-                    <input
-                      type="text"
-                      className=" w-full border p-2 border-gray-400 rounded-lg h-10 "
-                      id="bio"
-                      // value={user!.role}
-                      {...getFieldProps("bio")}
-                    />
-                  </div> */}
+                  </div>
+                  <div className="mx-4 sm:w-2/6 space-y-1 mt-2">
+                    <h4 className=" text-sm font-light "> Gender</h4>
+                    <select
+                      id="gender"
+                      {...getFieldProps("gender")}
+                      className=" bg-gray-100 "
+                    >
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>

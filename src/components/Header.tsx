@@ -3,6 +3,7 @@ import { SiCodewars } from "react-icons/si";
 import { FiSearch } from "react-icons/fi";
 import { MdMailOutline, MdNotificationsNone } from "react-icons/md";
 import DropDownHeader from "./DropDownHeader";
+import grpImg from "../images/grpImg.jpg";
 
 interface Props {}
 
@@ -15,11 +16,7 @@ const Header: FC<Props> = (props) => {
           <FiSearch className=" text-white m-2 w-8 h-8 " />
           <MdMailOutline className="text-white m-2 w-8 h-8 " />
           <DropDownHeader Icon={MdNotificationsNone} />
-          <DropDownHeader
-            imageUrl={
-              "https://i2.wp.com/worldbusinessfitness.com/wp-content/uploads/2018/01/opulent-profile-square-07.jpg?ssl=1"
-            }
-          />
+          <DropDownHeader imageUrl={grpImg} />
         </div>
       </header>
     </>

@@ -6,7 +6,7 @@ export interface User extends Entity {
   last_name: string;
   role: "staff" | "admin";
   bio: string;
-  profile_pic_url?: string;
+  profile_pic_url: string;
   phone_number?: string;
   alternate_phone_number?: string;
   email?: string;
