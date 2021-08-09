@@ -14,9 +14,6 @@ const AuthPagelazy = lazy(() => import("./Pages/Auth/Auth.page"));
 interface Props {}
 
 const App: FC<Props> = () => {
-  const user = useMe();
-
-  console.log("App Component User ", user);
   const dispatch = useDispatch();
 
   const token = localStorage.getItem(LS_AUTH_TOKEN);
@@ -26,6 +23,9 @@ const App: FC<Props> = () => {
     me().then((u) => dispatch(meFetchedAction(u)));
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
+  const user = useMe();
+
+  console.log("App Component User ", user);
   if (!user && token) return <Loading />;
 
   return (

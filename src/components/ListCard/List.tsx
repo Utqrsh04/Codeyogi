@@ -1,5 +1,6 @@
 import { FC, memo } from "react";
 import { useHistory } from "react-router-dom";
+import grpImg from "../../images/grpImg.jpg";
 
 interface Props {
   index: number;
@@ -27,11 +28,7 @@ const List: FC<Props> = ({ index, Name, Description, id }) => {
         themeClass
       }
     >
-      <img
-        className=" w-10 h-10 rounded-full "
-        src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=547&q=80"
-        alt=""
-      />
+      <img className=" w-10 h-10 rounded-full " src={grpImg} alt="" />
       <div className=" px-2 text-left ">
         <button type="button" onClick={handleClick}>
           {Name}

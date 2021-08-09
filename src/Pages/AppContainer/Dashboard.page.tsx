@@ -34,7 +34,7 @@ const Dashboard: FC<Props> = () => {
           </div>
           <div className=" mx-4 flex my-2 text-center ">
             <span className="  sm:block bg-blue-200 px-1 text-black my-auto rounded-sm font-semibold ">
-              Welcome {`${user!.first_name}`}
+            Welcome {`${user!.first_name} ${user!.last_name}`}
             </span>
           </div>
         </div>
@@ -42,6 +42,9 @@ const Dashboard: FC<Props> = () => {
 
       <section className="space-x-5 flex relative top-28">
         <Sidebar classes={sidebar} />
+        <div className="bg-gray-300 w-full flex justify-center items-center ">
+          <h1 className=" text-xl font-semibold ">This is Dashboard</h1>
+        </div>
       </section>
     </div>
   );

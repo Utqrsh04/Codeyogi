@@ -15,7 +15,8 @@ export const authReducer: Reducer<AuthState> =
       case ME_LOGIN:
         const userId: number = action.payload.id
         return { ...state, id: userId };
-
+      
+        
       default:
         return state;
     }

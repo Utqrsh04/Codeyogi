@@ -30,12 +30,6 @@ const Groups: FC<Props> = () => {
     });
   }, [query]); //eslint-disable-line react-hooks/exhaustive-deps
 
-  // useEffect(() => {
-  //   fetchGroupData(14).then((group) => {
-  //     console.log("Groups Component group data ", group);
-  //   });
-  // }, []); //eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <div className=" w-screen ">
       <div className="text-center w-full fixed z-40">
@@ -56,7 +50,7 @@ const Groups: FC<Props> = () => {
           </div>
           <div className=" mx-4 flex my-2 text-center ">
             <span className="  sm:block bg-blue-200 px-1 text-black my-auto rounded-sm font-semibold ">
-              Welcome {`${user!.first_name}`}
+              Welcome {`${user!.first_name} ${user!.last_name}`}
             </span>
             <div className="mx-1 flex rounded-lg items-center">
               <input

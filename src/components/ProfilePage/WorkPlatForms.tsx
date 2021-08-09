@@ -1,19 +1,18 @@
 import { FC, memo } from "react";
-import { Work_Platform } from "../../models/ProfileData";
 import Button from "../Button/Button.";
 
 interface Props {
-  data : Work_Platform
+  data: any;
 }
 
-const WorkPlatForms: FC<Props> = ({data}) => {
+const WorkPlatForms: FC<Props> = ({ data }) => {
   return (
     <>
       <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">
         <h3 className=" font-medium text-lg ">WORK PLATFORMS</h3>
         <div className=" my-6 mx-8">
           <div className="">
-            <Button >Add</Button>
+            <Button>Add</Button>
           </div>
           <div>
             <h3 className=" text-sm font-light ">Platforms Title</h3>

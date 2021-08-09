@@ -1,31 +1,33 @@
-import { useFormik } from "formik";
 import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Header from "../../components/Header";
-import About from "../../components/ProfilePage/About";
-import Contact from "../../com../../components/ProfilePage/Contact";
-import GeneralInfo from "../../components/ProfilePage/GeneralInfo";
-import Social from "../../components/ProfilePage/Social";
-import WorkPlatForms from "../../components/ProfilePage/WorkPlatForms";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { getProfiledata } from "../../models/ProfileData";
 import { useAppSelector } from "../../store";
 import { sidebarActions } from "../../actions/sidebar.actions";
+import { useMe } from "../../hooks/useLoggedInUser";
+import { useFormik } from "formik";
+import { updateMe } from "../../api";
 
 interface Props {}
 
 const Profie: FC<Props> = (props) => {
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
 
-  // const profiledata = localStorage.getItem("intialData");
-  // profiledata && console.log("Profile Page Data", JSON.parse(profiledata));
+  const user = useMe();
+  // console.log("Profile Page ", user);
 
-  const profiledata = getProfiledata();
-  console.log("Profile Page Data ", profiledata);
-
-  const { handleSubmit } = useFormik({
-    initialValues: profiledata,
+  const { handleSubmit, handleReset, getFieldProps } = useFormik({
+    initialValues: {
+      first_name: user!.first_name,
+      last_name: user!.last_name,
+      // birth_year: user!.birth_year || "",
+      // bio: user!.bio,
+    },
     onSubmit: (data) => {
+      updateMe(data).then((data) => {
+        // console.log("Profile Page Update ME ", data);
+        window.location.href = "/profile";
+      });
       console.log("Profile Page On Submit ", data);
     },
   });
@@ -48,6 +50,9 @@ const Profie: FC<Props> = (props) => {
             </button>
             <h2 className="font-semibold">Users / Account Settings</h2>
           </div>
+          <span className="  sm:block bg-blue-200 px-1 text-black my-auto rounded-sm font-semibold ">
+            Welcome {`${user!.first_name} ${user!.last_name}`}
+          </span>
         </div>
       </div>
 
@@ -55,17 +60,72 @@ const Profie: FC<Props> = (props) => {
         <div className="">
           <Sidebar classes={sidebar} />
         </div>
-
         <div className="rounded-lg px-4 w-full">
-          <form onSubmit={handleSubmit}>
-            <GeneralInfo data={profiledata.general_info} />
-            <About data={profiledata.bio} />
-            <WorkPlatForms data={profiledata.work_platforms} />
-            <Contact data={profiledata.contact} />
-            <Social data={profiledata.social_links} />
+          <form onSubmit={handleSubmit} onReset={handleReset}>
+            <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">
+              <h3 className=" font-medium text-lg ">GENERAL INFORMATION</h3>
+              <div className="space-x-2 flex items-center mx-5 ">
+                <div className=" text-center w-32 h-32 space-y-4 m-4 ">
+                  <img
+                    src="https://profilemagazine.com/wp-content/uploads/2020/04/Ajmere-Dale-Square-thumbnail.jpg"
+                    alt=""
+                  />
+                  <h4 className=" text-blue-700 text-sm">Upload Picture</h4>
+                </div>
+                <div className=" w-px bg-gray-300 h-40"></div>
+                <div className=" pt-5 w-full ">
+                  <div className=" flex ">
+                    <div className="mx-4 sm:w-2/6 space-y-1">
+                      <h4 className=" text-sm font-light ">First name </h4>
+                      <input
+                        type="text"
+                        className=" w-full border p-2 border-gray-400 rounded-lg h-10 "
+                        id="first_name"
+                        // value={user!.first_name}
+                        {...getFieldProps("first_name")}
+                      />
+                    </div>
+                    <div className="mx-4 sm:w-2/6 space-y-1">
+                      <h4 className=" text-sm font-light "> Last Name </h4>
+                      <input
+                        type="text"
+                        className=" w-full border p-2 border-gray-400 rounded-lg h-10 "
+                        id="lastName"
+                        // value={user!.last_name}
+                        {...getFieldProps("last_name")}
+                      />
+                    </div>
+                  </div>
+                  {/* <div className="mx-4 sm:w-2/6 space-y-1">
+                    <h4 className=" text-sm font-light "> Birth Year</h4>
+                    <input
+                      className=" h-10 px-2"
+                      type="text"
+                      id="birth_year"
+                      // value={user!.birth_year}
+                      {...getFieldProps("birth_year")}
+                    />
+                  </div> */}
+                  {/* <div className="mx-4 mt-2 w-9/12 space-y-1">
+                    <h4 className=" text-sm font-light ">Bio </h4>
+                    <input
+                      type="text"
+                      className=" w-full border p-2 border-gray-400 rounded-lg h-10 "
+                      id="bio"
+                      // value={user!.role}
+                      {...getFieldProps("bio")}
+                    />
+                  </div> */}
+                </div>
+              </div>
+            </div>
+
             <footer className="h-14 md:w-3/4 xl:w-1085 px-20 bottom-0 fixed bg-purple-900 rounded-t-md">
               <div className=" flex mt-3 justify-between ">
-                <button className="px-3 h-8 shadow-lg text-white bg-blue-600 rounded-md ">
+                <button
+                  type="reset"
+                  className="px-3 h-8 shadow-lg text-white bg-blue-600 rounded-md "
+                >
                   Reset All
                 </button>
                 <button

@@ -1,8 +1,7 @@
 import { FC, memo } from "react";
-import { General_Info } from "../../models/ProfileData";
 
 interface Props {
-  data: General_Info;
+  data: any;
 }
 
 const GeneralInfo: FC<Props> = ({ data }) => {
@@ -26,7 +25,6 @@ const GeneralInfo: FC<Props> = ({ data }) => {
                 type="text"
                 className=" w-full border p-2 border-gray-400 rounded-lg h-10 "
                 id={data.first_name}
-                placeholder=""
                 defaultValue={data.first_name}
               />
             </div>
@@ -36,7 +34,6 @@ const GeneralInfo: FC<Props> = ({ data }) => {
                 type="text"
                 className=" w-full border p-2 border-gray-400 rounded-lg h-10 "
                 id={"lastName"}
-                placeholder=""
                 defaultValue={data.last_name}
               />
             </div>
@@ -52,12 +49,11 @@ const GeneralInfo: FC<Props> = ({ data }) => {
             />
           </div>
           <div className="mx-4 mt-2 w-9/12 space-y-1">
-            <h4 className=" text-sm font-light ">Profession </h4>
+            <h4 className=" text-sm font-light ">Role </h4>
             <input
               type="text"
               className=" w-full border p-2 border-gray-400 rounded-lg h-10 "
-              id={"Profession"}
-              placeholder="Web developer"
+              id={"Role"}
               defaultValue={data.profession}
             />
           </div>

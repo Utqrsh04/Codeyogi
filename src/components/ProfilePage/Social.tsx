@@ -1,9 +1,8 @@
 import { FC, memo } from "react";
 import { FaFacebookF, FaGithub, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-import { Social } from "../../models/ProfileData";
 
 interface Props {
-  data:Social;
+  data:any;
 }
 
 const SocialComponent: FC<Props> = ({data}) => {

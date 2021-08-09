@@ -1,8 +1,7 @@
 import { FC, memo } from "react";
-import { Bio } from "../../models/ProfileData";
 
 interface Props {
-  data: Bio;
+  data: any;
 }
 
 const About: FC<Props> = ({ data }) => {
