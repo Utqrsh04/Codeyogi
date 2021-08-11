@@ -1,18 +1,18 @@
 import { groupActions } from "../actions/groups.actions";
 import { GroupRequest, fetchGroups as fetchGroupApi } from "../api";
-import { groupQueryMapSelector } from "../selectors/group.selectors";
+import { groupLoadingQuerySelector, groupQueryMapSelector } from "../selectors/group.selectors";
 import { store } from "../store";
 
 export const fetchGroups = (request: GroupRequest) => {
 
-  const queryMap = groupQueryMapSelector(store.getState());
+  const queryLoading = groupLoadingQuerySelector(store.getState());
   const query = request.query;
 
-  const groupIds = queryMap[query];
+  const loading = queryLoading[query];
 
-  groupActions.query(query, !groupIds)
+  groupActions.query(query)
 
-  if (groupIds) {
+  if (loading) {
     return;
   }
 

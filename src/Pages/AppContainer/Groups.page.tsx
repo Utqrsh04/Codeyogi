@@ -1,11 +1,10 @@
-import { FC, memo, useEffect } from "react";
+import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header";
 import ListCard from "../../components/ListCard/ListCard";
 import { fetchGroups } from "../../middlewares/groups.middleware";
 import { useAppSelector } from "../../store";
-import { groupActions } from "../../actions/groups.actions";
 import { sidebarActions } from "../../actions/sidebar.actions";
 import {
   groupLoadingSelector,
@@ -65,6 +64,9 @@ const Groups: FC<Props> = () => {
 
       <section className="space-x-5 flex relative top-28">
         <Sidebar classes={sidebar} />
+        <div className="text-xl font-semibold">
+          {!loading && groups.length === 0 && "No Data Found"}
+        </div>
         {loading && <FaSpinner className=" animate-spin  " />}
         {<ListCard data={groups!} />}
       </section>
