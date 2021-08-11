@@ -1,22 +1,19 @@
-import { groupActions } from "../actions/groups.actions";
-import { GroupRequest, fetchGroups as fetchGroupApi } from "../api";
-import { groupLoadingQuerySelector, groupQueryMapSelector } from "../selectors/group.selectors";
-import { store } from "../store";
+// import { groupActions } from "../actions/groups.actions";
+// import { GroupRequest, fetchGroups as fetchGroupApi } from "../api";
+export const fetchGroups = () => {
 
-export const fetchGroups = (request: GroupRequest) => {
+  // const queryLoading = groupLoadingQuerySelector(store.getState());
+  // const query = request.query;
 
-  const queryLoading = groupLoadingQuerySelector(store.getState());
-  const query = request.query;
+  // const loading = queryLoading[query];
 
-  const loading = queryLoading[query];
+  // queryChangedAction(query)
 
-  groupActions.query(query)
+  // if (loading) {
+  //   return;
+  // }
 
-  if (loading) {
-    return;
-  }
-
-  fetchGroupApi(request).then(groups => {
-    groups && groupActions.queryCompleted(query, groups)
-  });
+  // fetchGroupApi(request).then(groups => {
+  //   groups && queryCompletedAction(query, groups)
+  // });
 };

@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header";
 import ListCard from "../../components/ListCard/ListCard";
-import { fetchGroups } from "../../middlewares/groups.middleware";
+// import { fetchGroups } from "../../middlewares/groups.middleware";
 import { useAppSelector } from "../../store";
 import { sidebarActions } from "../../actions/sidebar.actions";
 import {
@@ -13,6 +13,8 @@ import {
 } from "../../selectors/group.selectors";
 import { meSelector } from "../../selectors/auth.selectors";
 import { FaSpinner } from "react-icons/fa";
+import { queryChangedAction } from "../../actions/groups.actions";
+import { useDispatch } from "react-redux";
 
 interface Props {}
 
@@ -20,11 +22,12 @@ const Groups: FC<Props> = () => {
   const user = useAppSelector(meSelector);
 
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
-
   const query = useAppSelector(groupQuerySelector);
   const groups = useAppSelector(groupsSelector);
-
   const loading = useAppSelector(groupLoadingSelector);
+
+  const dispatch = useDispatch();
+
   return (
     <div className=" w-screen ">
       <div className="text-center w-full fixed z-40">
@@ -49,9 +52,7 @@ const Groups: FC<Props> = () => {
             </span>
             <div className="mx-1 flex rounded-lg items-center">
               <input
-                onChange={(e: any) =>
-                  fetchGroups({ query: e.target.value, status: "all-groups" })
-                }
+                onChange={(e) => dispatch(queryChangedAction(e.target.value))}
                 value={query}
                 type="text"
                 placeholder="Search"
