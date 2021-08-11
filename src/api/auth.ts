@@ -15,8 +15,6 @@ interface LoginResponse {
   user: User;
 }
 
-
-
 export const login = (data: LoginRequest) => {
   const url = BASE_URL + "/login";
   // console.log("Login ",data);

@@ -1,13 +1,13 @@
 import { FC, lazy, Suspense, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { meFetchedAction } from "./actions/auth.actions";
-import { me } from "./api";
-import { LS_AUTH_TOKEN } from "./api/base";
-import Loading from "./components/Loading";
-import { useMe } from "./hooks/useLoggedInUser";
+import { useDispatch } from "react-redux";
 import AppContainerPageLazy from "./Pages/AppContainer/AppContainer.lazy";
 import NotFoundPage from "./Pages/AppContainer/NotFound.page";
+import Loading from "./components/Loading";
+import { useAppSelector } from "./store";
+import { LS_AUTH_TOKEN } from "./api/base";
+import { meSelector } from "./selectors/auth.selectors";
+import { me } from "./middlewares/auth.middleware";
 
 const AuthPagelazy = lazy(() => import("./Pages/Auth/Auth.page"));
 
@@ -20,10 +20,11 @@ const App: FC<Props> = () => {
 
   useEffect(() => {
     if (!token) return;
-    me().then((u) => dispatch(meFetchedAction(u)));
+
+    me()
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
-  const user = useMe();
+  const user = useAppSelector(meSelector);
 
   console.log("App Component User ", user);
   if (!user && token) return <Loading />;

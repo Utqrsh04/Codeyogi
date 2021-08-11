@@ -3,15 +3,17 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header";
 import ListCard from "../../components/ListCard/ListCard";
-import { fetchGroups } from "../../api/index";
+import { fetchGroups } from "../../middlewares/groups.middleware";
 import { useAppSelector } from "../../store";
 import { groupActions } from "../../actions/groups.actions";
 import { sidebarActions } from "../../actions/sidebar.actions";
 import {
+  groupLoadingSelector,
   groupQuerySelector,
   groupsSelector,
 } from "../../selectors/group.selectors";
 import { meSelector } from "../../selectors/auth.selectors";
+import { FaSpinner } from "react-icons/fa";
 
 interface Props {}
 
@@ -23,13 +25,7 @@ const Groups: FC<Props> = () => {
   const query = useAppSelector(groupQuerySelector);
   const groups = useAppSelector(groupsSelector);
 
-  useEffect(() => {
-    fetchGroups({ status: "all-groups", query: query }).then((groups) => {
-      // console.log("Groups Component groups ", groups);
-      groups && groupActions.queryCompleted(query, groups);
-    });
-  }, [query]); //eslint-disable-line react-hooks/exhaustive-deps
-
+  const loading = useAppSelector(groupLoadingSelector);
   return (
     <div className=" w-screen ">
       <div className="text-center w-full fixed z-40">
@@ -54,7 +50,9 @@ const Groups: FC<Props> = () => {
             </span>
             <div className="mx-1 flex rounded-lg items-center">
               <input
-                onChange={(e: any) => groupActions.query(e.target.value)}
+                onChange={(e: any) =>
+                  fetchGroups({ query: e.target.value, status: "all-groups" })
+                }
                 value={query}
                 type="text"
                 placeholder="Search"
@@ -67,7 +65,8 @@ const Groups: FC<Props> = () => {
 
       <section className="space-x-5 flex relative top-28">
         <Sidebar classes={sidebar} />
-        {groups && <ListCard data={groups} />}
+        {loading && <FaSpinner className=" animate-spin  " />}
+        {<ListCard data={groups!} />}
       </section>
     </div>
   );
