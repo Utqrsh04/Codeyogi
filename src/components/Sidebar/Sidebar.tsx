@@ -10,21 +10,32 @@ import {
   FiPieChart,
   FiBook,
 } from "react-icons/fi";
-import { IoMdDesktop, IoMdDocument } from "react-icons/io";
 import { ImStack } from "react-icons/im";
-import { AiOutlineForm, AiOutlineThunderbolt } from "react-icons/ai";
-import { GrCube } from "react-icons/gr";
+import {  AiOutlineThunderbolt } from "react-icons/ai";
+import { useAppSelector } from "../../store";
 
 interface Props {
-  classes: boolean;
+  // classes: boolean;
 }
 
-const Sidebar: FC<Props> = ({ classes }) => {
+const Sidebar: FC<Props> = () => {
+  const sidebar = useAppSelector((state) => state.sidebar.isOpen);
+  // const classes = 
   return (
-    <div className="z-30">
+    <>
+      {/* <button
+              className=" m-2 w-6 h-6"
+              onClick={() =>
+                sidebar
+                  ? sidebarActions.sidebar(false)
+                  : sidebarActions.sidebar(true)
+              }
+            >
+              <GiHamburgerMenu />
+            </button> */}
       <Transition
         as={Fragment}
-        show={classes}
+        show={sidebar}
         enter="transform transition duration-[700ms]"
         enterFrom="opacity-0 -translate-x-14 "
         enterTo="opacity-100 translate-x-0 "
@@ -32,40 +43,28 @@ const Sidebar: FC<Props> = ({ classes }) => {
         leaveFrom="opacity-100 translate-x-0 "
         leaveTo="opacity-0 -translate-x-14 "
       >
-        <div className="w-52 space-y-2 rounded-lg bg-gray-200 px-5  py-5 ">
+        <div className="w-52 space-y-2 rounded-lg bg-gray-200 px-5 py-5 fixed mt-28 z-50 ">
           <StepSidebar menu="Dashboard" Icon={FiHome} />
           <StepSidebar menu="Groups" Icon={FiBook} />
 
           <StepSidebarDropdown
             menu="Apps"
-            items={["Chat", "Mailbox", "Todo List", "Notes", "Scrumboard"]}
+            items={["Chat", "Mailbox", "Notes", "Scrumboard"]}
             Icon={FiCpu}
           />
-          <StepSidebarDropdown
-            menu="Form"
-            items={["Chat", "Mailbox", "Todo List", "Notes", "Scrumboard"]}
-            Icon={AiOutlineForm}
-          />
+          
           <StepSidebarDropdown
             menu="Elements"
-            items={["Alerts", "Avatars", "Badges", "Buttons"]}
+            items={["Alerts", "Avatars", "Buttons"]}
             Icon={AiOutlineThunderbolt}
           />
           <StepSidebar menu="Authentication" Icon={FiLock} />
           <StepSidebar menu="DataTables" Icon={ImStack} />
-          <StepSidebar menu="Widgets" Icon={IoMdDesktop} />
-          <StepSidebar menu="Pages" Icon={IoMdDocument} />
-          <StepSidebarDropdown
-            menu="Components"
-            items={["Tabs", "Accordians", "Modal", "Cards", "Counter"]}
-            Icon={GrCube}
-          />
-
           <StepSidebar menu="Maps" Icon={FiMap} />
           <StepSidebar menu="Charts" Icon={FiPieChart} />
         </div>
       </Transition>
-    </div>
+    </>
   );
 };
 

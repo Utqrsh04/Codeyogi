@@ -1,6 +1,5 @@
 import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header";
 import ListCard from "../../components/ListCard/ListCard";
 // import { fetchGroups } from "../../middlewares/groups.middleware";
@@ -23,13 +22,14 @@ const Groups: FC<Props> = () => {
 
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
   const query = useAppSelector(groupQuerySelector);
+  
   const groups = useAppSelector(groupsSelector);
   const loading = useAppSelector(groupLoadingSelector);
 
   const dispatch = useDispatch();
 
   return (
-    <div className=" w-screen ">
+    <div className="relative ">
       <div className="text-center w-full fixed z-40">
         <Header />
         <div className="bg-white mb-2 sm:px-4 sm:pr-8 pr-2 text-gray-700 h-14 flex flex-row items-center">
@@ -63,14 +63,16 @@ const Groups: FC<Props> = () => {
         </div>
       </div>
 
-      <section className="space-x-5 flex relative top-28">
-        <Sidebar classes={sidebar} />
-        <div className="text-xl font-semibold">
-          {!loading && groups.length === 0 && "No Data Found"}
+        {/* <Sidebar /> */}
+        <div className=" relative top-28">
+        <div className=" flex justify-center items-center mx-auto ">
+        <h1 className="text-2xl font-semibold ">
+        {groups.length === 0 && "No Data Found! "}
+        </h1>
+        {loading && <FaSpinner className=" w-10 h-10 animate-spin  " /> }
         </div>
-        {loading && <FaSpinner className=" animate-spin  " />}
         {<ListCard data={groups!} />}
-      </section>
+        </div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ interface Props {}
 const Header: FC<Props> = (props) => {
   return (
     <>
-      <header className="flex flex-row justify-between h-14 bg-gray-900  ">
+      <header className="flex flex-row justify-between h-14 bg-gray-900 w-screen ">
         <SiCodewars className="text-white m-3 w-8 h-8 " />
         <div className="flex flex-row justify-around pr-10 ">
           <FiSearch className=" text-white m-2 w-8 h-8 " />

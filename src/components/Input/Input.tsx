@@ -40,7 +40,7 @@ const Input: FC<Props> = ({
       </div>
       <div className=" h-px  bg-gray-300 "></div>
       <div className=" text-red-700 text-left text-xs h-5 ">
-        {{ touched } && <h1>{error}</h1>}
+        {touched  && <h1>{error}</h1>}
       </div>
     </>
   );

@@ -2,7 +2,6 @@ import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { sidebarActions } from "../../actions/sidebar.actions";
 import Header from "../../components/Header";
-import Sidebar from "../../components/Sidebar/Sidebar";
 import { useAppSelector } from "../../store";
 
 interface Props {}
@@ -28,7 +27,7 @@ const Recordings: FC<Props> = (props) => {
           <h2 className="font-semibold">Recordings</h2>
         </div>
       </div>
-      <Sidebar classes={sidebar} />
+      {/* <Sidebar classes={sidebar} /> */}
     </div>
   );
 };

@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios, { CancelToken } from "axios";
 import { Group } from "../models/Group";
-import { BASE_URL } from "./base";
+import { BASE_URL, get } from "./base";
 
 export interface GroupRequest {
   limit?: number;
@@ -19,16 +19,13 @@ export interface EachGroupResponse {
 }
 
 
-export const fetchGroups = (data: GroupRequest) => {
+export const fetchGroups = (data: GroupRequest , token?:CancelToken) => {
 
   const url = BASE_URL + "/groups";
 
-  return axios.get<GroupsResponse>(url, { params: data })
-    .then((response) => {
-      // console.log("API ",response.data.data)
-      return response.data.data;
-    }
-    ).catch((e) => console.error(e))
+  return get<GroupsResponse>(url, { params: data , cancelToken : token })
+    // .then((response) =>  response.data.data)
+    // .catch((e) => console.error(e))
 }
 
 export const fetchGroupData = (id: number) => {
