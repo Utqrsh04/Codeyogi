@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import { Switch, Route } from "react-router-dom";
-import Group from "../../components/Group";
+import Group from "./GroupDetails.page";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import DashboardPage from "./Dashboard.page";
 import GroupsPage from "./Groups.page";
