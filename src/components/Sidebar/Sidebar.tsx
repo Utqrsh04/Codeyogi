@@ -1,6 +1,6 @@
 import { Fragment, FC, memo } from "react";
 import { Transition } from "@headlessui/react";
-import StepSidebarDropdown from "./StepSidebarDropdown";
+import DropdownMenu from "./DropdownMenu";
 import StepSidebar from "./StepSidebar";
 import {
   FiLock,
@@ -46,13 +46,13 @@ const Sidebar: FC<Props> = () => {
           <StepSidebar menu="Dashboard" Icon={FiHome} />
           <StepSidebar menu="Groups" Icon={FiBook} />
 
-          <StepSidebarDropdown
+          <DropdownMenu
             menu="Apps"
             items={["Chat", "Mailbox", "Notes", "Scrumboard"]}
             Icon={FiCpu}
           />
           
-          <StepSidebarDropdown
+          <DropdownMenu
             menu="Elements"
             items={["Alerts", "Avatars", "Buttons"]}
             Icon={AiOutlineThunderbolt}

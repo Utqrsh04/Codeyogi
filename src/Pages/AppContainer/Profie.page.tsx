@@ -139,16 +139,16 @@ const Profie: FC<Props> = (props) => {
             </div>
 
             <div
-              className="fixed bottom-0 flex space-x-10 justify-between px-5 py-3 rounded-t-md">
+              className={"fixed bottom-0 flex justify-around space-x-10 bg-blue-900 inset-x-0 px-5 py-3 rounded-t-md" + (sidebar? " ml-20 " : " mx-auto ")}>
               <button
                 type="reset"
-                className="px-3 h-8 shadow-lg text-white bg-blue-600 rounded-md "
+                className="px-3 h-8 shadow-lg text-white drop-shadow-2xl bg-blue-600 rounded-md "
               >
                 Reset All
               </button>
               <button
                 type="submit"
-                className="px-3 h-8 bg-green-600 shadow-lg text-white rounded-md "
+                className="px-3 h-8 bg-green-600 shadow-lg drop-shadow-2xl text-white rounded-md "
               >
                 Save Changes
               </button>

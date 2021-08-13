@@ -4,12 +4,12 @@ import { Menu, Transition } from "@headlessui/react";
 import { IconType } from "react-icons";
 
 interface Props {
-  menu: string;
+  menu?: string;
   items: string[];
   Icon: IconType;
 }
 
-const StepSidebarDropdown: FC<Props> = ({ menu, items, Icon }) => {
+const DropdownMenu: FC<Props> = ({ menu, items, Icon }) => {
   return (
     <Menu as="div" className="">
       <div>
@@ -55,6 +55,6 @@ const StepSidebarDropdown: FC<Props> = ({ menu, items, Icon }) => {
   );
 };
 
-StepSidebarDropdown.defaultProps = {};
+DropdownMenu.defaultProps = {};
 
-export default memo(StepSidebarDropdown);
+export default memo(DropdownMenu);

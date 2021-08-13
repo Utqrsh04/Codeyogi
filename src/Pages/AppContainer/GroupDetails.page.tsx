@@ -63,7 +63,7 @@ const GroupDetails: FC<Props> = (props) => {
 
 
           <div className=" relative top-28">
-            <div className="flex-col p-5 justify-center items-center mx-auto w-60 space-y-5 bg-blue-400">
+            <div className={"flex-col p-5 justify-center items-center mx-auto sm:w-2/5 space-y-5 bg-blue-400 " + (sidebar ? " " : " sm:ml-20  ")}>
               <h1 className=" font-semibold">Group ID - {groupId}</h1>
               <div className=" text-left">
                 <h1 className=" font-semibold">Group Name - {group.name}</h1>

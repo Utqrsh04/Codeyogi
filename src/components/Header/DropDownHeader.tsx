@@ -43,6 +43,14 @@ const DropDownHeader: FC<Props> = ({ imageUrl, Icon }) => {
               static
               className="origin-top-right absolute right-0 mt-2 w-40 z-50 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
             >
+              <div
+                  className="absolute -top-3 right-3"
+                  style={{
+                    borderBottom: "15px solid #fff",
+                    borderLeft: "9px solid transparent",
+                    borderRight: "9px solid transparent",
+                  }}
+                ></div>
               <div className="px-1 py-1 ">
                 <Menu.Item>
                   {({ active }) => (
