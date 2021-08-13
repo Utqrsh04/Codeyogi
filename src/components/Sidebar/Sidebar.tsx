@@ -10,7 +10,6 @@ import {
   FiPieChart,
   FiBook,
   FiTablet,
-  FiCodesandbox,
   FiRadio,
 } from "react-icons/fi";
 import { ImStack } from "react-icons/im";
@@ -19,7 +18,6 @@ import { useAppSelector } from "../../store";
 import { FaCreativeCommonsNd } from "react-icons/fa";
 
 interface Props {
-  // classes: boolean;
 }
 
 const Sidebar: FC<Props> = () => {

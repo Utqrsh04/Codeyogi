@@ -27,7 +27,7 @@ const App: FC<Props> = () => {
 
   const user = useAppSelector(meSelector);
 
-  console.log("App Component User ", user);
+  // console.log("App Component User ", user);
   if (!user && token) return <Loading />;
 
   return (

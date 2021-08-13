@@ -20,7 +20,7 @@ export const login = (data: LoginRequest) => {
   // console.log("Login ",data);
 
   return axios.post<LoginResponse>(url, data).then((response) => {
-    console.log("Response and Token ", response.data);
+    // console.log("Response and Token ", response.data);
     localStorage.setItem(LS_AUTH_TOKEN, response.data.token)
     return response.data.user;
   });

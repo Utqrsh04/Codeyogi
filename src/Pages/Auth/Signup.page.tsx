@@ -35,7 +35,7 @@ const Signup: FC<Props> = (props) => {
           .min(8, ({ min }) => `Must be ${min} characters or more`),
       }),
       onSubmit: (data) => {
-        console.log(`Form Submitting ${data}`);
+        // console.log(`Form Submitting ${data}`);
         setTimeout(() => {
           console.log(`Form Submitted SucessFully`);
           history.push("/dashboard");
