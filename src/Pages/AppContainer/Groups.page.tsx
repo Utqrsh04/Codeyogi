@@ -15,7 +15,7 @@ import { FaSpinner } from "react-icons/fa";
 import { queryChangedAction } from "../../actions/groups.actions";
 import { useDispatch } from "react-redux";
 
-interface Props {}
+interface Props { }
 
 const Groups: FC<Props> = () => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const Groups: FC<Props> = () => {
             <h2 className="font-semibold">Groups</h2>
           </div>
           <div className=" mx-4 flex my-2 text-center ">
-            <span className="  sm:block bg-blue-200 px-1 text-black my-auto rounded-sm font-semibold ">
+            <span className="  sm:block bg-gray-100 px-1 text-black my-auto rounded-sm font-semibold ">
               Welcome {`${user!.first_name} ${user!.last_name}`}
             </span>
             <div className="mx-1 flex rounded-lg items-center">
@@ -53,7 +53,7 @@ const Groups: FC<Props> = () => {
                 onChange={(e) => dispatch(queryChangedAction(e.target.value))}
                 value={query}
                 type="text"
-                placeholder="Search here"
+                placeholder="Search Group"
                 className="bg-gray-100 rounded-lg md:w-44 md:ml-5 w-32 h-5 p-4 "
               />
             </div>
@@ -61,16 +61,18 @@ const Groups: FC<Props> = () => {
         </div>
       </div>
 
-        {/* <Sidebar /> */}
-        <div className=" relative top-28">
+      {/* <Sidebar /> */}
+      <div className=" relative top-28">
         <div className=" flex justify-center items-center mx-auto ">
-        <h1 className="text-2xl font-semibold ">
-        {groups.length === 0 && "No Data Found! "}
-        </h1>
-        {loading && <FaSpinner className=" w-10 h-10 animate-spin  " /> }
+          {groups.length === 0 &&
+            <h1 className="text-2xl text-red-600 font-semibold mt-10 ">
+              No Records Found ! Search again
+            </h1>
+          }
+          {loading && <FaSpinner className=" w-10 h-10 animate-spin  " />}
         </div>
         {<ListCard data={groups!} />}
-        </div>
+      </div>
     </div>
   );
 };

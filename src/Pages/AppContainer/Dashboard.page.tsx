@@ -32,15 +32,15 @@ const Dashboard: FC<Props> = () => {
             <h2 className="font-semibold">Dashboard</h2>
           </div>
           <div className=" mx-4 flex my-2 text-center ">
-            <span className="  sm:block bg-blue-200 px-1 text-black my-auto rounded-sm font-semibold ">
+            <span className="  sm:block bg-gray-100 px-1 text-black my-auto rounded-sm font-semibold ">
             Welcome {`${user!.first_name} ${user!.last_name}`}
             </span>
           </div>
         </div>
       </div>
 
-      <section className="space-x-5 flex top-28">
-        <div className="bg-gray-300 w-full flex justify-center items-center ">
+      <section className="space-x-5 flex justify-center h-screen top-28">
+        <div className="bg-gray-300 flex justify-center w-full text-center items-center ">
           <h1 className=" text-xl font-semibold ">This is Dashboard</h1>
         </div>
       </section>

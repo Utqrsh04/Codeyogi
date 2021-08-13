@@ -54,7 +54,7 @@ const GroupDetails: FC<Props> = (props) => {
                 <h2 className="font-semibold">Group Details</h2>
               </div>
               <div className=" mx-4 flex my-2 text-center ">
-                <span className="  sm:block bg-blue-200 px-1 text-black my-auto rounded-sm font-semibold ">
+                <span className="  sm:block bg-gray-100 px-1 text-black my-auto rounded-sm font-semibold ">
                   Welcome {`${user!.first_name} ${user!.last_name} `}
                 </span>
               </div>
