@@ -20,7 +20,6 @@ interface Props {
 
 const Sidebar: FC<Props> = () => {
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
-  // const classes = 
   return (
     <>
       {/* <button
@@ -43,7 +42,7 @@ const Sidebar: FC<Props> = () => {
         leaveFrom="opacity-100 translate-x-0 "
         leaveTo="opacity-0 -translate-x-14 "
       >
-        <div className="w-52 space-y-2 rounded-lg bg-gray-200 px-5 py-5 fixed mt-28 z-50 ">
+        <div className="w-52 space-y-2 rounded-sm bg-gray-200 px-5 py-5 fixed top-28 z-40 bottom-0 ">
           <StepSidebar menu="Dashboard" Icon={FiHome} />
           <StepSidebar menu="Groups" Icon={FiBook} />
 

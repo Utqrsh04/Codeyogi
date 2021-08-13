@@ -3,7 +3,7 @@ import { SiCodewars } from "react-icons/si";
 import { FiSearch } from "react-icons/fi";
 import { MdMailOutline, MdNotificationsNone } from "react-icons/md";
 import DropDownHeader from "./DropDownHeader";
-import grpImg from "../images/grpImg.jpg";
+import grpImg from "../../images/grpImg.jpg";
 
 interface Props {}
 

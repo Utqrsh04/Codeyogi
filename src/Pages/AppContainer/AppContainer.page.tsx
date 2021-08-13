@@ -1,11 +1,11 @@
 import { FC, memo } from "react";
 import { Switch, Route } from "react-router-dom";
-import Group from "./GroupDetails.page";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import DashboardPage from "./Dashboard.page";
 import GroupsPage from "./Groups.page";
 import LecturePage from "./Lecture.page";
 import ProfiePage from "./Profie.page";
+import GroupDetails from "./GroupDetails.page";
 import RecordingsPage from "./Recordings.page";
 
 interface Props {}
@@ -21,7 +21,7 @@ const AppContainer: FC<Props> = () => {
           <DashboardPage  />
         </Route>
 
-        <Route path="/groups">
+        <Route exact path="/groups">
           <GroupsPage />
         </Route>
 
@@ -33,8 +33,8 @@ const AppContainer: FC<Props> = () => {
           <ProfiePage />
         </Route>
 
-        <Route path="/groupdata/:id">
-          <Group/>
+        <Route exact path="/groups/:groupId">
+          <GroupDetails/>
         </Route>
 
         <Route path="/batch/:batchNumber/lecture/:lectureNumber">

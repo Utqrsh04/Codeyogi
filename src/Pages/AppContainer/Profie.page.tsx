@@ -1,16 +1,14 @@
 import { FC, memo } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import Header from "../../components/Header";
-import * as yup from "yup";
-
-// import Sidebar from "../../components/Sidebar/Sidebar";
-import { useAppSelector } from "../../store";
-import { sidebarActions } from "../../actions/sidebar.actions";
 import { useFormik } from "formik";
+import { GiHamburgerMenu } from "react-icons/gi";
+import * as yup from "yup";
 import { updateMe } from "../../api";
+import { useAppSelector } from "../../store";
 import grpImg from "../../images/grpImg.jpg";
+import Header from "../../components/Header/Header";
+import { sidebarActions } from "../../actions/sidebar.actions";
 import { meSelector } from "../../selectors/auth.selectors";
-import ProfileInput from "../../components/ProfileInput";
+import ProfileInput from "../../components/ProfilePage/ProfileInput";
 
 interface Props { }
 
@@ -55,7 +53,7 @@ const Profie: FC<Props> = (props) => {
         // console.log("Profile Page Update ME ", data);
         window.location.href = "/profile";
       });
-      console.log("Profile Page On Submit ", data);
+      // console.log("Profile Page On Submit ", data);
     },
   });
 
@@ -96,13 +94,7 @@ const Profie: FC<Props> = (props) => {
                 <div className=" pt-5 w-full ">
                   <div className=" flex ">
                     <div className="mx-4 sm:w-2/6 space-y-1">
-                      {/* <h4 className=" text-sm font-light ">First name </h4> */}
-                      {/* <input
-                        type="text"
-                        className=" w-full border p-2 border-gray-400 rounded-lg h-10 "
-                        id="first_name"
-                        {...getFieldProps("first_name")}
-                      /> */}
+                      
                       <ProfileInput
                         label="First Name"
                         id="first_name"

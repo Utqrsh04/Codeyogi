@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import { Group } from "../../models/Group";
-import List from "./List";
+import ListItem from "./ListItem";
 
 interface Props {
   data: Group[];
@@ -11,7 +11,7 @@ const ListCard: FC<Props> = ({ data }) => {
     <>
       <div className="mx-auto sm:w-3/6">
         {data.map((data, index) => (
-          <List
+          <ListItem
             key={index}
             index={index}
             id={data.id}

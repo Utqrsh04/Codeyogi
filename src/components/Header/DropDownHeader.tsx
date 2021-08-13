@@ -1,7 +1,8 @@
 import { Fragment, FC, memo } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { Logout } from "../api";
+import { Logout } from "../../api";
 import { IconType } from "react-icons";
+import { Link } from "react-router-dom";
 
 interface Props {
   imageUrl?: string;
@@ -45,23 +46,23 @@ const DropDownHeader: FC<Props> = ({ imageUrl, Icon }) => {
               <div className="px-1 py-1 ">
                 <Menu.Item>
                   {({ active }) => (
-                    <a href="/profile" className="block px-4 py-2 text-sm">
+                    <Link to={"/profile" } className="block px-4 py-2 text-sm">
                       Profile
-                    </a>
+                    </Link>
                   )}
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
-                    <a href="/not-found" className="block px-4 py-2 text-sm">
+                    <Link to={"/not-found"} className="block px-4 py-2 text-sm">
                       Inbox
-                    </a>
+                    </Link>
                   )}
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
-                    <a href="/not-found" className="block px-4 py-2 text-sm">
+                    <Link to={"/not-found"} className="block px-4 py-2 text-sm">
                       Lock Screen
-                    </a>
+                    </Link>
                   )}
                 </Menu.Item>
 

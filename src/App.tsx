@@ -47,7 +47,7 @@ const App: FC<Props> = () => {
               "/dashboard",
               "/recordings",
               "/groups",
-              "/groupdata/:id",
+              "/groups/:id",
               "/profile",
               "/batch/:batchNumber/lecture/:lectureNumber",
             ]}

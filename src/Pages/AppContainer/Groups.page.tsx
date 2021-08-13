@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import ListCard from "../../components/ListCard/ListCard";
 // import { fetchGroups } from "../../middlewares/groups.middleware";
 import { useAppSelector } from "../../store";
@@ -44,7 +44,7 @@ const Groups: FC<Props> = () => {
             >
               <GiHamburgerMenu />
             </button>
-            <h2 className="font-semibold">Groups Page</h2>
+            <h2 className="font-semibold">Groups</h2>
           </div>
           <div className=" mx-4 flex my-2 text-center ">
             <span className="  sm:block bg-blue-200 px-1 text-black my-auto rounded-sm font-semibold ">

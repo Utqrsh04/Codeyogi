@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { sidebarActions } from "../../actions/sidebar.actions";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import { useAppSelector } from "../../store";
 
 interface Props {}
