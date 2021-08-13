@@ -18,15 +18,13 @@ import { useDispatch } from "react-redux";
 interface Props {}
 
 const Groups: FC<Props> = () => {
-  const user = useAppSelector(meSelector);
+  const dispatch = useDispatch();
 
+  const user = useAppSelector(meSelector);
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
   const query = useAppSelector(groupQuerySelector);
-  
-  const groups = useAppSelector(groupsSelector);
   const loading = useAppSelector(groupLoadingSelector);
-
-  const dispatch = useDispatch();
+  const groups = useAppSelector(groupsSelector);
 
   return (
     <div className="relative ">
@@ -55,8 +53,8 @@ const Groups: FC<Props> = () => {
                 onChange={(e) => dispatch(queryChangedAction(e.target.value))}
                 value={query}
                 type="text"
-                placeholder="Search"
-                className=" rounded-lg w-32 h-5 p-4 "
+                placeholder="Search here"
+                className="bg-gray-100 rounded-lg md:w-44 md:ml-5 w-32 h-5 p-4 "
               />
             </div>
           </div>
