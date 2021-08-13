@@ -75,13 +75,13 @@ const Profie: FC<Props> = (props) => {
             </button>
             <h2 className="font-semibold">Users / Account Settings</h2>
           </div>
-          <span className="  sm:block bg-blue-100 px-2 text-xl text-black my-auto rounded-md font-semibold ">
+          <span className="sm:block bg-blue-100 px-2 text-xl text-black my-auto rounded-md font-semibold ">
             Welcome {`${user!.first_name} ${user!.last_name}`}
           </span>
         </div>
       </div>
 
-      <section className="space-x-5 flex w-10/12 left-40 bg-white justify-center relative top-28">
+      <section className="space-x-5 flex sm:w-10/12 left-40 bg-white justify-center relative top-28">
 
           <form onSubmit={handleSubmit} onReset={handleReset}>
             <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">

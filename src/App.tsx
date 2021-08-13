@@ -1,7 +1,7 @@
 import { FC, lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import AppContainerPageLazy from "./Pages/AppContainer/AppContainer.lazy";
-import NotFoundPage from "./Pages/AppContainer/NotFound.page";
+import NotFoundPage from "./Pages/NotFound.page";
 import Loading from "./components/Loading";
 import { useAppSelector } from "./store";
 import { LS_AUTH_TOKEN } from "./api/base";
