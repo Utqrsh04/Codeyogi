@@ -1,8 +1,9 @@
-import { FC, memo } from "react";
+import { FC, memo, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { fetchOneGroup } from "../../actions/groups.actions";
 import { sidebarActions } from "../../actions/sidebar.actions";
-import { fetchGroupData } from "../../api";
 import Header from "../../components/Header/Header";
 import { meSelector } from "../../selectors/auth.selectors";
 import { groupByIdSelector } from "../../selectors/group.selectors";
@@ -18,19 +19,11 @@ const GroupDetails: FC<Props> = (props) => {
   const groupByIds = useAppSelector(groupByIdSelector)
   let group = groupByIds[groupId]
 
-  if (group) {
-    fetchGroupData(groupId).then((groupData) => {
-      console.log("Data ", groupData);
-      groupData && (group = groupData)
-    });
-  }
+  const dispatch = useDispatch();  
 
-  // useEffect(() => {
-  //   fetchGroupData(id).then((groupData) => {
-  //     console.log("Data ", groupData);
-  //     groupData && setgroupData(groupData);
-  //   });
-  // }, []); //eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    dispatch(fetchOneGroup(groupId));
+  }, [groupId]); //eslint-disable-line react-hooks/exhaustive-deps
 
 
   return (

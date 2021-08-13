@@ -25,6 +25,8 @@ const Groups: FC<Props> = () => {
   const query = useAppSelector(groupQuerySelector);
   const loading = useAppSelector(groupLoadingSelector);
   const groups = useAppSelector(groupsSelector);
+  console.log(" Groups Data ",groups);
+  
 
   return (
     <div className="relative ">
@@ -61,7 +63,6 @@ const Groups: FC<Props> = () => {
         </div>
       </div>
 
-      {/* <Sidebar /> */}
       <div className=" relative top-28">
         <div className=" flex justify-center items-center mx-auto ">
           {groups.length === 0 &&
