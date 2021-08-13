@@ -45,7 +45,7 @@ const Login: FC<Props> = () => {
   });
 
   return (
-    <div className=" lg:w-1/2 h-screen text-center flex-col mx-auto">
+    <div className=" lg:w-1/2 text-center flex-col">
       <div className=" text-center min-w-max pt-8 ">
         <h2 className=" text-4xl ">
           Log in to{" "}
@@ -88,7 +88,7 @@ const Login: FC<Props> = () => {
             />
           </div>
 
-          <div className="sm:flex mx-auto justify-around items-center space-y-5 ">
+          <div className="flex mx-auto justify-around items-center space-y-5 ">
             <div className="text-base mx-auto pt-3 font-medium">
               <Toggle.Group>
                 <div className="flex items-center">

@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: (theme) => ({
-        // 'hero-auth': "url(./img/hero-login.png)",
-      }),
+          AuthHeroImg: "url('/src/images/AuthHeroImg.webp')",
+        }
+      ),
       width: {
         "1/7": "14.2857143%",
         "1085": "67.8125rem"

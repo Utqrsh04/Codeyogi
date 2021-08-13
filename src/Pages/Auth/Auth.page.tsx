@@ -11,7 +11,7 @@ interface Props{
 
 const Auth : FC<Props> = (props) => {
   return (
-    <div className="flex flex-row">
+    <div className="flex  ">
       <Switch>
       <Route path="/login" >
         <LoginPage onLogin={ (u) => {
