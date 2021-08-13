@@ -11,6 +11,7 @@ import {
   FiBook,
   FiTablet,
   FiCodesandbox,
+  FiRadio,
 } from "react-icons/fi";
 import { ImStack } from "react-icons/im";
 import {  AiOutlineThunderbolt } from "react-icons/ai";
@@ -48,6 +49,7 @@ const Sidebar: FC<Props> = () => {
         <div className="w-56 space-y-2 rounded-sm overflow-y-scroll bg-gray-200 px-5 py-5 fixed top-28 z-40 bottom-0 ">
           <StepSidebar menu="Dashboard" Icon={FiHome} />
           <StepSidebar menu="Groups" Icon={FiBook} />
+          <StepSidebar menu="Recordings" Icon={FiRadio} />
 
           <DropdownMenu
             menu="Apps"
@@ -71,7 +73,6 @@ const Sidebar: FC<Props> = () => {
           />   
           <StepSidebar menu="Maps" Icon={FiMap} />
           <StepSidebar menu="Tables" Icon={FiTablet} />
-          <StepSidebar menu="Code" Icon={FiCodesandbox} />
           <StepSidebar menu="Charts" Icon={FiPieChart} />
         </div>
       </Transition>

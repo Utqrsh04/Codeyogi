@@ -28,6 +28,11 @@ const Recordings: FC<Props> = (props) => {
         </div>
       </div>
       {/* <Sidebar classes={sidebar} /> */}
+      <section className="space-x-5 flex justify-center top-28">
+        <div className=" flex justify-center w-full text-center items-center ">
+          <h1 className={" text-xl font-semibold " + (sidebar ? " ml-20 " : " ")}>This is Recordings Page</h1>
+        </div>
+      </section>
     </div>
   );
 };
