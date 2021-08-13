@@ -23,9 +23,9 @@ const Header: FC<Props> = (props) => {
             className="text-white m-3 w-8 h-8 "
             alt="logo"
           />
-          <h1 className="hidden sm:block font-semibold text-3xl text-white ">
+          <Link to={"/dashboard"} className="hidden sm:block font-semibold text-3xl text-white ">
             Cork
-          </h1>
+          </Link>
           <div className="items-center hidden border border-opacity-0 rounded-md md:flex bg-gray-800 ml-10 h-9 focus-within:border-opacity-100 focus-within:border-dark-300">
             <BsSearch className="w-4.5 h-4.5 mx-2.5" />
             <form action="">

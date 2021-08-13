@@ -32,19 +32,19 @@ const DropDownHeader: FC<Props> = ({ imageUrl, Icon }) => {
           <Transition
             show={open}
             as={Fragment}
-            enter="transition ease-out duration-100"
-            enterFrom="transform opacity-0 scale-95"
-            enterTo="transform opacity-100 scale-100"
-            leave="transition ease-in duration-75"
-            leaveFrom="transform opacity-100 scale-100"
-            leaveTo="transform opacity-0 scale-95"
+            enter="transition duration-200 ease-in-out"
+            enterFrom="transform translate-y-4 opacity-0"
+            enterTo="transform translate-y-0 opacity-100"
+            leave="transition duration-200 ease-in-out"
+            leaveFrom="transform translate-y-0 opacity-100"
+            leaveTo="transform translate-y-4 opacity-0"
           >
             <Menu.Items
               static
-              className="origin-top-right absolute right-0 mt-2 w-40 z-50 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+              className="origin-top-right absolute right-0 mt-0.5 w-40 z-50 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
             >
               <div
-                  className="absolute -top-3 right-3"
+                  className="absolute -top-2 right-3"
                   style={{
                     borderBottom: "15px solid #fff",
                     borderLeft: "9px solid transparent",

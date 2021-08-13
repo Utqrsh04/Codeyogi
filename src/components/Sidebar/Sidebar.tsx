@@ -9,10 +9,13 @@ import {
   FiMap,
   FiPieChart,
   FiBook,
+  FiTablet,
+  FiCodesandbox,
 } from "react-icons/fi";
 import { ImStack } from "react-icons/im";
 import {  AiOutlineThunderbolt } from "react-icons/ai";
 import { useAppSelector } from "../../store";
+import { FaCreativeCommonsNd } from "react-icons/fa";
 
 interface Props {
   // classes: boolean;
@@ -42,7 +45,7 @@ const Sidebar: FC<Props> = () => {
         leaveFrom="opacity-100 translate-x-0 "
         leaveTo="opacity-0 -translate-x-14 "
       >
-        <div className="w-52 space-y-2 rounded-sm bg-gray-200 px-5 py-5 fixed top-28 z-40 bottom-0 ">
+        <div className="w-56 space-y-2 rounded-sm overflow-y-scroll bg-gray-200 px-5 py-5 fixed top-28 z-40 bottom-0 ">
           <StepSidebar menu="Dashboard" Icon={FiHome} />
           <StepSidebar menu="Groups" Icon={FiBook} />
 
@@ -57,9 +60,18 @@ const Sidebar: FC<Props> = () => {
             items={["Alerts", "Avatars", "Buttons"]}
             Icon={AiOutlineThunderbolt}
           />
+
+
           <StepSidebar menu="Authentication" Icon={FiLock} />
           <StepSidebar menu="DataTables" Icon={ImStack} />
+          <DropdownMenu
+            menu="Components"
+            items={["Tables", "Graphs", "Pie Chart", "Histogram"]}
+            Icon={FaCreativeCommonsNd}
+          />   
           <StepSidebar menu="Maps" Icon={FiMap} />
+          <StepSidebar menu="Tables" Icon={FiTablet} />
+          <StepSidebar menu="Code" Icon={FiCodesandbox} />
           <StepSidebar menu="Charts" Icon={FiPieChart} />
         </div>
       </Transition>
