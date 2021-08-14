@@ -49,6 +49,8 @@ const App: FC<Props> = () => {
               "/groups",
               "/groups/:id",
               "/profile",
+              "/users",
+              "/users/:userId",
               "/batch/:batchNumber/lecture/:lectureNumber",
             ]}
             exact

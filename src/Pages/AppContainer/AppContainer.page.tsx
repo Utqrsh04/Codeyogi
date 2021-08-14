@@ -7,18 +7,20 @@ import LecturePage from "./Lecture.page";
 import ProfiePage from "./Profie.page";
 import GroupDetails from "./GroupDetails.page";
 import RecordingsPage from "./Recordings.page";
+import UsersPage from "./Users.page";
+import UserDetails from "./UserDetails.page";
 
-interface Props {}
+interface Props { }
 
 const AppContainer: FC<Props> = () => {
 
   return (
     <>
-        <Sidebar />
+      <Sidebar />
 
       <Switch>
         <Route path="/dashboard">
-          <DashboardPage  />
+          <DashboardPage />
         </Route>
 
         <Route exact path="/groups">
@@ -34,7 +36,15 @@ const AppContainer: FC<Props> = () => {
         </Route>
 
         <Route exact path="/groups/:groupId">
-          <GroupDetails/>
+          <GroupDetails />
+        </Route>
+
+        <Route exact path="/users">
+          <UsersPage />
+        </Route>
+
+        <Route exact path="/users/:userId">
+          <UserDetails />
         </Route>
 
         <Route path="/batch/:batchNumber/lecture/:lectureNumber">

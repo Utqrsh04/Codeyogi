@@ -1,15 +1,12 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { CANCEL } from "redux-saga";
 
-
 export const BASE_URL = "https://api-dev.domecompass.com";
-
 export const LS_AUTH_TOKEN = "auth_token";
 
 
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem(LS_AUTH_TOKEN);
-
   if (!token)
     return config;
 
@@ -25,6 +22,7 @@ axios.interceptors.response.use(undefined, (error) => {
   }
   return Promise.reject(error);
 })
+
 
 export const get =<T> ( url : string , config? : AxiosRequestConfig  ) => {
   const source = axios.CancelToken.source();
