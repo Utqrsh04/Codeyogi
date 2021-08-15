@@ -15,7 +15,12 @@ axios.interceptors.request.use((config) => {
 
 
 axios.interceptors.response.use(undefined, (error) => {
-  // console.log(error.response.data);
+  console.log(error.response.data);
+  
+  if (error.response.status === 404) {
+    window.location.href = "/not-found";
+  }
+
   if (error.response?.data?.code === 9101) {
     localStorage.removeItem(LS_AUTH_TOKEN);
     window.location.href = "/login";
@@ -24,10 +29,10 @@ axios.interceptors.response.use(undefined, (error) => {
 })
 
 
-export const get =<T> ( url : string , config? : AxiosRequestConfig ) => {
+export const get = <T>(url: string, config?: AxiosRequestConfig) => {
   const source = axios.CancelToken.source();
 
-  const response = axios.get<T>(url , {...config , cancelToken : source.token})
+  const response = axios.get<T>(url, { ...config, cancelToken: source.token })
 
   response[CANCEL] = source.cancel;
   return response;

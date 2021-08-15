@@ -30,7 +30,8 @@ function* fetchOne(action: AnyAction): Generator<any> {
   } catch (e) {
 
     console.log("Error FetchOne ", e.response);
-    const err = e.response.data?.message || "Some Error Occured"
+
+    const err = e.response.data?.message || "Some Unknown Error Occured"
 
     yield put(fetchOneGroupError(action.payload, err))
   }
