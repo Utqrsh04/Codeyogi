@@ -1,6 +1,5 @@
 import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Header from "../../components/Header/Header";
 import ListCard from "../../components/ListCard/ListCard";
 // import { fetchGroups } from "../../middlewares/groups.middleware";
 import { useAppSelector } from "../../store";

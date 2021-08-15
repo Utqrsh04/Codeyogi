@@ -1,16 +1,35 @@
-import { FC, memo } from "react";
+import { FC, memo, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Header from "../../components/Header/Header";
 import { useAppSelector } from "../../store";
 import { sidebarActions } from "../../actions/sidebar.actions";
 import { meSelector } from "../../selectors/auth.selectors";
+import { useDispatch } from "react-redux";
+
+import { FaSpinner } from "react-icons/fa";
+import ListCard from "../../components/ListCard/ListCard";
+import { fetchUsersApi } from "../../api/users";
 
 interface Props {}
 
 const Users: FC<Props> = () => {
+  const dispatch = useDispatch();
+
   const user = useAppSelector(meSelector);
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
-  // console.log(" Users Data ",user);
+
+  // const loading = useAppSelector(usersLoadingSelector);
+  // const users = useAppSelector(userByIdSelector);
+
+  // console.log("Users Data ", users);
+
+  useEffect(() => {
+    fetchUsersApi().then((data) => {
+      console.log("User Page fetchUserApi res ", data.data.data);
+      //     usersFetchCompleted(data.data.data);
+    });
+  }, []);
+
+  // fetchUsersApi().then((data) => console.log("User Page ", data));
 
   return (
     <div className="relative ">
@@ -35,29 +54,29 @@ const Users: FC<Props> = () => {
               Welcome {`${user!.first_name} ${user!.last_name}`}
             </span>
             <div className="mx-1 flex rounded-lg items-center">
-              <input
+              {/* <input
                 // onChange={(e) => dispatch(queryChangedAction(e.target.value))}
-                // value={query}
+                value={query}
                 type="text"
-                placeholder="Search Group"
+                placeholder="Search User"
                 className="bg-gray-100 rounded-lg md:w-44 md:ml-5 w-32 h-5 p-4 "
-              />
+              /> */}
             </div>
           </div>
         </div>
       </div>
 
       <div className=" relative top-28">
-        <div className=" flex justify-center items-center mx-auto ">
-          {/* {groups.length === 0 &&
+        {/* <div className=" flex justify-center items-center mx-auto ">
+          {users.length === 0 && (
             <h1 className="text-2xl text-red-600 font-semibold mt-10 ">
               No Records Found ! Search again
             </h1>
-          } */}
-          {/* {loading && <FaSpinner className=" w-10 h-10 animate-spin  " />} */}
+          )}
+          {loading && <FaSpinner className=" w-8 h-8 animate-spin  " />}
           <h1>This is Users Page :/ {user!.first_name}</h1>
-        </div>
-        {/* {<ListCard data={user!} />} */}
+        </div> */}
+        {/* {<ListCard data={users!} />} */}
       </div>
     </div>
   );

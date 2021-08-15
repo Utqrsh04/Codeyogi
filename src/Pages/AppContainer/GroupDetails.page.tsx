@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchOneGroup } from "../../actions/groups.actions";
 import { sidebarActions } from "../../actions/sidebar.actions";
-import Header from "../../components/Header/Header";
 import { meSelector } from "../../selectors/auth.selectors";
 import {
   queryIdsSelector,

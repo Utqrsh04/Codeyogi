@@ -2,7 +2,6 @@ import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, useParams } from "react-router-dom";
 import { sidebarActions } from "../../actions/sidebar.actions";
-import Header from "../../components/Header/Header";
 import { meSelector } from "../../selectors/auth.selectors";
 // import { groupByIdSelector } from "../../selectors/group.selectors";
 import { useAppSelector } from "../../store";
@@ -25,8 +24,7 @@ const UserDetails: FC<Props> = (props) => {
     <>
       {userId && (
         <>
-          <div className="text-center w-full fixed z-40">
-            <Header />
+          <div className="text-center w-full fixed top-14">
             <div className="bg-white mb-2 sm:px-4 sm:pr-8 pr-2 text-gray-700 h-14 flex flex-row items-center">
               <div className=" flex items-center space-x-1 justify-evenly ">
                 <button

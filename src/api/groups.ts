@@ -14,28 +14,28 @@ interface GroupsResponse {
   data: Group[];
 }
 
-export interface EachGroupResponse {
-  data: Group;
-}
+// export interface EachGroupResponse {
+//   data: Group;
+// }
 
 
-export const fetchGroupsApi = (data: GroupRequest ) => {
+export const fetchGroupsApi = (data: GroupRequest) => {
 
   const url = BASE_URL + "/groups";
 
   return get<GroupsResponse>(url, { params: data })
-    // .then((response) =>  response.data.data)
-    // .catch((e) => console.error(e))
+  // .then((response) =>  response.data.data)
+  // .catch((e) => console.error(e))
 }
 
 
 export const fetchOneGroupApi = (id: string) => {
 
-  const url = BASE_URL + "/groups/"+id;
+  const url = BASE_URL + "/groups/" + id;
 
   return axios.get<GroupsResponse>(url)
-    // .then((response) =>  response.data.data)
-    // .catch((e) => console.error(e))
+  // .then((response) =>  response.data.data)
+  // .catch((e) => console.error(e))
 }
 
 // export const fetchGroupData = (id: number) => {
