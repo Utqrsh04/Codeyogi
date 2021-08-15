@@ -1,27 +1,49 @@
 import { createSelector } from "reselect";
 import { groupStateSelector } from "./app.selectors";
 
+
 export const groupQuerySelector = createSelector(
   [groupStateSelector],
-  (groupState) => groupState.query)
+  (groupState) => groupState.query);
 
 
 export const groupQueryMapSelector = createSelector(
   [groupStateSelector],
-  (groupState) => groupState.queryMap)
+  (groupState) => groupState.queryMap);
+
+
+export const queryIdsSelector = createSelector(
+  [groupQuerySelector, groupQueryMapSelector],
+  (query, queryMap) => queryMap[query] || []);
+
 
 export const groupByIdSelector = createSelector(
   [groupStateSelector],
-  (groupState) => groupState.byId)
+  (groupState) => groupState.byId);
 
-export const selectedIdSelector = createSelector(
+
+export const groupsLoadingSelector = createSelector(
   [groupStateSelector],
-  (groupState) => groupState.selectedId)
+  (groupState) => groupState.loadingList);
+
+
+const selectedIdSelector = createSelector(
+  [groupStateSelector],
+  (groupState) => groupState.selectedId);
+
+export const selectedLoadingSelector = createSelector(
+  [groupStateSelector],
+  (groupState) => groupState.loadingOne);
+
 
 
 export const selectedGroupSelector = createSelector(
   [groupByIdSelector, selectedIdSelector],
-  (byId, id) => id && byId[id])
+  (byId, id) => id && byId[id]);
+
+export const selectedErrorSelector = createSelector(
+  [groupStateSelector],
+  (groupState) => groupState.errorOne);
 
 
 // export const groupsSelector = (state: AppState) => {
@@ -35,18 +57,15 @@ export const selectedGroupSelector = createSelector(
 //   return groups;
 // }
 
-export const groupLoadingQuerySelector = createSelector(
-  [groupStateSelector],
-  (groupState) => groupState.loadingQuery)
-
-export const groupLoadingSelector = createSelector(
-  [groupQuerySelector, groupLoadingQuerySelector],
-  (query, loadingMap) => loadingMap[query])
+// export const groupLoadingQuerySelector = createSelector(
+//   [groupStateSelector],
+//   (groupState) => groupState.loadingQuery)
 
 
-export const groupsSelector = createSelector([groupQuerySelector, groupQueryMapSelector, groupByIdSelector],
-  (query, queryMap, byId) => {
-    const groupsIds = queryMap[query] || [];
+export const groupsSelector = createSelector(
+  [queryIdsSelector, groupByIdSelector],
+  (groupsIds, byId) => {
+    // const groupsIds = queryMap[query] || [];
     const groups = groupsIds.map((id) => byId[id]);
 
     return groups;

@@ -59,8 +59,8 @@ const Profie: FC<Props> = (props) => {
 
   return (
     <div className="">
-      <div className="text-center fixed z-40 w-full">
-        <Header />
+      <div className="text-center fixed z-40 w-full top-14">
+        {/* <Header /> */}
         <div className="bg-white mb-2 sm:px-5 sm:pr-10 pr-2 text-gray-700 h-14 flex flex-row justify-between items-center">
           <div className=" flex items-center space-x-1 justify-evenly ">
             <button

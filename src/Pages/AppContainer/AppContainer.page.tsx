@@ -9,13 +9,14 @@ import GroupDetails from "./GroupDetails.page";
 import RecordingsPage from "./Recordings.page";
 import UsersPage from "./Users.page";
 import UserDetails from "./UserDetails.page";
+import Header from "../../components/Header/Header";
 
-interface Props { }
+interface Props {}
 
 const AppContainer: FC<Props> = () => {
-
   return (
     <>
+      <Header />
       <Sidebar />
 
       <Switch>

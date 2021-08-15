@@ -16,14 +16,17 @@ interface Props {}
 const Header: FC<Props> = (props) => {
   return (
     <>
-      <header className="flex flex-row justify-between h-14 bg-gray-900 w-screen ">
+      <header className="flex flex-row justify-between h-14 bg-gray-900 fixed z-50 top-0 w-screen">
         <div className="flex items-center">
           <img
             src="https://designreset.com/cork/ltr/demo4/assets/img/logo.svg"
             className="text-white m-3 w-8 h-8 "
             alt="logo"
           />
-          <Link to={"/dashboard"} className="hidden sm:block font-semibold text-3xl text-white ">
+          <Link
+            to={"/dashboard"}
+            className="hidden sm:block font-semibold text-3xl text-white "
+          >
             Cork
           </Link>
           <div className="items-center hidden border border-opacity-0 rounded-md md:flex bg-gray-800 ml-10 h-9 focus-within:border-opacity-100 focus-within:border-dark-300">
@@ -55,9 +58,8 @@ const Header: FC<Props> = (props) => {
               leaveFrom="transform translate-y-0 opacity-100"
               leaveTo="transform translate-y-4 opacity-0"
             >
-              <Menu.Items className="absolute py-2 text-sm mt-1 bg-white border rounded text-dark-200 top-12 right-24">
-                
-              <div
+              <Menu.Items className="absolute py-2 text-sm mt-1 bg-white border rounded text-dark-200 top-12 z-50 right-24">
+                <div
                   className="absolute -top-2 right-9"
                   style={{
                     borderBottom: "15px solid #fff",
@@ -111,7 +113,7 @@ const Header: FC<Props> = (props) => {
 
           <Menu>
             <Menu.Button className="">
-              <MdNotificationsNone className="text-white m-2 w-8 h-8 "  />
+              <MdNotificationsNone className="text-white m-2 w-8 h-8 " />
             </Menu.Button>
             <Transition
               as={Fragment}
@@ -122,8 +124,8 @@ const Header: FC<Props> = (props) => {
               leaveFrom="transform translate-y-0 opacity-100"
               leaveTo="transform translate-y-4 opacity-0"
             >
-              <Menu.Items className="absolute p-3 text-sm mt-1 bg-white border rounded text-dark-200 top-12 right-14">
-              <div
+              <Menu.Items className="absolute p-3 text-sm mt-1 bg-white border rounded text-dark-200 top-12 z-50 right-14">
+                <div
                   className="absolute -top-2 right-8"
                   style={{
                     borderBottom: "15px solid #fff",
@@ -179,7 +181,7 @@ const Header: FC<Props> = (props) => {
               </Menu.Items>
             </Transition>
           </Menu>
-        
+
           <DropDownHeader imageUrl={grpImg} />
         </div>
       </header>

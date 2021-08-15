@@ -7,6 +7,7 @@ import { sidebarReducer } from "./reducers/sidebar.reducer";
 import { userReducer } from "./reducers/users.reducer";
 import { sagaMiddleware } from "./sagas";
 import { watchGroupQueryChanged } from "./sagas/groups.sagas";
+import { watchUserQueryChanged } from "./sagas/users.sagas";
 
 export type AppState = ReturnType<typeof reducer>;
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
@@ -26,5 +27,6 @@ export const store = createStore(
 );
 
 sagaMiddleware.run(watchGroupQueryChanged);
+sagaMiddleware.run(watchUserQueryChanged);
 
 

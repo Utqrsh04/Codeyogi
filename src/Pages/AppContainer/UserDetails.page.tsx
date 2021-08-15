@@ -1,30 +1,25 @@
-import { FC, memo, useEffect } from "react";
+import { FC, memo } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { fetchOneGroup } from "../../actions/groups.actions";
 import { sidebarActions } from "../../actions/sidebar.actions";
 import Header from "../../components/Header/Header";
 import { meSelector } from "../../selectors/auth.selectors";
 // import { groupByIdSelector } from "../../selectors/group.selectors";
 import { useAppSelector } from "../../store";
 
-interface Props { }
+interface Props {}
 
 const UserDetails: FC<Props> = (props) => {
   const user = useAppSelector(meSelector);
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
 
-  const userId = +(useParams<{ userId: string }>().userId);
+  const userId = +useParams<{ userId: string }>().userId;
   // const groupByIds = useAppSelector(groupByIdSelector)
   // let group = groupByIds[groupId]
-
-  const dispatch = useDispatch();  
 
   // useEffect(() => {
   //   dispatch(fetchOneGroup(groupId));
   // }, [groupId]); //eslint-disable-line react-hooks/exhaustive-deps
-
 
   return (
     <>
@@ -54,9 +49,13 @@ const UserDetails: FC<Props> = (props) => {
             </div>
           </div>
 
-
           <div className=" relative top-28">
-            <div className={"flex-col p-5 justify-center items-center mx-auto sm:w-2/5 space-y-5 bg-blue-400 " + (sidebar ? " " : " sm:ml-20  ")}>
+            <div
+              className={
+                "flex-col p-5 justify-center items-center mx-auto sm:w-2/5 space-y-5 bg-blue-400 " +
+                (sidebar ? " " : " sm:ml-20  ")
+              }
+            >
               <h1 className=" font-semibold">Group ID - {userId}</h1>
               {/* <div className=" text-left">
                 <h1 className=" font-semibold">Group Name - {group.name}</h1>

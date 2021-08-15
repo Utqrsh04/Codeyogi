@@ -9,22 +9,22 @@ export interface UserRequest {
   status: "all-groups" | "favourite" | "archived";
 }
 
-// export const fetchUsers = (data: UserRequest ) => {
+export const fetchUsersApi = () => {
 
-//   const url = BASE_URL + "/people";
+  const url = BASE_URL + "/people";
 
-//   return get(url, { params: data })
-//     .then((response) =>  console.log(response)
-//     )
-//     // .catch((e) => console.error(e))
-// }
+  return get(url)
+    .then((response) => console.log(response)
+    )
+  // .catch((e) => console.error(e))
+}
 
 
-export const fetchOneUser = (id: string) => {
+export const fetchOneUserApi = (id: string) => {
 
-  const url = BASE_URL + "/people/"+id;
+  const url = BASE_URL + "/people/" + id;
 
   return axios.get(url)
-    .then((response) =>  response.data.data)
-    // .catch((e) => console.error(e))
+    .then((response) => response.data.data)
+  // .catch((e) => console.error(e))
 }

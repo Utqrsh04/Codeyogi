@@ -1,12 +1,12 @@
 import { Reducer } from "redux";
 import { ME_FETCH, ME_LOGIN } from "../actions/action.constants";
 import { User } from "../models/User";
-import {  EntityState } from "./entity.reducer";
+import { EntityState, initialEntityState } from "./entity.reducer";
 
 export interface UserState extends EntityState<User> { }
 
 const initialState = {
-  byId: {}
+  ...initialEntityState,
 }
 
 export const userReducer: Reducer<UserState> =
@@ -20,9 +20,9 @@ export const userReducer: Reducer<UserState> =
           ...state,
           byId: { ...state.byId, [user.id]: user }
         }
-        
-        default:
-          return state
-        }
-      };
+
+      default:
+        return state
+    }
+  };
       // return addOne(state, action.payload) as UserState;

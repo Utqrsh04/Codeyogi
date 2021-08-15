@@ -12,14 +12,13 @@ const Dashboard: FC<Props> = () => {
   const user = useAppSelector(meSelector);
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
 
-
   return (
     <div className=" w-screen ">
-      <div className="text-center w-full fixed z-40">
-        <Header />
+      <div className="text-center w-full fixed top-14">
+        {/* <Header /> */}
         <div className="bg-white mb-2 sm:px-4 sm:pr-8 pr-2 text-gray-700 h-14 flex flex-row items-center">
           <div className=" flex items-center space-x-1 justify-evenly ">
-          <button
+            <button
               className=" m-2 w-6 h-6"
               onClick={() =>
                 sidebar
@@ -33,7 +32,7 @@ const Dashboard: FC<Props> = () => {
           </div>
           <div className=" mx-4 flex my-2 text-center ">
             <span className="  sm:block bg-gray-100 px-1 text-black my-auto rounded-sm font-semibold ">
-            Welcome {`${user!.first_name} ${user!.last_name}`}
+              Welcome {`${user!.first_name} ${user!.last_name}`}
             </span>
           </div>
         </div>
@@ -41,7 +40,11 @@ const Dashboard: FC<Props> = () => {
 
       <section className="space-x-5 flex justify-center h-screen top-28">
         <div className="bg-gray-300 flex justify-center w-full text-center items-center ">
-          <h1 className={" text-xl font-semibold " + (sidebar ? " ml-20 " : " ")}>This is Dashboard</h1>
+          <h1
+            className={" text-xl font-semibold " + (sidebar ? " ml-20 " : " ")}
+          >
+            This is Dashboard
+          </h1>
         </div>
       </section>
     </div>

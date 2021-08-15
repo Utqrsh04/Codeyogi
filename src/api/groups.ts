@@ -19,7 +19,7 @@ export interface EachGroupResponse {
 }
 
 
-export const fetchGroups = (data: GroupRequest ) => {
+export const fetchGroupsApi = (data: GroupRequest ) => {
 
   const url = BASE_URL + "/groups";
 
@@ -29,7 +29,7 @@ export const fetchGroups = (data: GroupRequest ) => {
 }
 
 
-export const fetchOneGroup = (id: string) => {
+export const fetchOneGroupApi = (id: string) => {
 
   const url = BASE_URL + "/groups/"+id;
 
