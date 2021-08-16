@@ -22,16 +22,16 @@ const Groups: FC<Props> = () => {
   return (
     <div className=" relative">
       <div className=" pt-3 mx-auto">
-        <h2 className="text-center flex justify-center ">
-          <h6>
+        <span className="text-center flex justify-center ">
+          <h3>
             {loading && <FaSpinner className=" w-5 h-5 animate-spin  " />}
-          </h6>
+          </h3>
           {!loading && groups.length === 0 && (
-            <h1 className=" text-red-600 font-semibold ">
+            <h3 className=" text-red-600 font-semibold ">
               No Records Found ! Search again
-            </h1>
+            </h3>
           )}
-        </h2>
+        </span>
         <div className="flex justify-center m-5">
           <input
             onChange={(e) => dispatch(queryChangedAction(e.target.value))}

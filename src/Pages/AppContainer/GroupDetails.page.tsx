@@ -1,10 +1,7 @@
 import { FC, memo, useEffect, useMemo } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchOneGroup } from "../../actions/groups.actions";
-import { sidebarActions } from "../../actions/sidebar.actions";
-import { meSelector } from "../../selectors/auth.selectors";
 import {
   queryIdsSelector,
   selectedErrorSelector,
@@ -16,7 +13,6 @@ import { useAppSelector } from "../../store";
 interface Props {}
 
 const GroupDetails: FC<Props> = (props) => {
-  const user = useAppSelector(meSelector);
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
 
   const groupId = +useParams<{ groupId: string }>().groupId;
@@ -57,29 +53,6 @@ const GroupDetails: FC<Props> = (props) => {
         </div>
       )}
 
-      <div className="text-center w-full fixed top-14">
-        {/* <Header /> */}
-        <div className="bg-white mb-2 sm:px-4 sm:pr-8 pr-2 text-gray-700 h-14 flex flex-row items-center">
-          <div className=" flex items-center space-x-1 justify-evenly ">
-            <button
-              className=" m-2 w-6 h-6"
-              onClick={() =>
-                sidebar
-                  ? sidebarActions.sidebar(false)
-                  : sidebarActions.sidebar(true)
-              }
-            >
-              <GiHamburgerMenu />
-            </button>
-            <h2 className="font-semibold">Group Details</h2>
-          </div>
-          <div className=" mx-4 flex my-2 text-center ">
-            <span className="  sm:block bg-gray-100 px-1 text-black my-auto rounded-sm font-semibold ">
-              Welcome {`${user!.first_name} ${user!.last_name} `}
-            </span>
-          </div>
-        </div>
-      </div>
       {!error && group && (
         <div className=" relative top-28">
           <div
@@ -97,9 +70,9 @@ const GroupDetails: FC<Props> = (props) => {
               </Link>
 
               {loading && (
-                <div className="text-red-600 text-right text-base font-bold">
+                <div className="text-blue-600 text-base font-bold">
                   {" "}
-                  Loading Group ..
+                  loading Group ..
                 </div>
               )}
             </div>

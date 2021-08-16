@@ -1,7 +1,6 @@
 import { User } from "../models/User";
 import {
   USER_FETCHED_BYID,
-  USER_FETCH_BYID_ERROR,
   USERS_FETCHED,
   USER_OFFSET_CHANGED,
   USER_SELECTED_CHANGED,
@@ -30,18 +29,6 @@ export const userFetchedById = (user: User) => ({
   type: USER_FETCHED_BYID,
   payload: user,
 });
-
-export const userFetchedByIdError = (id: number, error: string) => ({
-  _type: USER_FETCH_BYID_ERROR,
-  get type() {
-    return this._type;
-  },
-  set type(value) {
-    this._type = value;
-  },
-  payload: { id, error },
-});
-
 
 export const userUpdated = (user: User) => ({
   type: USER_UPDATED,

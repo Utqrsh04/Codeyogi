@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import { Switch, Route, useParams } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import DashboardPage from "./Dashboard.page";
 import GroupsPage from "./Groups.page";

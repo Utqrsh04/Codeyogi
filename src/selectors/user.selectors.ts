@@ -22,14 +22,14 @@ export const userLoadingByIdSelector = createSelector(
   }
 );
 
-export const userResultMaoSelector = createSelector(
+export const userResultsMapSelector = createSelector(
   [userStateSelector],
   (state) => {
     return state.usersMap;
   }
 );
 
-const byIdSelector = createSelector([userStateSelector], (state) => {
+export const byIdSelector = createSelector([userStateSelector], (state) => {
   return state.byId;
 });
 
@@ -47,12 +47,13 @@ export const selectedUserErrorSelector = createSelector(
 export const selectedUserSelector = createSelector(
   [byIdSelector, selectedIdSelector],
   (byId, id) => {
+    // console.log("SELECTED USER SELECTOR ", byId, id)
     return id !== undefined ? byId[id] : undefined;
   }
 );
 
 export const usersListSelector = createSelector(
-  [userResultMaoSelector, byIdSelector, userOffsetSelector],
+  [userResultsMapSelector, byIdSelector, userOffsetSelector],
   (usersMap, byId, offset) => {
     if (usersMap[offset] === undefined) {
       return undefined;

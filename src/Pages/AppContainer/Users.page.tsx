@@ -26,7 +26,7 @@ const Users: FC<Props> = () => {
     dispatch(userChangeOffset(0));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log("User Page ", users);
+  console.log("Users Data ", users);
 
   return (
     <div className="  relative">
@@ -40,7 +40,7 @@ const Users: FC<Props> = () => {
                   <li
                     key={user.id}
                     className={
-                      "border border-black " +
+                      " " +
                       (index % 2 === 0 ? "bg-white" : "bg-gray-200")
                     }
                   >

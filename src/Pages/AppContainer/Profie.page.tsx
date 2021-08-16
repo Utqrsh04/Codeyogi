@@ -1,11 +1,9 @@
 import { FC, memo } from "react";
 import { useFormik } from "formik";
-import { GiHamburgerMenu } from "react-icons/gi";
 import * as yup from "yup";
 import { updateMe } from "../../api";
 import { useAppSelector } from "../../store";
 import grpImg from "../../images/grpImg.jpg";
-import { sidebarActions } from "../../actions/sidebar.actions";
 import { meSelector } from "../../selectors/auth.selectors";
 import ProfileInput from "../../components/ProfilePage/ProfileInput";
 

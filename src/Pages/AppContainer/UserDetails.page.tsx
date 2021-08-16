@@ -1,14 +1,11 @@
 import { FC, memo, useEffect } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { sidebarActions } from "../../actions/sidebar.actions";
 import { userChangeSelected } from "../../actions/user.actions";
-import Avatar from "../../components/Card/Avatar";
-import { meSelector } from "../../selectors/auth.selectors";
+import Avatar from "../../components/Avatar/Avatar";
 import {
+  byIdSelector,
   selectedUserErrorSelector,
-  selectedUserSelector,
   userLoadingByIdSelector,
 } from "../../selectors/user.selectors";
 // import { groupByIdSelector } from "../../selectors/group.selectors";
@@ -17,69 +14,77 @@ import { useAppSelector } from "../../store";
 interface Props {}
 
 const UserDetails: FC<Props> = (props) => {
-  const me = useAppSelector(meSelector);
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
 
   const dispatch = useDispatch();
 
-  const userId = +useParams<{ userId: string }>().userId;
+  const userId = useParams<{ userId: string }>().userId;
   const id: number = +userId;
-  const user = useAppSelector(selectedUserSelector);
-  const loading = useAppSelector(userLoadingByIdSelector);
-  const error = useAppSelector(selectedUserErrorSelector);
 
   useEffect(() => {
-    if (user === undefined) {
+    if (currentUser === undefined) {
       dispatch(userChangeSelected(id));
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  if (loading && user === undefined) {
+  // const currentUser = useAppSelector(selectedUserSelector);
+  const byIds = useAppSelector(byIdSelector);
+  const loading = useAppSelector(userLoadingByIdSelector);
+  const error = useAppSelector(selectedUserErrorSelector);
+
+  const currentUser = byIds[id];
+  // console.log(" byIDSelector ", byIds);
+  const userIDS = Object.keys(byIds);
+  console.log("IDS ", userIDS);
+
+  // console.log(" Current User ", byIds[id]);
+
+  if (loading && currentUser === undefined) {
     return <div>Loading...</div>;
   }
-
-  console.log("User Details ", user);
+  // console.log("Current User Details ", currentUser);
 
   return (
     <>
       <div className=" relative top-28">
         <div
           className={
-            "flex-col p-5 justify-center items-center mx-auto sm:w-2/5 space-y-5 bg-blue-400 " +
+            "flex-col p-5 justify-center items-center mx-auto sm:w-2/5 space-y-5 bg-blue-300 " +
             (sidebar ? " " : " sm:ml-20  ")
           }
         >
           <h1 className=" font-semibold">User ID - {userId}</h1>
 
           {loading && <div className="text-red-600">Loading...</div>}
-          {user !== undefined ? (
+          {currentUser !== undefined ? (
             <>
               <div className="md:flex">
-                <div className="flex flex-col items-center flex-shrink-0 mt-6 border-gray-200 md:border-r md:pr-20">
-                  <Avatar />
+                <div className="flex flex-col items-center justify-center flex-shrink-0 pr-5">
+                  {/* <Avatar /> */}
+                  <Avatar active={false} />
                 </div>
 
-                <div className="mt-10 w-full md:mt-0 md:ml-7.5">
-                  <div className="flex justify-between mb-6">
+                <div className="mt-10 w-full md:mt-0 ">
+                  <div className="flex space-x-3 justify-between mb-6">
                     <div>
-                      <h3 className="text-searchBar-text">Name</h3>
+                      <h3 className=" font-bold">Name</h3>
                       <h5>
-                        {user.first_name +
-                          " " +
-                          user.middle_name +
-                          " " +
-                          user.last_name}
+                        {currentUser.first_name + " " + currentUser.last_name}
                       </h5>
                     </div>
                     <div>
-                      <h3 className="text-searchBar-text">Date of Birth</h3>
+                      <h3 className=" font-bold">DOB</h3>
                       <h5>
-                        {user.birth_date +
+                        {currentUser.birth_date +
                           " " +
-                          user.birth_month +
+                          currentUser.birth_month +
                           " " +
-                          user.birth_year}
+                          currentUser.birth_year}
                       </h5>
+                    </div>
+                    <div>
+                      <h3 className=" font-bold">Phone</h3>
+                      <h5>{currentUser.phone_number}</h5>
                     </div>
                   </div>
                 </div>

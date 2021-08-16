@@ -27,3 +27,11 @@ export const fetchUserByIdApi = (id: number) => {
   const url = BASE_URL + "/people/" + id;
   return axios.get<UserResponse>(url).then((response) => response.data.data);
 };
+
+
+export const updateUserApi = (data: User) => {
+  const url = BASE_URL + "/me";
+  return axios
+    .put<UserResponse>(url, data)
+    .then((response) => response.data.data);
+};
