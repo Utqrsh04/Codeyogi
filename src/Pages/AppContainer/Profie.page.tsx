@@ -9,7 +9,7 @@ import { sidebarActions } from "../../actions/sidebar.actions";
 import { meSelector } from "../../selectors/auth.selectors";
 import ProfileInput from "../../components/ProfilePage/ProfileInput";
 
-interface Props { }
+interface Props {}
 
 const Profie: FC<Props> = (props) => {
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
@@ -17,7 +17,13 @@ const Profie: FC<Props> = (props) => {
   const user = useAppSelector(meSelector);
   // console.log("Profile Page ", user);
 
-  const { handleSubmit, handleReset, getFieldProps, touched, errors } = useFormik({
+  const {
+    handleSubmit,
+    handleReset,
+    getFieldProps,
+    touched,
+    errors,
+  } = useFormik({
     initialValues: {
       first_name: user!.first_name,
       last_name: user!.last_name,
@@ -43,9 +49,7 @@ const Profie: FC<Props> = (props) => {
         .moreThan(999999999, "Enter 10 digits")
         .lessThan(10000000000, "Enter 10 digits"),
 
-      gender: yup
-        .string()
-
+      gender: yup.string(),
     }),
     onSubmit: (data) => {
       updateMe(data).then((data) => {
@@ -57,102 +61,82 @@ const Profie: FC<Props> = (props) => {
   });
 
   return (
-    <div className="">
-      <div className="text-center fixed z-40 w-full top-14">
-        {/* <Header /> */}
-        <div className="bg-white mb-2 sm:px-5 sm:pr-10 pr-2 text-gray-700 h-14 flex flex-row justify-between items-center">
-          <div className=" flex items-center space-x-1 justify-evenly ">
-            <button
-              className=" m-2 w-6 h-6"
-              onClick={() =>
-                sidebar
-                  ? sidebarActions.sidebar(false)
-                  : sidebarActions.sidebar(true)
-              }
-            >
-              <GiHamburgerMenu />
-            </button>
-            <h2 className="font-semibold">Users / Account Settings</h2>
-          </div>
-          <span className="sm:block bg-blue-100 px-2 text-xl text-black my-auto rounded-md font-semibold ">
-            Welcome {`${user!.first_name} ${user!.last_name}`}
-          </span>
-        </div>
-      </div>
-
-      <section className="space-x-5 flex sm:w-10/12 left-40 bg-white justify-center relative top-28">
-
-          <form onSubmit={handleSubmit} onReset={handleReset}>
-            <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">
-              <h3 className=" font-medium text-lg ">GENERAL INFORMATION</h3>
-              <div className="space-x-2 flex items-center mx-5 ">
-                <div className=" text-center w-32 h-32 space-y-4 m-4 ">
-                  <img src={grpImg} alt="" />
-                  <h4 className=" text-blue-700 text-sm">Upload Picture</h4>
-                </div>
-                <div className=" pt-5 w-full ">
-                  <div className=" flex ">
-                    <div className="mx-4 sm:w-2/6 space-y-1">
-                      
-                      <ProfileInput
-                        label="First Name"
-                        id="first_name"
-                        touched={touched.first_name}
-                        error={errors.first_name}
-                        {...getFieldProps("first_name")}
-                      />
-                    </div>
-                    <div className="mx-4 sm:w-2/6 space-y-1">
-                      <ProfileInput
-                        label="Last Name"
-                        id="last_name"
-                        touched={touched.last_name}
-                        error={errors.last_name}
-                        {...getFieldProps("last_name")}
-                      />
-                    </div>
-                  </div>
-                  <div className="mx-4 sm:w-2/6 space-y-1 mt-2">
+    <div className="relative">
+      <section className="space-x-5 flex p-5 bg-gray-200 justify-center">
+        <form onSubmit={handleSubmit} onReset={handleReset}>
+          <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">
+            <h3 className=" font-medium text-lg ">GENERAL INFORMATION</h3>
+            <div className="space-x-2 flex items-center mx-5 ">
+              <div className=" text-center w-32 h-32 space-y-4 m-4 ">
+                <img src={grpImg} alt="" />
+                <h4 className=" text-blue-700 text-sm">Upload Picture</h4>
+              </div>
+              <div className=" pt-5 w-full ">
+                <div className=" flex ">
+                  <div className="mx-4 sm:w-2/6 space-y-1">
                     <ProfileInput
-                      label="Phone Number"
-                      id="phone_number"
-                      touched={touched.phone_number}
-                      error={errors.phone_number}
-                      {...getFieldProps("phone_number")}
+                      label="First Name"
+                      id="first_name"
+                      touched={touched.first_name}
+                      error={errors.first_name}
+                      {...getFieldProps("first_name")}
                     />
                   </div>
-                  <div className="mx-4 sm:w-2/6 space-y-1 mt-2">
-                    <h4 className=" text-sm font-light "> Gender</h4>
-                    <select
-                      id="gender"
-                      {...getFieldProps("gender")}
-                      className=" bg-gray-100 "
-                    >
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
-                    </select>
+                  <div className="mx-4 sm:w-2/6 space-y-1">
+                    <ProfileInput
+                      label="Last Name"
+                      id="last_name"
+                      touched={touched.last_name}
+                      error={errors.last_name}
+                      {...getFieldProps("last_name")}
+                    />
                   </div>
+                </div>
+                <div className="mx-4 sm:w-2/6 space-y-1 mt-2">
+                  <ProfileInput
+                    label="Phone Number"
+                    id="phone_number"
+                    touched={touched.phone_number}
+                    error={errors.phone_number}
+                    {...getFieldProps("phone_number")}
+                  />
+                </div>
+                <div className="mx-4 sm:w-2/6 space-y-1 mt-2">
+                  <h4 className=" text-sm font-light "> Gender</h4>
+                  <select
+                    id="gender"
+                    {...getFieldProps("gender")}
+                    className=" bg-gray-100 "
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div
-              className={"fixed bottom-0 flex justify-around space-x-10 bg-blue-900 inset-x-0 px-5 py-3 rounded-t-md" + (sidebar? " ml-20 " : " mx-auto ")}>
-              <button
-                type="reset"
-                className="px-3 h-8 shadow-lg text-white drop-shadow-2xl bg-blue-600 rounded-md "
-              >
-                Reset All
-              </button>
-              <button
-                type="submit"
-                className="px-3 h-8 bg-green-600 shadow-lg drop-shadow-2xl text-white rounded-md "
-              >
-                Save Changes
-              </button>
-            </div>
-          </form>
+          <div
+            className={
+              "fixed bottom-0 flex justify-around space-x-10 bg-blue-900 inset-x-0 px-5 py-3 rounded-t-md" +
+              (sidebar ? " ml-20 " : " mx-auto ")
+            }
+          >
+            <button
+              type="reset"
+              className="px-3 h-8 shadow-lg text-white drop-shadow-2xl bg-blue-600 rounded-md "
+            >
+              Reset All
+            </button>
+            <button
+              type="submit"
+              className="px-3 h-8 bg-green-600 shadow-lg drop-shadow-2xl text-white rounded-md "
+            >
+              Save Changes
+            </button>
+          </div>
+        </form>
       </section>
     </div>
   );

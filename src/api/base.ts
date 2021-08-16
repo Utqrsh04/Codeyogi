@@ -16,8 +16,9 @@ axios.interceptors.request.use((config) => {
 
 axios.interceptors.response.use(undefined, (error) => {
   console.log(error.response.data);
-  
+
   if (error.response.status === 404) {
+    console.error("Not Found !");
     window.location.href = "/not-found";
   }
 

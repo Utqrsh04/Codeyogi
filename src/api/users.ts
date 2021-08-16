@@ -1,27 +1,29 @@
 import axios from "axios";
 import { User } from "../models/User";
-import { BASE_URL, get } from "./base";
+import { BASE_URL } from "./base";
+
+
+export interface UsersRequest {
+  limit?: number;
+  offset?: number;
+}
 
 interface UsersResponse {
   data: User[];
 }
 
-export const fetchUsersApi = () => {
+interface UserResponse {
+  data: User;
+}
 
+export const fetchUsersApi = (data: UsersRequest) => {
   const url = BASE_URL + "/people";
-  console.log("FetchUserApi Called");
-  
-  return get<UsersResponse>(url)
-  // .then((response) => response.data.data)
-  // .catch((e) => console.error(e))
-}
+  return axios
+    .get<UsersResponse>(url, { params: data })
+    .then((response) => response.data.data);
+};
 
-
-export const fetchOneUserApi = (id: string) => {
-
+export const fetchUserByIdApi = (id: number) => {
   const url = BASE_URL + "/people/" + id;
-
-  return axios.get<UsersResponse>(url)
-  // .then((response) => response.data.data)
-  // .catch((e) => console.error(e))
-}
+  return axios.get<UserResponse>(url).then((response) => response.data.data);
+};

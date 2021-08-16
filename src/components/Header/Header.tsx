@@ -16,7 +16,7 @@ interface Props {}
 const Header: FC<Props> = (props) => {
   return (
     <>
-      <header className="flex flex-row justify-between h-14 bg-gray-900 fixed z-50 top-0 w-screen">
+    <header className="flex flex-row justify-between h-14 bg-gray-900 z-50 ">
         <div className="flex items-center">
           <img
             src="https://designreset.com/cork/ltr/demo4/assets/img/logo.svg"
