@@ -37,13 +37,6 @@ const selectedIdSelector = createSelector([userStateSelector], (state) => {
   return state.selectedId;
 });
 
-export const selectedUserErrorSelector = createSelector(
-  [userStateSelector],
-  (state) => {
-    return state.errorOne;
-  }
-);
-
 export const selectedUserSelector = createSelector(
   [byIdSelector, selectedIdSelector],
   (byId, id) => {

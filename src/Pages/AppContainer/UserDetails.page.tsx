@@ -5,7 +5,6 @@ import { userChangeSelected } from "../../actions/user.actions";
 import Avatar from "../../components/Avatar/Avatar";
 import {
   byIdSelector,
-  selectedUserErrorSelector,
   userLoadingByIdSelector,
 } from "../../selectors/user.selectors";
 // import { groupByIdSelector } from "../../selectors/group.selectors";
@@ -30,7 +29,6 @@ const UserDetails: FC<Props> = (props) => {
   // const currentUser = useAppSelector(selectedUserSelector);
   const byIds = useAppSelector(byIdSelector);
   const loading = useAppSelector(userLoadingByIdSelector);
-  const error = useAppSelector(selectedUserErrorSelector);
 
   const currentUser = byIds[id];
   // console.log(" byIDSelector ", byIds);
@@ -91,7 +89,7 @@ const UserDetails: FC<Props> = (props) => {
               </div>
             </>
           ) : (
-            <div className="text-red-500">{error}</div>
+            <div className="text-red-500">{}</div>
           )}
           <Link
             className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"

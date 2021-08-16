@@ -27,5 +27,3 @@ export const USER_FETCHED_BYID = "user/fetched_byId";
 export const USER_FETCH_BYID_ERROR = "user/fetched_byId_error";
 export const USER_SELECTED_CHANGED = "user/selected_changed";
 export const USER_OFFSET_CHANGED = "user/offset_changed";
-export const USER_UPDATED = "user/updated";
-export const USER_UPDATING = "user/updating";

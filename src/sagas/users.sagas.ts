@@ -16,7 +16,7 @@ import { User } from "../models/User";
 function* fetchUsers(action: AnyAction): Generator<any, any, User[]> {
   const users = yield call(fetchUsersApi, {
     offset: action.payload,
-    limit: 17,
+    limit: 15,
   });
   // console.log("UserSaga fetchUsers ", users);
   yield put(usersFetched(users, action.payload));
@@ -37,21 +37,12 @@ function* fetchById(action: AnyAction): Generator<any, any, User> {
   }
 }
 
-// function* update(action: AnyAction): Generator<any, any, User> {
-//   try {
-//     const user = yield call(updateUserApi, action.payload);
-//     yield put(userUpdated(user));
-//   } catch (e) {
-//     console.error(e);
-//   }
-// }
 
 
 export function* watchUserChange() {
   yield all([
     takeLatest(USER_OFFSET_CHANGED, fetchUsers),
     takeLatest(USER_SELECTED_CHANGED, fetchById),
-    // takeLatest(USER_UPDATING, update),
 
   ]);
 }

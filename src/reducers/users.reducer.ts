@@ -14,8 +14,8 @@ export interface UserState extends EntityState {
 
 const initialState = {
   ...initialEntityState,
-  offset: 0,
   usersMap: {},
+  offset: 0,
   isUpdating: false,
 };
 
