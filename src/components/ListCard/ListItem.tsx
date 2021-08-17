@@ -15,7 +15,7 @@ const ListItem: FC<Props> = ({ index, Name, Description, id }) => {
   else themeClass = "bg-white";
 
   // console.log(id, Name);
-  
+
   return (
     <div
       className={
@@ -25,9 +25,9 @@ const ListItem: FC<Props> = ({ index, Name, Description, id }) => {
     >
       <img className=" w-10 h-10 rounded-full " src={grpImg} alt="" />
       <div className=" px-2 text-left ">
-          <Link to={"/groups/"+ id}>
+        <Link to={"/groups/" + id} className="font-bold">
           {Name}
-          </Link>          
+        </Link>
         <h2 className=" text-xs ">{Description}</h2>
       </div>
     </div>

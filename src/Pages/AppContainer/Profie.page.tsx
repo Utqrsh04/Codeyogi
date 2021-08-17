@@ -62,10 +62,15 @@ const Profie: FC<Props> = (props) => {
     <div className="relative">
       <section className="space-x-5 flex p-5 bg-gray-200 justify-center">
         <form onSubmit={handleSubmit} onReset={handleReset}>
-          <div className=" my-5 px-6 py-4 bg-white items-center rounded-lg ">
+          <div
+            className={
+              " my-5 px-6 py-4 bg-white items-center rounded-lg " +
+              (sidebar ? " ml-20 " : " mx-auto ")
+            }
+          >
             <h3 className=" font-medium text-lg ">GENERAL INFORMATION</h3>
-            <div className="space-x-2 flex items-center mx-5 ">
-              <div className=" text-center w-32 h-32 space-y-4 m-4 ">
+            <div className="space-x-2 flex items-center sm:mx-5 ">
+              <div className=" text-center w-28 sm:w-32 h-32 space-y-4 sm:m-4 ">
                 <img src={grpImg} alt="" />
                 <h4 className=" text-blue-700 text-sm">Upload Picture</h4>
               </div>

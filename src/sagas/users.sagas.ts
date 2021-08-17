@@ -1,7 +1,7 @@
 import { takeLatest, call, put, all } from "@redux-saga/core/effects";
 import { AnyAction } from "redux";
 import {
-  USER_OFFSET_CHANGED,
+  USERS_FETCH,
   USER_SELECTED_CHANGED,
 } from "../actions/action.constants";
 import {
@@ -41,7 +41,7 @@ function* fetchById(action: AnyAction): Generator<any, any, User> {
 
 export function* watchUserChange() {
   yield all([
-    takeLatest(USER_OFFSET_CHANGED, fetchUsers),
+    takeLatest(USERS_FETCH, fetchUsers),
     takeLatest(USER_SELECTED_CHANGED, fetchById),
 
   ]);

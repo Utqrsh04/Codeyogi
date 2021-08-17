@@ -1,4 +1,5 @@
 import { FC, memo } from "react";
+import grpImg from "../../images/grpImg.jpg";
 
 interface Props {
   active: boolean;
@@ -26,11 +27,7 @@ const Avatar: FC<Props> = ({ active, theme }) => {
   return (
     <div className="">
       <div className={" bg-blue-300 " + themeClass}>
-        <img
-          className=" rounded-full "
-          src="https://www.lifeofpix.com/wp-content/uploads/2016/12/avatar.png"
-          alt=""
-        />
+        <img className=" rounded-full " src={grpImg} alt="" />
         <div
           className={
             "border-4 absolute w-4 h-4 rounded-full " +

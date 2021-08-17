@@ -1,7 +1,7 @@
 import { FC, memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { userChangeSelected } from "../../actions/user.actions";
+import { userSelectedChanged } from "../../actions/user.actions";
 import Avatar from "../../components/Avatar/Avatar";
 import {
   byIdSelector,
@@ -22,7 +22,7 @@ const UserDetails: FC<Props> = (props) => {
 
   useEffect(() => {
     if (currentUser === undefined) {
-      dispatch(userChangeSelected(id));
+      dispatch(userSelectedChanged(id));
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
@@ -51,6 +51,12 @@ const UserDetails: FC<Props> = (props) => {
             (sidebar ? " " : " sm:ml-20  ")
           }
         >
+          <Link
+            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+            to="/users"
+          >
+            Back to Users Page
+          </Link>
           <h1 className=" font-semibold">User ID - {userId}</h1>
 
           {loading && <div className="text-red-600">Loading...</div>}
@@ -91,12 +97,6 @@ const UserDetails: FC<Props> = (props) => {
           ) : (
             <div className="text-red-500">{}</div>
           )}
-          <Link
-            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-            to="/users"
-          >
-            Back to Users Page
-          </Link>
         </div>
       </div>
     </>

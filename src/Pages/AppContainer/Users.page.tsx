@@ -1,16 +1,14 @@
 import { FC, memo, useEffect } from "react";
 import { useAppSelector } from "../../store";
 import { useDispatch } from "react-redux";
+import grpImg from "../../images/grpImg.jpg";
 
 import { FaSpinner } from "react-icons/fa";
 import {
   userLoadingListSelector,
   usersListSelector,
 } from "../../selectors/user.selectors";
-import {
-  userChangeOffset,
-  userChangeSelected,
-} from "../../actions/user.actions";
+import { userFetch, userSelectedChanged } from "../../actions/user.actions";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Card/Avatar";
 
@@ -23,7 +21,7 @@ const Users: FC<Props> = () => {
   const users = useAppSelector(usersListSelector);
 
   useEffect(() => {
-    dispatch(userChangeOffset(0));
+    dispatch(userFetch(0));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   console.log("Users Data ", users);
@@ -40,20 +38,21 @@ const Users: FC<Props> = () => {
                   <li
                     key={user.id}
                     className={
-                      " " +
-                      (index % 2 === 0 ? "bg-white" : "bg-gray-200")
+                      " " + (index % 2 === 0 ? "bg-white" : "bg-gray-200")
                     }
                   >
                     <Link
                       onClick={() => {
-                        dispatch(userChangeSelected(user.id!));
+                        dispatch(userSelectedChanged(user.id!));
                       }}
                       to={"/users/" + user.id}
                       className="flex w-full py-1 px-3"
                     >
                       <div className="flex space-x-3 justify-between items-center">
-                        <Avatar theme={"small"} />
-                        <h6>{user.first_name + " " + user.last_name}</h6>
+                        <div className="w-9 h-9">
+                          <Avatar theme={"small"} avatarSrc={grpImg} />
+                        </div>
+                        <h6 className="font-bold text-sm">{user.first_name + " " + user.last_name}</h6>
                         <h6>{user.role}</h6>
                       </div>
                     </Link>
