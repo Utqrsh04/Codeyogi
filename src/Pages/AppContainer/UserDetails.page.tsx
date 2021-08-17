@@ -7,13 +7,11 @@ import {
   byIdSelector,
   userLoadingByIdSelector,
 } from "../../selectors/user.selectors";
-// import { groupByIdSelector } from "../../selectors/group.selectors";
 import { useAppSelector } from "../../store";
 
 interface Props {}
 
 const UserDetails: FC<Props> = (props) => {
-  const sidebar = useAppSelector((state) => state.sidebar.isOpen);
 
   const dispatch = useDispatch();
 
@@ -47,8 +45,7 @@ const UserDetails: FC<Props> = (props) => {
       <div className=" relative top-28">
         <div
           className={
-            "flex-col p-5 justify-center items-center mx-auto sm:w-2/5 space-y-5 bg-blue-300 " +
-            (sidebar ? " " : " sm:ml-20  ")
+            "flex-col p-5 justify-center items-center mx-auto sm:w-2/5 space-y-5 bg-blue-300 "
           }
         >
           <Link
@@ -62,14 +59,14 @@ const UserDetails: FC<Props> = (props) => {
           {loading && <div className="text-red-600">Loading...</div>}
           {currentUser !== undefined ? (
             <>
-              <div className="md:flex">
+              <div className="md:flex items-center">
                 <div className="flex flex-col items-center justify-center flex-shrink-0 pr-5">
                   {/* <Avatar /> */}
                   <Avatar active={false} />
                 </div>
 
                 <div className="mt-10 w-full md:mt-0 ">
-                  <div className="flex space-x-3 justify-between mb-6">
+                  <div className="flex space-x-3 justify-between">
                     <div>
                       <h3 className=" font-bold">Name</h3>
                       <h5>

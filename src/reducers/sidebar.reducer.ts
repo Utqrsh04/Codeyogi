@@ -6,7 +6,7 @@ export interface toggleSidebar {
 }
 
 const intialState = {
-  isOpen: true,
+  isOpen: false,
 }
 
 export const sidebarReducer: Reducer<toggleSidebar> = (state = intialState, action) => {

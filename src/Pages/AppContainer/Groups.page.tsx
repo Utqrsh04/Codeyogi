@@ -17,7 +17,7 @@ const Groups: FC<Props> = () => {
   const query = useAppSelector(groupQuerySelector);
   const loading = useAppSelector(groupsLoadingSelector);
   const groups = useAppSelector(groupsSelector);
-  console.log(" Groups Data ", groups);
+  console.log("Groups Data ", groups);
 
   useEffect(() => {
     dispatch(queryChangedAction(""));

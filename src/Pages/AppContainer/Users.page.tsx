@@ -24,15 +24,21 @@ const Users: FC<Props> = () => {
     dispatch(userFetch(0));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log("Users Data ", users);
+  // console.log("Users Data ", users);
+  console.log("loading" , loading);
+  
 
   return (
     <div className="  relative">
-      <div className="">
-        {loading && <FaSpinner className={"animate-spin h-8 w-8 "} />}
+      <div>
+        <span className="text-center flex justify-center ">
+          <h3>
+            { loading && <FaSpinner className=" w-5 h-5 animate-spin " />}
+          </h3>
+        </span>
         {users && (
           <div>
-            <ul className=" flex-col justify-center items-center mx-auto w-2/4">
+            <ul className=" flex-col justify-center mt-5 items-center mx-auto w-2/4">
               {users.map((user, index) => {
                 return (
                   <li
@@ -52,8 +58,10 @@ const Users: FC<Props> = () => {
                         <div className="w-9 h-9">
                           <Avatar theme={"small"} avatarSrc={grpImg} />
                         </div>
-                        <h6 className="font-bold text-sm">{user.first_name + " " + user.last_name}</h6>
-                        <h6>{user.role}</h6>
+                        <h6 className="font-bold text-sm">
+                          {user.first_name + " " + user.last_name}
+                        </h6>
+                        {/* <h6>{user.}</h6> */}
                       </div>
                     </Link>
                   </li>
