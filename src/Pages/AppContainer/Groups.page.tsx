@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { FC, memo, useEffect } from "react";
 import ListCard from "../../components/ListCard/ListCard";
 import { useAppSelector } from "../../store";
 import {
@@ -18,6 +18,11 @@ const Groups: FC<Props> = () => {
   const loading = useAppSelector(groupsLoadingSelector);
   const groups = useAppSelector(groupsSelector);
   console.log(" Groups Data ", groups);
+
+  useEffect(() => {
+    dispatch(queryChangedAction(""));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className=" relative">
