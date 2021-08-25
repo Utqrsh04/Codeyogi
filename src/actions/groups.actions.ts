@@ -1,21 +1,34 @@
 import { Group } from "../models/Group";
-import { GROUP_FETCH_ONE, GROUP_FETCH_ONE_COMPLETED, GROUP_FETCH_ONE_ERROR, GROUPS_QUERY_CHANGED, GROUPS_QUERY_COMPLETED } from "./action.constants"
+import { GROUP_LIST_FETCHED, GROUP_FETCHED_BY_ID, GROUP_FETCH_BY_ID_ERROR, GROUP_PARAMS_CHANGED, GROUP_SELECTED_CHANGED } from "./action.constants";
 
-export const queryChangedAction = (query: string) => ({
-  type: GROUPS_QUERY_CHANGED,
-  payload: query,
-})
+export const groupListFetched = (
+  groups: { [id: number]: Group },
+  query?: string,
+  offset?: number
+) => ({
+  type: GROUP_LIST_FETCHED,
+  payload: { groups, query, offset },
+});
 
-export const queryCompletedAction = (query: string, groups: Group[]) => ({
-  type: GROUPS_QUERY_COMPLETED,
-  payload: { query, groups }
-})
+export const groupFetchedById = (group: { [id: number]: Group }) => ({
+  type: GROUP_FETCHED_BY_ID,
+  payload: group,
+});
 
-export const fetchOneGroup = (id: number) => ({ type: GROUP_FETCH_ONE, payload: id })
+export const groupFetchByIdError = (id: number, error: string) => ({
+  type: GROUP_FETCH_BY_ID_ERROR,
+  payload: { id, error },
+});
 
-export const fetchOneGroupCompleted = (group: Group) => ({ type: GROUP_FETCH_ONE_COMPLETED, payload: group })
+export const groupChangeParams = (query: string, offset: number) => ({
+  type: GROUP_PARAMS_CHANGED,
+  payload: { query, offset },
+});
 
-export const fetchOneGroupError = (id: number, msg: string) => ({ type: GROUP_FETCH_ONE_ERROR, payload: { id, msg }, })
+export const groupChangeSelected = (id: number) => ({
+  type: GROUP_SELECTED_CHANGED,
+  payload: id,
+});
 
 
 // export const groupActions = bindActionCreators({

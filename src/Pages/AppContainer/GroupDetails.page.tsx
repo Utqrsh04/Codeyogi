@@ -1,52 +1,54 @@
 import { FC, memo, useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { fetchOneGroup } from "../../actions/groups.actions";
-import {
-  queryIdsSelector,
-  selectedErrorSelector,
-  selectedGroupSelector,
-  selectedLoadingSelector,
-} from "../../selectors/group.selectors";
+import { groupChangeSelected } from "../../actions/groups.actions";
+import { groupLoadingByIdSelector, selectedGroupErrorSelector, selectedGroupSelector } from "../../selectors/group.selectors";
 import { useAppSelector } from "../../store";
 
 interface Props {}
 
 const GroupDetails: FC<Props> = (props) => {
+  const dispatch = useDispatch();
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
 
   const groupId = +useParams<{ groupId: string }>().groupId;
   const group = useAppSelector(selectedGroupSelector);
-  const error = useAppSelector(selectedErrorSelector);
-  const loading = useAppSelector(selectedLoadingSelector);
-  const groupIds = useAppSelector(queryIdsSelector);
+  const loading = useAppSelector(groupLoadingByIdSelector);
+  const error = useAppSelector(selectedGroupErrorSelector);
 
-  const currentId = useMemo(() => groupIds.indexOf(groupId), [
-    groupId,
-    groupIds,
-  ]);
+  // const currentId = useMemo(() => groupIds.indexOf(groupId), [
+  //   groupId,
+  //   groupIds,
+  // ]);
 
   // console.log("Group ID ", groupId);
   // console.log("Group IDs ", groupIds);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchOneGroup(groupId));
-  }, [groupId]); //eslint-disable-line react-hooks/exhaustive-deps
+    if (group === undefined) {
+      dispatch(groupChangeSelected(groupId));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [groupId]);
 
-  // if (error) {
-  //   return (
-  //     <div className="font-bold text-xl flex-col p-3 mt-80 mx-40 text-center">
-  //       <div className="text-red-400">{error}</div>
-  //       <Link to={"/groups/" + (groupId + 1)}> Next Group </Link>
-  //     </div>
-  //   );
-  // }
+  if (loading && group === undefined) {
+    return <div>Loading...</div>;
+  }
+  // // if (error) {
+  // //   return (
+  // //     <div className="font-bold text-xl flex-col p-3 mt-80 mx-40 text-center">
+  // //       <div className="text-red-400">{error}</div>
+  // //       <Link to={"/groups/" + (groupId + 1)}> Next Group </Link>
+  // //     </div>
+  // //   );
+  // // }
 
+  
   return (
     <>
-      {error && (
+       {error && (
         <div className="font-bold text-xl flex-col p-3 mt-80 mx-40 text-center">
           <div className="text-red-400">{error}</div>
           <Link to={"/groups/" + (groupId + 1)}> Next Group </Link>
@@ -86,36 +88,11 @@ const GroupDetails: FC<Props> = (props) => {
                   </h2>
                 </div>
                 <div className=" text-left text-sm">
-                  {group.creator && (
-                    <h2 className=" font-semibold">
-                      Creater Name - {group.creator.first_name}
-                    </h2>
-                  )}
-                  {group.created_at && (
-                    <h2>Created At - {group.created_at} </h2>
-                  )}
+                  
                 </div>
               </>
             )}
-            <div className="space-x-2">
-              {currentId !== 0 && (
-                <Link
-                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                  to={"/groups/" + groupIds[currentId - 1]}
-                >
-                  Prev Group
-                </Link>
-              )}
-
-              {currentId !== groupIds.length - 1 && (
-                <Link
-                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                  to={"/groups/" + groupIds[currentId + 1]}
-                >
-                  Next Group
-                </Link>
-              )}
-            </div>
+            
           </div>
         </div>
       )}

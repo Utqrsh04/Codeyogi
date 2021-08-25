@@ -25,7 +25,7 @@ const Users: FC<Props> = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // console.log("Users Data ", users);
-  console.log("loading" , loading);
+  // console.log("loading" , loading);
   
 
   return (

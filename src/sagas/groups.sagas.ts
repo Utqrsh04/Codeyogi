@@ -1,46 +1,64 @@
 import { takeLatest, delay, call, put, all, takeEvery } from "@redux-saga/core/effects";
+import { AxiosResponse } from "axios";
+import { normalize } from "normalizr";
 import { AnyAction } from "redux";
-import { GROUP_FETCH_ONE, GROUPS_QUERY_CHANGED } from "../actions/action.constants";
-import { fetchOneGroupCompleted, fetchOneGroupError, queryCompletedAction } from "../actions/groups.actions";
-import { fetchGroupsApi, fetchOneGroupApi } from "../api/groups";
+import { GROUP_PARAMS_CHANGED, GROUP_SELECTED_CHANGED } from "../actions/action.constants";
+import { groupFetchByIdError, groupFetchedById, groupListFetched } from "../actions/groups.actions";
+import { fetchGroupsApi, fetchOneGroupApi, GroupsResponse } from "../api/groups";
+import { Group } from "../models/Group";
+import { groupSchema } from "../models/schemas";
 
 
-export function* fetchGroups(action: AnyAction): Generator<any> {
+export function* fetchGroups(action: AnyAction): Generator<any, any, AxiosResponse<GroupsResponse>> {
 
-  yield delay(300);
+  yield delay(400);
   const groupResponse: any = yield call(fetchGroupsApi, {
-    query: action.payload,
+    query: action.payload.query,
+    offset: action.payload.offset,
     status: "all-groups",
+    limit: 10,
   });
 
-  yield put(queryCompletedAction(action.payload, groupResponse.data.data));
+  const groupData = normalize(groupResponse.data.data, [groupSchema]);
+
+  console.log("Group Saga " , groupData);
+  
+  yield put(
+    groupListFetched(
+      groupData.entities.groups as any,
+      action.payload.query,
+      action.payload.offset
+    )
+  );
+
+  // yield put(userListFetched(groupData.entities.users as any));
+
 }
 
 
 
-function* fetchOne(action: AnyAction): Generator<any> {
+
+
+function* fetchOne(action: AnyAction): Generator<any, any, Group> {
   // console.log("fetchOne Called ");
-  // console.log("Inside fetchOne yield call ", yield call(fetchOneGroup, action.payload));
+  // console.log("Inside fetchOne yield call ", yield call(fetchOneGroupApi, action.payload));
 
   try {
-    const res: any = yield call(fetchOneGroupApi, action.payload);
-    // console.log("RES  ", res);
-    yield put(fetchOneGroupCompleted(res.data.data))
+    const group = yield call(fetchOneGroupApi, action.payload);
+    const groupData = normalize(group, groupSchema);
 
+    yield put(groupFetchedById(groupData.entities.groups as any));
+    // yield put(userListFetched(groupData.entities.users as any));
   } catch (e) {
-
-    console.log("Error FetchOne ", e.response);
-
-    const err = e.response.data?.message || "Some Unknown Error Occured"
-
-    yield put(fetchOneGroupError(action.payload, err))
+    const error = e.response.data?.message || "Some Unknown Error";
+    yield put(groupFetchByIdError(action.payload, error));
   }
 }
 
-export function* watchGroupQueryChanged() {
-  // console.log("watchGroupQueryChanged Called");
+
+export function* watchGroupChanges() {
   yield all([
-    takeLatest(GROUPS_QUERY_CHANGED, fetchGroups),
-    takeEvery(GROUP_FETCH_ONE, fetchOne),
+    takeLatest(GROUP_PARAMS_CHANGED, fetchGroups),
+    takeLatest(GROUP_SELECTED_CHANGED, fetchOne ),
   ]);
 }

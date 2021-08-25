@@ -7,18 +7,12 @@ export const ME_LOGIN = "me/login";
 export const UI_TOGGLE_SIDEBAR = "ui/toggleSidebar";
 
 
-// GROUP ACTIONS
-export const GROUPS_QUERY_CHANGED = "groups/query";
-export const GROUPS_QUERY_COMPLETED = "groups/query_completed";
-// loadingOne = true  , selectedId = payload ,  trigger API groups/:id  , error = undefined 
-// This action is Dispatched from component
-export const GROUP_FETCH_ONE = "groups/fetch_one";
-// loadinOne = false if payload.group.id === selectedId , addOne to byId 
-// This action is Dispatched from Saga
-export const GROUP_FETCH_ONE_COMPLETED = "groups/fetch_one_completed";
-//( loadingOne = false , error = payload ) if payload.id === selectedId 
-// This action is Dispatched from Saga
-export const GROUP_FETCH_ONE_ERROR = "groups/fetch_one_error";
+// Groups
+export const GROUP_LIST_FETCHED = "groups/fetched";
+export const GROUP_FETCHED_BY_ID = "groups/fetched_by_Id";
+export const GROUP_FETCH_BY_ID_ERROR = "groups/fetch_by_Id_error";
+export const GROUP_PARAMS_CHANGED = "groups/params_changed";
+export const GROUP_SELECTED_CHANGED = "groups/select_changed";
 
 
 // USER ACTIONS 
