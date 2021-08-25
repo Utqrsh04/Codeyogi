@@ -1,4 +1,4 @@
-import { takeLatest, delay, call, put, all, takeEvery } from "@redux-saga/core/effects";
+import { takeLatest, delay, call, put, all } from "@redux-saga/core/effects";
 import { AxiosResponse } from "axios";
 import { normalize } from "normalizr";
 import { AnyAction } from "redux";
@@ -31,7 +31,6 @@ export function* fetchGroups(action: AnyAction): Generator<any, any, AxiosRespon
     )
   );
 
-  // yield put(userListFetched(groupData.entities.users as any));
 
 }
 
@@ -48,7 +47,7 @@ function* fetchOne(action: AnyAction): Generator<any, any, Group> {
     const groupData = normalize(group, groupSchema);
 
     yield put(groupFetchedById(groupData.entities.groups as any));
-    // yield put(userListFetched(groupData.entities.users as any));
+
   } catch (e) {
     const error = e.response.data?.message || "Some Unknown Error";
     yield put(groupFetchByIdError(action.payload, error));

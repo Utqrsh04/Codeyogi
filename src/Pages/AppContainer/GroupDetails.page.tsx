@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useMemo } from "react";
+import { FC, memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { groupChangeSelected } from "../../actions/groups.actions";
