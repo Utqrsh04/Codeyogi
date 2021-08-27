@@ -3,12 +3,13 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import AppContainerPageLazy from "./Pages/AppContainer/AppContainer.lazy";
 import NotFoundPage from "./Pages/NotFound.page";
 import Loading from "./components/Loading";
-import { useAppSelector } from "./store";
+import { history, useAppSelector } from "./store";
 import { LS_AUTH_TOKEN } from "./api/base";
 import { meSelector } from "./selectors/auth.selectors";
 // import { me } from "./middlewares/auth.middleware";
 import { me } from "./api/auth";
 import { authActions } from "./actions/auth.actions";
+import { ConnectedRouter } from "connected-react-router";
 
 const AuthPagelazy = lazy(() => import("./Pages/Auth/Auth.page"));
 
@@ -32,7 +33,7 @@ const App: FC<Props> = () => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <BrowserRouter>
+      <ConnectedRouter history={history}>
         <Switch>
           <Route path="/" exact>
             {user ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
@@ -66,7 +67,7 @@ const App: FC<Props> = () => {
             <Redirect to="/not-found"></Redirect>
           </Route>
         </Switch>
-      </BrowserRouter>
+      </ConnectedRouter>
     </Suspense>
   );
 };
