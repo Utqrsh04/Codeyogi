@@ -1,44 +1,53 @@
 import { createSelector } from "reselect";
 import { userStateSelector } from "./app.selectors";
 
-export const userOffsetSelector = createSelector(
+export const userOffSetSelector = createSelector(
   [userStateSelector],
-  (state) => {
-    return state.offset;
+  (userState) => {
+    return userState.offset;
   }
 );
 
 export const userLoadingListSelector = createSelector(
   [userStateSelector],
-  (state) => {
-    return state.loadingList;
+  (userState) => {
+    return userState.loadingList;
   }
 );
 
 export const userLoadingByIdSelector = createSelector(
   [userStateSelector],
-  (state) => {
-    return state.loadingById;
+  (userState) => {
+    return userState.loadingById;
   }
 );
 
-export const userResultsMapSelector = createSelector(
+export const userResultMapSelector = createSelector(
   [userStateSelector],
-  (state) => {
-    return state.usersMap;
+  (userState) => {
+    return userState.usersMap;
   }
 );
 
-export const byIdSelector = createSelector([userStateSelector], (state) => {
-  return state.byId;
+export const userByIdSelector = createSelector([userStateSelector], (userState) => {
+  return userState.byId;
 });
 
-const selectedIdSelector = createSelector([userStateSelector], (state) => {
-  return state.selectedId;
+
+const selectedIdSelector = createSelector([userStateSelector], (userState) => {
+  return userState.selectedId;
 });
+
+export const selectedUserErrorSelector = createSelector(
+  [userStateSelector],
+  (userState) => {
+    return userState.errorOne;
+  }
+);
+
 
 export const selectedUserSelector = createSelector(
-  [byIdSelector, selectedIdSelector],
+  [userByIdSelector, selectedIdSelector],
   (byId, id) => {
     // console.log("SELECTED USER SELECTOR ", byId, id)
     return id !== undefined ? byId[id] : undefined;
@@ -46,7 +55,7 @@ export const selectedUserSelector = createSelector(
 );
 
 export const usersListSelector = createSelector(
-  [userResultsMapSelector, byIdSelector, userOffsetSelector],
+  [userResultMapSelector, userByIdSelector, userOffSetSelector],
   (usersMap, byId, offset) => {
     if (usersMap[offset] === undefined) {
       return undefined;

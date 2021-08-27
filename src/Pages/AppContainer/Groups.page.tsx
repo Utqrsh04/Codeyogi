@@ -25,7 +25,7 @@ const Groups: FC<Props> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log("Groups Page ", groups);
+  // console.log("Groups Page ", groups);
 
   return (
     <>

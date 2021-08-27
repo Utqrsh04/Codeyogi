@@ -15,7 +15,7 @@ const ListCard: FC<Props> = ({ data }) => {
           index={index}
           id={data.id}
           Name={data.name}
-          Description={data.description}
+          // Description={data.description}
         />
       ))}
     </div>

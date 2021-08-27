@@ -37,7 +37,7 @@ const ListItem: FC<Props> = ({ index, Name, Description, id }) => {
 ListItem.defaultProps = {
   index: 1,
   Name: "Utkarsh",
-  Description: "Software Developer",
+  // Description: "Software Developer",
 };
 
 export default memo(ListItem);

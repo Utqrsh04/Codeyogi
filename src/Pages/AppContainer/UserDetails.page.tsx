@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { userSelectedChanged } from "../../actions/user.actions";
 import Avatar from "../../components/Avatar/Avatar";
 import {
-  byIdSelector,
+  userByIdSelector,
   userLoadingByIdSelector,
 } from "../../selectors/user.selectors";
 import { useAppSelector } from "../../store";
@@ -25,7 +25,7 @@ const UserDetails: FC<Props> = (props) => {
   }, [id]);
 
   // const currentUser = useAppSelector(selectedUserSelector);
-  const byIds = useAppSelector(byIdSelector);
+  const byIds = useAppSelector(userByIdSelector);
   const loading = useAppSelector(userLoadingByIdSelector);
 
   const currentUser = byIds[id];

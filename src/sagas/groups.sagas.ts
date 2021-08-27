@@ -21,7 +21,7 @@ export function* fetchGroups(action: AnyAction): Generator<any, any, AxiosRespon
 
   const groupData = normalize(groupResponse.data.data, [groupSchema]);
 
-  console.log("Group Saga " , groupData);
+  // console.log("Group Saga " , groupData);
   
   yield put(
     groupListFetched(
