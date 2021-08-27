@@ -5,9 +5,7 @@ import { authReducer } from "./reducers/auth.reducer";
 import { groupReducer } from "./reducers/groups.reducer";
 import { sidebarReducer } from "./reducers/sidebar.reducer";
 import { userReducer } from "./reducers/users.reducer";
-import { sagaMiddleware } from "./sagas";
-import { watchGroupChanges } from "./sagas/groups.sagas";
-import { watchUserChange} from "./sagas/users.sagas";
+import { rootSaga, sagaMiddleware } from "./sagas";
 
 export type AppState = ReturnType<typeof reducer>;
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
@@ -26,7 +24,7 @@ export const store = createStore(
   composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 
-sagaMiddleware.run(watchGroupChanges);
-sagaMiddleware.run(watchUserChange);
+sagaMiddleware.run(rootSaga);
+// sagaMiddleware.run(watchUserChange);
 
 
