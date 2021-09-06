@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UpdateUserParams, User } from "../models/User";
+import { User } from "../models/User";
 import { BASE_URL } from "./base";
 
 

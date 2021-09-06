@@ -7,16 +7,17 @@ import {
   USER_UPDATED,
   USER_UPDATING,
   USER_FETCH_BYID_ERROR,
+  USER_SELECTED_CHANGED,
+  USER_OFFSET_CHANGED,
 } from "../actions/action.constants";
 import { User } from "../models/User";
 import {
-  addMany,
   addOne,
   EntityState,
-  getIds,
   initialEntityState,
   setErrorForOne,
   updateOne,
+  select,
 } from "./entity.reducer";
 
 export interface UserState extends EntityState {
@@ -47,12 +48,13 @@ export const userReducer: Reducer<UserState> = (
 
     case USER_LIST_FETCHED: {
       const users = action.payload.users as User[];
-      const userIds = getIds(users);
+      const userIds:any = Object.keys(users);
 
       // const newState = addMany(state, users) as UserState;
 
       return {
         ...state,
+        byId: { ...state.byId, ...users },
         usersMap: {
           ...state.usersMap,
           [action.payload.offset === undefined ? 0 : action.payload.offset]:
@@ -61,6 +63,17 @@ export const userReducer: Reducer<UserState> = (
         loadingList: false,
       };
     }
+
+    case USER_OFFSET_CHANGED:
+      return {
+        ...state,
+        offset: action.payload,
+        loadingById: true,
+      };
+
+
+    case USER_SELECTED_CHANGED:
+      return select(state, action.payload) as UserState;
 
     case USER_FETCHED_BYID: {
       // return addOne(state, action.payload, false) as UserState;

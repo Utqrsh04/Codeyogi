@@ -32,12 +32,10 @@ const GroupDetails: FC<Props> = (props) => {
   const creator = useAppSelector(selectedGroupCreatorSelector);
   const members = useAppSelector(selectedGroupMemberListSelector);
 
-
   // console.log(creator, members);
 
   // console.log("Group ID ", groupId);
   // console.log("Group IDs ", groupIds);
-
 
   useEffect(() => {
     dispatch(groupChangeSelected(groupId));
@@ -58,7 +56,7 @@ const GroupDetails: FC<Props> = (props) => {
 
   return (
     <div>
-      {loading && <div className="text-red-600">Loading...</div>}
+      {/* {loading && <div className="text-red-600">Loading...</div>} */}
       {group !== undefined ? (
         <div className="relative">
           <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-5 bg-blue-300 p-5">
@@ -71,17 +69,25 @@ const GroupDetails: FC<Props> = (props) => {
             <div className="pt-3 mx-auto">
               <div className="w-full">
                 <div className="">
-                  <div>
-                    <h3 className="font-bold text-left">Group Name</h3>
-                    <h5>{group.name}</h5>
-                    <h3 className="font-bold text-left">Group ID</h3>
-                    <h5>{group.id}</h5>
+                  <div className="flex justify-between">
+                    <div>
+                      <h3 className="font-bold text-left">Group Name</h3>
+                      <h5>{group.name}</h5>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-left">Group ID</h3>
+                      <h5>{group.id}</h5>
+                    </div>
                   </div>
                 </div>
-                <div className="flex mb-6">
+                <div className="mb-6">
                   <div>
                     <h3 className="font-bold text-left">Description</h3>
                     <h5>{group.description}</h5>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-left">Created At</h3>
+                    <h5>{group.created_at}</h5>
                   </div>
                 </div>
               </div>
@@ -89,34 +95,37 @@ const GroupDetails: FC<Props> = (props) => {
           </div>
 
           <div className=" ">
-              <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-5 bg-red-200 p-5">
-                <div className="pt-3 mx-auto">
-                  <div className="mt-10 w-full">
-                    <div className="">
-                      <div>
-                        <h3 className="font-bold text-left">Creator Name</h3>
-                        <h5>{creator?.first_name} {creator?.last_name}</h5>
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-left">Role</h3>
-                        <h5>{creator?.role}</h5>
-                      </div>
+            <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-5 bg-red-200 p-5">
+              <div className="pt-3 mx-auto">
+                <div className="mt-10 w-full">
+                  <div className="">
+                    <div>
+                      <h3 className="font-bold text-left">Creator Name</h3>
+                      <h5>
+                        {creator?.first_name} {creator?.last_name}
+                      </h5>
                     </div>
-                    <div className="flex mb-6">
-                      <div>
-                        <h3 className="font-bold text-left">Created at</h3>
-                        <h5>{creator?.created_at}</h5>
-                      </div>
+                    <div>
+                      <h3 className="font-bold text-left">Role</h3>
+                      <h5>{creator?.role}</h5>
+                    </div>
+                  </div>
+                  <div className="flex mb-6">
+                    <div>
+                      <h3 className="font-bold text-left">Status</h3>
+                      <h5>{creator?.status}</h5>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
 
           <div>
-            <div>
+            <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-2 bg-blue-200 p-5">
               {members && (
                 <div>
+                  <h1>Members List</h1>
                   <ul>
                     {members.map((member, index) => {
                       return (
@@ -124,7 +133,7 @@ const GroupDetails: FC<Props> = (props) => {
                           <li
                             key={index}
                             className={
-                              "border border-gray-200 hover:bg-gray-200 " +
+                              "border border-black " +
                               (index % 2 === 0 ? "bg-blue-200" : "bg-gray-200")
                             }
                           >
@@ -133,9 +142,7 @@ const GroupDetails: FC<Props> = (props) => {
 
                               <div className="text-left">
                                 <h3>
-                                  {member?.first_name +
-                                    " " +
-                                    member?.last_name}
+                                  {member?.first_name + " " + member?.last_name}
                                 </h3>
                               </div>
                             </div>
@@ -150,7 +157,9 @@ const GroupDetails: FC<Props> = (props) => {
           </div>
         </div>
       ) : (
-        <div className="bg-gray-400 text-red-800 text-lg font-semibold">{error}</div>
+        <div className="bg-gray-400 text-red-800 text-lg font-semibold">
+          {error}
+        </div>
       )}
     </div>
   );

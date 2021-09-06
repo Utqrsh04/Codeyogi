@@ -6,7 +6,6 @@ import Avatar from "../../components/Avatar/Avatar";
 import {
   selectedUserErrorSelector,
   selectedUserSelector,
-  userByIdSelector,
   userLoadingByIdSelector,
 } from "../../selectors/user.selectors";
 import { useAppSelector } from "../../store";
@@ -15,19 +14,18 @@ interface Props {}
 
 const UserDetails: FC<Props> = (props) => {
 
-  const dispatch = useDispatch();
-
+  
   const userId = useParams<{ userId: string }>().userId;
   const id: number = +userId;
   
-  const currentUser = useAppSelector(selectedUserSelector);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (currentUser === undefined) {
       dispatch(userChangeSelected(id));
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  // const currentUser = useAppSelector(selectedUserSelector);
+  const currentUser = useAppSelector(selectedUserSelector);
   const loading = useAppSelector(userLoadingByIdSelector);
   const userDetailError = useAppSelector(selectedUserErrorSelector);
 
@@ -40,7 +38,7 @@ const UserDetails: FC<Props> = (props) => {
   if (loading && currentUser === undefined) {
     return <div>Loading...</div>;
   }
-  // console.log("Current User Details ", currentUser);
+  console.log("Current User Details ", currentUser);
 
   return (
     <>
