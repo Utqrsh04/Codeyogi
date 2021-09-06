@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { GROUP_FETCHED_BYID, GROUP_FETCH_BYID_ERROR, GROUP_LIST_FETCHED, GROUP_PARAMS_CHANGED, GROUP_SELECTED_CHANGED } from "../actions/action.constants";
+import { GROUP_FETCHED_BY_ID, GROUP_FETCH_BYID_ERROR, GROUP_LIST_FETCHED, GROUP_PARAMS_CHANGED, GROUP_SELECTED_CHANGED } from "../actions/action.constants";
 import { Group } from "../models/Group";
 import {
   EntityState,
@@ -81,7 +81,7 @@ export const groupReducer: Reducer<GroupState> = (state = intialState, action) =
     case GROUP_SELECTED_CHANGED:
         return select(state, action.payload) as GroupState;
       
-    case GROUP_FETCHED_BYID: {
+    case GROUP_FETCHED_BY_ID: {
       return {
         ...state,
         byId: { ...state.byId, ...action.payload },

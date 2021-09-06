@@ -1,7 +1,7 @@
 import { Group } from "../models/Group";
 import {
   GROUP_LIST_FETCHED,
-  GROUP_FETCHED_BYID,
+  GROUP_FETCHED_BY_ID,
   GROUP_FETCH_BYID_ERROR,
   GROUP_PARAMS_CHANGED,
   GROUP_SELECTED_CHANGED,
@@ -17,7 +17,7 @@ export const groupFetched = (
 });
 
 export const groupFetchedById = (group: { [id: number]: Group }) => ({
-  type: GROUP_FETCHED_BYID,
+  type: GROUP_FETCHED_BY_ID,
   payload: group,
 });
 

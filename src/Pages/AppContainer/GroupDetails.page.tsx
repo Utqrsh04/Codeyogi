@@ -95,32 +95,34 @@ const GroupDetails: FC<Props> = (props) => {
           </div>
 
           <div className=" ">
+            {creator && 
             <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-5 bg-red-200 p-5">
-              <div className="pt-3 mx-auto">
-                <div className="mt-10 w-full">
+              <div className="mx-auto">
+                <div className="w-full">
                   <div className="">
                     <div>
                       <h3 className="font-bold text-left">Creator Name</h3>
-                      <h5>
+                      <h5 className="text-left">
                         {creator?.first_name} {creator?.last_name}
                       </h5>
                     </div>
                     <div>
                       <h3 className="font-bold text-left">Role</h3>
-                      <h5>{creator?.role}</h5>
+                      <h5 className="text-left">{creator?.role}</h5>
                     </div>
                   </div>
                   <div className="flex mb-6">
                     <div>
                       <h3 className="font-bold text-left">Status</h3>
-                      <h5>{creator?.status}</h5>
+                      <h5 className="text-left">{creator?.status}</h5>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+}
           </div>
-
+         
           <div>
             <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-2 bg-blue-200 p-5">
               {members && (

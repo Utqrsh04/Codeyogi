@@ -1,6 +1,6 @@
 import { takeLatest, call, put, all } from "@redux-saga/core/effects";
 import { AnyAction } from "redux";
-import { AUTH_TRY_FETCH, AUTH_TRY_LOGIN } from "../actions/action.constants";
+import { AUTH_FETCH_TRY, AUTH_LOGIN_TRY } from "../actions/action.constants";
 import { meFetched, meLoggedIn } from "../actions/auth.actions";
 import { loginAPI } from "../api/auth";
 import { getMeApi } from "../api/users";
@@ -27,7 +27,7 @@ function* fetch(action: AnyAction): Generator<any, any, User> {
 
 export function* watchAuthChanges() {
   yield all([
-    takeLatest(AUTH_TRY_FETCH, fetch),
-    takeLatest(AUTH_TRY_LOGIN, login),
+    takeLatest(AUTH_FETCH_TRY, fetch),
+    takeLatest(AUTH_LOGIN_TRY, login),
   ]);
 }

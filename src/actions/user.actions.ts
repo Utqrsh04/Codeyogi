@@ -1,6 +1,6 @@
 import { UpdateUserParams, User } from "../models/User";
 import {
-  USER_FETCHED_BYID,
+  USER_FETCHED_BY_ID,
   USER_FETCH_BYID_ERROR,
   USER_LIST_FETCHED,
   USER_OFFSET_CHANGED,
@@ -18,7 +18,7 @@ export const userListFetched = (
 });
 
 export const userFetchedById = (user: User) => ({
-  type: USER_FETCHED_BYID,
+  type: USER_FETCHED_BY_ID,
   payload: user,
 });
 

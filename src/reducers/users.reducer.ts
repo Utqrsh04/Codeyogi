@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import {
-  USER_FETCHED_BYID,
+  USER_FETCHED_BY_ID,
   AUTH_FETCHED,
   AUTH_LOGGED_IN,
   USER_LIST_FETCHED,
@@ -78,7 +78,7 @@ export const userReducer: Reducer<UserState> = (
     case USER_SELECTED_CHANGED:
       return select(state, action.payload) as UserState;
 
-    case USER_FETCHED_BYID: {
+    case USER_FETCHED_BY_ID: {
       // return addOne(state, action.payload, false) as UserState;
       return {
         ...state,
