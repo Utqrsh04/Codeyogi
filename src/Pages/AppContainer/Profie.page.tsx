@@ -1,19 +1,22 @@
 import { FC, memo } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { updateMe } from "../../api";
 import { useAppSelector } from "../../store";
 import grpImg from "../../images/grpImg.jpg";
-import { meSelector } from "../../selectors/auth.selectors";
 import ProfileInput from "../../components/ProfilePage/ProfileInput";
+import { loggedInUserSelector } from "../../selectors/user.selectors";
+import { useDispatch } from "react-redux";
+import { userUpdating } from "../../actions/user.actions";
 
 interface Props {}
 
 const Profie: FC<Props> = (props) => {
-  const sidebar = useAppSelector((state) => state.sidebar.isOpen);
+  const dispatch = useDispatch();
 
-  const user = useAppSelector(meSelector);
+  const sidebar = useAppSelector((state) => state.sidebar.isOpen);
+  const user = useAppSelector(loggedInUserSelector);
   // console.log("Profile Page ", user);
+
 
   const {
     handleSubmit,
@@ -49,11 +52,12 @@ const Profie: FC<Props> = (props) => {
 
       gender: yup.string(),
     }),
-    onSubmit: (data) => {
-      updateMe(data).then((data) => {
-        // console.log("Profile Page Update ME ", data);
+    onSubmit: (data, { setSubmitting }) => {
+      dispatch(userUpdating(data));
+      {
+        // console.log("Profile Page ", data);
         window.location.href = "/profile";
-      });
+      }
       // console.log("Profile Page On Submit ", data);
     },
   });

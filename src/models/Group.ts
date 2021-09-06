@@ -11,19 +11,19 @@ export interface Group extends Entity {
   join_code?: string;
   created_at?: Date;
   updated_at?: Date;
-  chatCount?: number;
   state?: State;
-  creator?: User | number;
-  issues?: any[];
+  creator?: number;
+  participants?: number[];
   invitedMembers?: any[];
-  participants?: User[] | number[];
+  issues?: any[];
+  chatCount?: number;
   advocatePage?: null;
 }
 
 export interface State {
   id?: number;
   title?: string;
-  state_code?: string;
   created_at?: Date;
   updated_at?: Date;
+  state_code?: string;
 }

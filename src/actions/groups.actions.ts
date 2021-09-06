@@ -1,7 +1,13 @@
 import { Group } from "../models/Group";
-import { GROUP_LIST_FETCHED, GROUP_FETCHED_BY_ID, GROUP_FETCH_BY_ID_ERROR, GROUP_PARAMS_CHANGED, GROUP_SELECTED_CHANGED } from "./action.constants";
+import {
+  GROUP_LIST_FETCHED,
+  GROUP_FETCHED_BYID,
+  GROUP_FETCH_BYID_ERROR,
+  GROUP_PARAMS_CHANGED,
+  GROUP_SELECTED_CHANGED,
+} from "./action.constants";
 
-export const groupListFetched = (
+export const groupFetched = (
   groups: { [id: number]: Group },
   query?: string,
   offset?: number
@@ -11,12 +17,12 @@ export const groupListFetched = (
 });
 
 export const groupFetchedById = (group: { [id: number]: Group }) => ({
-  type: GROUP_FETCHED_BY_ID,
+  type: GROUP_FETCHED_BYID,
   payload: group,
 });
 
 export const groupFetchByIdError = (id: number, error: string) => ({
-  type: GROUP_FETCH_BY_ID_ERROR,
+  type: GROUP_FETCH_BYID_ERROR,
   payload: { id, error },
 });
 
@@ -29,7 +35,6 @@ export const groupChangeSelected = (id: number) => ({
   type: GROUP_SELECTED_CHANGED,
   payload: id,
 });
-
 
 // export const groupActions = bindActionCreators({
 //   queryChanged: queryChangedAction,

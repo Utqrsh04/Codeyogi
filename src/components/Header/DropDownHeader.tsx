@@ -1,6 +1,6 @@
 import { Fragment, FC, memo } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { Logout } from "../../api";
+import { logout } from "../../api";
 import { IconType } from "react-icons";
 import { Link } from "react-router-dom";
 
@@ -78,7 +78,7 @@ const DropDownHeader: FC<Props> = ({ imageUrl, Icon }) => {
                   {({ active }) => (
                     <button
                       onClick={() => {
-                        Logout();
+                        logout();
                         window.location.href = "/login";
                       }}
                       className="block px-4 py-2 text-sm"

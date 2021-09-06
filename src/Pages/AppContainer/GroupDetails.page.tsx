@@ -19,6 +19,7 @@ const GroupDetails: FC<Props> = (props) => {
   // const sidebar = useAppSelector((state) => state.sidebar.isOpen);
 
   const groupId = +useParams<{ groupId: string }>().groupId;
+
   const group = useAppSelector(selectedGroupSelector);
   const loading = useAppSelector(groupLoadingByIdSelector);
   const error = useAppSelector(selectedGroupErrorSelector);
@@ -31,14 +32,12 @@ const GroupDetails: FC<Props> = (props) => {
   const creator = useAppSelector(selectedGroupCreatorSelector);
   const members = useAppSelector(selectedGroupMemberListSelector);
 
-  // console.log(group);
 
   // console.log(creator, members);
 
   // console.log("Group ID ", groupId);
   // console.log("Group IDs ", groupIds);
 
-  // const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(groupChangeSelected(groupId));
@@ -90,30 +89,28 @@ const GroupDetails: FC<Props> = (props) => {
           </div>
 
           <div className=" ">
-            {creator !== undefined && (
               <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-5 bg-red-200 p-5">
                 <div className="pt-3 mx-auto">
                   <div className="mt-10 w-full">
                     <div className="">
                       <div>
                         <h3 className="font-bold text-left">Creator Name</h3>
-                        <h5>{creator.first_name}</h5>
+                        <h5>{creator?.first_name} {creator?.last_name}</h5>
                       </div>
                       <div>
                         <h3 className="font-bold text-left">Role</h3>
-                        <h5>{creator.role}</h5>
+                        <h5>{creator?.role}</h5>
                       </div>
                     </div>
                     <div className="flex mb-6">
                       <div>
                         <h3 className="font-bold text-left">Created at</h3>
-                        <h5>{creator.created_at}</h5>
+                        <h5>{creator?.created_at}</h5>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            )}
           </div>
 
           <div>
@@ -135,13 +132,11 @@ const GroupDetails: FC<Props> = (props) => {
                               <Avatar active={false} />
 
                               <div className="text-left">
-                                <h6>
+                                <h3>
                                   {member?.first_name +
                                     " " +
-                                    member?.middle_name +
-                                    " " +
                                     member?.last_name}
-                                </h6>
+                                </h3>
                               </div>
                             </div>
                           </li>
@@ -155,7 +150,7 @@ const GroupDetails: FC<Props> = (props) => {
           </div>
         </div>
       ) : (
-        <div className="text-red-500">{error}</div>
+        <div className="bg-gray-400 text-red-800 text-lg font-semibold">{error}</div>
       )}
     </div>
   );

@@ -1,4 +1,6 @@
+import { createMatchSelector } from "connected-react-router";
 import { createSelector } from "reselect";
+import { AppState } from "../store";
 import { groupStateSelector } from "./app.selectors";
 import { userByIdSelector } from "./user.selectors";
 
@@ -29,26 +31,36 @@ export const groupResultsMapSelector = createSelector(
   }
 );
 
+export const matchForGroupIDSelector = createMatchSelector<
+  AppState,
+  { groupId: string }
+>("/groups/:groupId");
+
 export const selectedIdSelector = createSelector(
+  [matchForGroupIDSelector],
+  (match) => {
+    return +match?.params?.groupId!;
+  }
+);
+
+// export const selectedLoadingSelector = createSelector(
+//   [groupStateSelector],
+//   (groupState) => groupState.loadingOne);
+
+export const selectedGroupErrorSelector = createSelector(
   [groupStateSelector],
-  (groupState) => groupState.selectedId);
+  (groupState) => {
+    return groupState.errorOne;
+  }
+);
 
-export const selectedLoadingSelector = createSelector(
+export const byIdSelector = createSelector(
   [groupStateSelector],
-  (groupState) => groupState.loadingOne);
-
-  export const selectedGroupErrorSelector = createSelector(
-    [groupStateSelector],
-    (groupState) => {
-      return groupState.errorOne;
-    }
-  );  
-
-export const byIdSelector = createSelector([groupStateSelector], (groupState) => {
+  (groupState) => {
     return groupState.byId;
-  });
-  
-  
+  }
+);
+
 export const selectedGroupSelector = createSelector(
   [byIdSelector, selectedIdSelector],
   (byId, id) => {
@@ -71,18 +83,17 @@ export const groupsListSelector = createSelector(
   }
 );
 
-
 const selectedCreatorIdSelector = createSelector(
   [selectedIdSelector, selectedGroupSelector],
   (id, group) => {
-    return id ? (group?.creator as number) : undefined;
+    return id !== undefined ? group?.creator : undefined;
   }
 );
 
 const selectedMemberIdsSelector = createSelector(
   [selectedIdSelector, selectedGroupSelector],
   (id, group) => {
-    return id !== undefined ? (group?.participants as number[]) : undefined;
+    return id !== undefined ? group?.participants : undefined;
   }
 );
 

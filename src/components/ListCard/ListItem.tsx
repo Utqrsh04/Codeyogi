@@ -1,5 +1,7 @@
 import { FC, memo } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { groupChangeSelected } from "../../actions/groups.actions";
 import grpImg from "../../images/grpImg.jpg";
 
 interface Props {
@@ -15,6 +17,7 @@ const ListItem: FC<Props> = ({ index, Name, Description, id }) => {
   else themeClass = "bg-white";
 
   // console.log(id, Name);
+  const dispatch = useDispatch();
 
   return (
     <div
@@ -25,7 +28,10 @@ const ListItem: FC<Props> = ({ index, Name, Description, id }) => {
     >
       <img className=" w-10 h-10 rounded-full " src={grpImg} alt="" />
       <div className=" px-2 text-left ">
-        <Link to={"/groups/" + id} className="font-bold">
+        <Link to={"/groups/" + id} className="font-bold" 
+        onClick={() => {
+          dispatch(groupChangeSelected(id!));
+        }}>
           {Name}
         </Link>
         <h2 className=" text-xs ">{Description}</h2>

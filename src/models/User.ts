@@ -2,7 +2,7 @@ import { Entity } from "./Entity";
 
 export interface User extends Entity {
   __type?: string;
-  guid?: null;
+  guid?: string;
   first_name?: string;
   middle_name?: string;
   last_name?: string;
@@ -10,14 +10,15 @@ export interface User extends Entity {
   status?: string;
   profile_pic_url?: string;
   email?: string;
-  job_type?: null;
+  bio?: string;
+  job_type?: string;
   phone_number?: string;
   alternate_phone_number?: string;
   gender?: string;
   birth_year?: string;
   birth_month?: string;
   birth_date?: string;
-  death_year?: null;
+  death_year?: string;
   urls?: any[];
   education?: string;
   hometown?: string;
@@ -61,4 +62,17 @@ export interface Occupation {
   end_year?: string;
   created_at?: Date;
   updated_at?: Date;
+}
+
+export interface UpdateUserParams {
+  first_name?: string;
+  middle_name?: string;
+  last_name?: string;
+  birth_date?: string;
+  birth_month?: string;
+  birth_year?: string;
+  hometown?: string;
+  email?: string;
+  phone_number?: string;
+  alternate_phone_number?: string;
 }

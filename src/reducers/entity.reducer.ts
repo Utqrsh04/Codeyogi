@@ -5,7 +5,7 @@ export interface EntityState<T extends Entity = Entity> {
     [id: number]: T;
   };
   selectedId?: number;
-  loadingOne: boolean;
+  // loadingOne: boolean;
   loadingById: boolean;
   loadingList: boolean;
   errorOne?: string;
@@ -13,17 +13,17 @@ export interface EntityState<T extends Entity = Entity> {
 
 export const initialEntityState = {
   byId: {},
-  loadingOne: false,
+  // loadingOne: false,
   loadingById: false,
   loadingList: false,
 }
 
 export const getIds = (entities: Entity[]) => {
-  return entities.map((e) => e.id);
+  return entities.map((entity) => entity.id);
 }
 
 export const select = (state: EntityState, id: number) => ({
-  ...state, selectedId: id, loadingOne: true, errorOne: undefined,
+  ...state, selectedId: id, loadingById: true, errorOne: undefined,
 })
 
 export const setErrorForOne = (state: EntityState, id: number, msg: string) => {
@@ -36,11 +36,11 @@ export const setErrorForOne = (state: EntityState, id: number, msg: string) => {
 
 export const addOne = (state: EntityState, entity: Entity, loading?: boolean) => {
 
-  const newLoading = loading === undefined ? state.loadingOne : loading;
+  const newLoading = loading === undefined ? state.loadingById : loading;
   return {
     ...state,
     byId: { ...state.byId, [entity.id]: entity },
-    loadingOne: newLoading,
+    loadingById: newLoading,
   }
 }
 
@@ -58,3 +58,13 @@ export const addMany = (state: EntityState, entities: Entity[]) => {
     byId: { ...state.byId, ...entityMap }
   };
 }
+
+export const updateOne = (state: EntityState, entity: Entity) => {
+  return {
+    ...state,
+    byId: {
+      ...state.byId,
+      [entity.id!]: { ...state.byId[entity.id!], ...entity },
+    },
+  };
+};

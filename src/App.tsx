@@ -5,28 +5,27 @@ import NotFoundPage from "./Pages/NotFound.page";
 import Loading from "./components/Loading";
 import { history, useAppSelector } from "./store";
 import { LS_AUTH_TOKEN } from "./api/base";
-import { meSelector } from "./selectors/auth.selectors";
 // import { me } from "./middlewares/auth.middleware";
-import { me } from "./api/auth";
-import { authActions } from "./actions/auth.actions";
 import { ConnectedRouter } from "connected-react-router";
+import { meTryFetch } from "./actions/auth.actions";
+import { useDispatch } from "react-redux";
+import { loggedInUserSelector } from "./selectors/user.selectors";
 
 const AuthPagelazy = lazy(() => import("./Pages/Auth/Auth.page"));
 
 interface Props {}
 
 const App: FC<Props> = () => {
-  // const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
   const token = localStorage.getItem(LS_AUTH_TOKEN);
 
   useEffect(() => {
     if (!token) return;
 
-    me().then((u) => authActions.fetch(u));
+    dispatch(meTryFetch());
   }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
-  const user = useAppSelector(meSelector);
+  const user = useAppSelector(loggedInUserSelector);
 
   // console.log("App Component User ", user);
   if (!user && token) return <Loading />;

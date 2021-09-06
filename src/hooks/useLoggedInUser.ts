@@ -1,4 +1,4 @@
 import { useSelector } from "react-redux";
-import { meSelector } from "../selectors/auth.selectors";
+import { loggedInUserSelector } from "../selectors/user.selectors";
 
-export const useMe = () => useSelector(meSelector);
+export const useMe = () => useSelector(loggedInUserSelector);

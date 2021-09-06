@@ -1,4 +1,5 @@
 import { Reducer } from "redux";
+import { GROUP_FETCHED_BYID, GROUP_FETCH_BYID_ERROR, GROUP_LIST_FETCHED, GROUP_PARAMS_CHANGED, GROUP_SELECTED_CHANGED } from "../actions/action.constants";
 import { Group } from "../models/Group";
 import {
   EntityState,
@@ -6,7 +7,6 @@ import {
   setErrorForOne,
   select,
 } from "./entity.reducer";
-import { GROUP_FETCHED_BY_ID, GROUP_FETCH_BY_ID_ERROR, GROUP_LIST_FETCHED, GROUP_PARAMS_CHANGED, GROUP_SELECTED_CHANGED } from "../actions/action.constants";
 
 
 export interface GroupState extends EntityState<Group> {
@@ -50,9 +50,11 @@ export const groupReducer: Reducer<GroupState> = (state = intialState, action) =
         const groups = action.payload.groups;
         // console.log("Groups Reducer groups " ,groups);
         
-        let groupIds : string[] = []
-        if(groups !== undefined)
-          groupIds = Object.keys(groups);
+
+        // let groupIds : string[] = []
+        // if(groups !== undefined)
+        //   groupIds = Object.keys(groups);
+        const groupIds = Object.keys(groups);
 
         // console.log("Groups Reducer groupids", groupIds);
         
@@ -79,7 +81,7 @@ export const groupReducer: Reducer<GroupState> = (state = intialState, action) =
     case GROUP_SELECTED_CHANGED:
         return select(state, action.payload) as GroupState;
       
-    case GROUP_FETCHED_BY_ID: {
+    case GROUP_FETCHED_BYID: {
       return {
         ...state,
         byId: { ...state.byId, ...action.payload },
@@ -87,7 +89,7 @@ export const groupReducer: Reducer<GroupState> = (state = intialState, action) =
       };
     }
 
-    case GROUP_FETCH_BY_ID_ERROR: {
+    case GROUP_FETCH_BYID_ERROR: {
       return setErrorForOne(
         state,
         action.payload.id,

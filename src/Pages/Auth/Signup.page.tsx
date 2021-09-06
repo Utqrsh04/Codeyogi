@@ -39,7 +39,7 @@ const Signup: FC<Props> = (props) => {
         setTimeout(() => {
           console.log(`Form Submitted SucessFully`);
           history.push("/dashboard");
-        }, 2000);
+        }, 1000);
       },
     });
 

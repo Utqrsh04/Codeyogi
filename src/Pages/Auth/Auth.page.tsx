@@ -15,7 +15,7 @@ const Auth : FC<Props> = (props) => {
       <Switch>
       <Route path="/login" >
         <LoginPage onLogin={ (u) => {
-          console.log(" User Object in Auth Page : ",u)
+          // console.log(" User Object in Auth Page : ",u)
           // props.onLogin(u)
         } }/>
       </Route>

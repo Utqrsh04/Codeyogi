@@ -6,11 +6,13 @@ import grpImg from "../../images/grpImg.jpg";
 import { FaSpinner } from "react-icons/fa";
 import {
   userLoadingListSelector,
+  userOffSetSelector,
   usersListSelector,
 } from "../../selectors/user.selectors";
-import { userFetch, userSelectedChanged } from "../../actions/user.actions";
+import { userChangeOffset, userChangeSelected } from "../../actions/user.actions";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Card/Avatar";
+import Button from "../../components/Button/Button.";
 
 interface Props {}
 
@@ -19,9 +21,11 @@ const Users: FC<Props> = () => {
 
   const loading = useAppSelector(userLoadingListSelector);
   const users = useAppSelector(usersListSelector);
+  const offset = useAppSelector(userOffSetSelector);
+
 
   useEffect(() => {
-    dispatch(userFetch(0));
+    dispatch(userChangeOffset(0));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // console.log("Users Data ", users);
@@ -37,6 +41,7 @@ const Users: FC<Props> = () => {
           </h3>
         </span>
         {users && (
+          <>
           <div>
             <ul className=" flex-col justify-center mt-5 items-center mx-auto w-2/4">
               {users.map((user, index) => {
@@ -49,7 +54,7 @@ const Users: FC<Props> = () => {
                   >
                     <Link
                       onClick={() => {
-                        dispatch(userSelectedChanged(user.id!));
+                        dispatch(userChangeSelected(user.id!));
                       }}
                       to={"/users/" + user.id}
                       className="flex w-full py-1 px-3"
@@ -61,7 +66,6 @@ const Users: FC<Props> = () => {
                         <h6 className="font-bold text-sm">
                           {user.first_name + " " + user.last_name}
                         </h6>
-                        {/* <h6>{user.}</h6> */}
                       </div>
                     </Link>
                   </li>
@@ -69,6 +73,25 @@ const Users: FC<Props> = () => {
               })}
             </ul>
           </div>
+          <div className="flex justify-between items-center px-10 pt-6">
+          <Button
+            disabled={offset === 0}
+            onClick={() => {
+              dispatch(userChangeOffset(offset - 10));
+            }}
+          >
+            Previous
+          </Button>
+
+          <Button
+            onClick={() => {
+              dispatch(userChangeOffset(offset + 10));
+            }}
+          >
+            Next
+          </Button>
+        </div>
+          </>
         )}
       </div>
     </div>

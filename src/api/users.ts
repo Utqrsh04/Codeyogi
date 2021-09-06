@@ -1,5 +1,5 @@
 import axios from "axios";
-import { User } from "../models/User";
+import { UpdateUserParams, User } from "../models/User";
 import { BASE_URL } from "./base";
 
 
@@ -16,7 +16,13 @@ interface UserResponse {
   data: User;
 }
 
-export const fetchUsersApi = (data: UsersRequest) => {
+export const getMeApi = () => {
+  const url = BASE_URL + "/me";
+  return axios.get<UserResponse>(url).then((response) => response.data.data);
+};
+
+
+export const fetchUserListApi = (data: UsersRequest) => {
   const url = BASE_URL + "/people";
   return axios
     .get<UsersResponse>(url, { params: data })

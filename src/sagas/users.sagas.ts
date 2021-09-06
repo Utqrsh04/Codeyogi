@@ -1,48 +1,59 @@
 import { takeLatest, call, put, all } from "@redux-saga/core/effects";
 import { AnyAction } from "redux";
 import {
-  USERS_FETCH,
+  USER_OFFSET_CHANGED,
   USER_SELECTED_CHANGED,
+  USER_UPDATING,
 } from "../actions/action.constants";
+import { userFetchedById, userFetchedByIdError,  userListFetched,  userUpdated } from "../actions/user.actions";
 import {
-  userFetchedById,
-  usersFetched,
-} from "../actions/user.actions";
-import { fetchUserByIdApi, fetchUsersApi } from "../api/users";
+  fetchUserByIdApi,
+  fetchUserListApi,
+  updateUserApi,
+} from "../api/users";
 import { User } from "../models/User";
 
-
-
-function* fetchUsers(action: AnyAction): Generator<any, any, User[]> {
-  const users = yield call(fetchUsersApi, {
+function* fetchUserList(action: AnyAction): Generator<any, any, User[]> {
+  const userList = yield call(fetchUserListApi, {
     offset: action.payload,
-    limit: 15,
+    limit: 12,
   });
   // console.log("UserSaga fetchUsers ", users);
-  yield put(usersFetched(users, action.payload));
+  yield put(userListFetched(userList, action.payload));
 }
 
-
 function* fetchById(action: AnyAction): Generator<any, any, User> {
-
   try {
     const user = yield call(fetchUserByIdApi, action.payload);
     // console.log("UserSaga fetchByID ", user);
 
     yield put(userFetchedById(user));
-  } catch (e) {
-    const error = e.response.data?.message || "Some Error Occured";
-    console.error(error);
-    
+  } catch (e : any) {
+    // console.log(e);
+    let errorMessage: string;
+    if (e.response === undefined) {
+      errorMessage = e.message;
+    } else {
+      errorMessage = e.response.data?.message || "Some Unknown Error";
+    }
+    console.error(errorMessage);
+    yield put(userFetchedByIdError(action.payload, errorMessage));
   }
 }
 
-
+function* update(action: AnyAction): Generator<any, any, User> {
+  try {
+    const user = yield call(updateUserApi, action.payload);
+    yield put(userUpdated(user));
+  } catch (e) {
+    console.error(e);
+  }
+}
 
 export function* watchUserChange() {
   yield all([
-    takeLatest(USERS_FETCH, fetchUsers),
+    takeLatest(USER_UPDATING, update),
+    takeLatest(USER_OFFSET_CHANGED, fetchUserList),
     takeLatest(USER_SELECTED_CHANGED, fetchById),
-
   ]);
 }

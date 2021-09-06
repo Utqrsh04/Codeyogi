@@ -6,6 +6,5 @@ export const groupSchema = new schema.Entity("groups" , {
 
     creator : userSchema ,
     participants : [userSchema] ,
-    invitedMembers : [userSchema] ,
 });
 

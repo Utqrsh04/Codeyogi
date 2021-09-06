@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
 import { userStateSelector } from "./app.selectors";
+import { authIdSelector } from "./auth.selectors";
 
 export const userOffSetSelector = createSelector(
   [userStateSelector],
@@ -61,7 +62,23 @@ export const usersListSelector = createSelector(
       return undefined;
     }
     const userIds = usersMap[offset];
+    // console.log(userIds);
+    
     const users = userIds.map((id) => byId[id!]);
+    // console.log(users);
+    
     return users;
+  }
+);
+
+
+const userIdSelector = createSelector([userStateSelector], (userState) => {
+  return userState.byId;
+});
+
+export const loggedInUserSelector = createSelector(
+  [authIdSelector, userIdSelector],
+  (authId, userId) => {
+    return authId !== undefined ? userId[authId!] : undefined;
   }
 );

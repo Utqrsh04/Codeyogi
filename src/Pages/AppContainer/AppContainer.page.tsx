@@ -11,14 +11,14 @@ import UsersPage from "./Users.page";
 import UserDetails from "./UserDetails.page";
 import Header from "../../components/Header/Header";
 import { useAppSelector } from "../../store";
-import { meSelector } from "../../selectors/auth.selectors";
 import { sidebarActions } from "../../actions/sidebar.actions";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { loggedInUserSelector } from "../../selectors/user.selectors";
 
 interface Props {}
 
 const AppContainer: FC<Props> = () => {
-  const user = useAppSelector(meSelector);
+  const user = useAppSelector(loggedInUserSelector);
   const sidebar = useAppSelector((state) => state.sidebar.isOpen);
 
   return (

@@ -1,9 +1,11 @@
 import { FC, memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { userSelectedChanged } from "../../actions/user.actions";
+import { userChangeSelected } from "../../actions/user.actions";
 import Avatar from "../../components/Avatar/Avatar";
 import {
+  selectedUserErrorSelector,
+  selectedUserSelector,
   userByIdSelector,
   userLoadingByIdSelector,
 } from "../../selectors/user.selectors";
@@ -17,21 +19,21 @@ const UserDetails: FC<Props> = (props) => {
 
   const userId = useParams<{ userId: string }>().userId;
   const id: number = +userId;
-
+  
+  const currentUser = useAppSelector(selectedUserSelector);
   useEffect(() => {
     if (currentUser === undefined) {
-      dispatch(userSelectedChanged(id));
+      dispatch(userChangeSelected(id));
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   // const currentUser = useAppSelector(selectedUserSelector);
-  const byIds = useAppSelector(userByIdSelector);
   const loading = useAppSelector(userLoadingByIdSelector);
+  const userDetailError = useAppSelector(selectedUserErrorSelector);
 
-  const currentUser = byIds[id];
+
   // console.log(" byIDSelector ", byIds);
-  const userIDS = Object.keys(byIds);
-  console.log("IDS ", userIDS);
+  // const userIDS = Object.keys(byIds);
 
   // console.log(" Current User ", byIds[id]);
 
@@ -92,7 +94,7 @@ const UserDetails: FC<Props> = (props) => {
               </div>
             </>
           ) : (
-            <div className="text-red-500">{}</div>
+            <div className="text-red-500">{userDetailError}</div>
           )}
         </div>
       </div>

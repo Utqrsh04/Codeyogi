@@ -1,48 +1,48 @@
 import { FC, memo, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaLock, FaUserAlt } from "react-icons/fa";
 import { HiLockClosed } from "react-icons/hi";
 import * as yup from "yup";
 import { Switch as Toggle } from "@headlessui/react";
-import { useFormik } from "formik";
+import { Formik } from "formik";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button.";
-import { login } from "../../api/auth";
 import { User } from "../../models/User";
-import { authActions } from "../../actions/auth.actions";
+import { useDispatch } from "react-redux";
+import { meTryLogin } from "../../actions/auth.actions";
 
 interface Props {
   onLogin: (user: User) => void;
 }
 
 const Login: FC<Props> = () => {
-  const history = useHistory();
-  const [showPass, setShowPass] = useState(false);
+  // const history = useHistory();
+  const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
 
 
-  const {
-    getFieldProps,
-    handleSubmit,
-    isSubmitting,
-    isValid,
-    touched,
-    errors,
-  } = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: yup.object().shape({
-      email: yup.string().required().email(),
-      password: yup.string().required().min(8),
-    }),
-    onSubmit: (data) => {
-      login(data).then((u) => {
-        authActions.login(u);
-        history.push("/dashboard");
-      });
-    },
-  });
+  // const {
+  //   getFieldProps,
+  //   handleSubmit,
+  //   isSubmitting,
+  //   isValid,
+  //   touched,
+  //   errors,
+  // } = useFormik({
+  //   initialValues: {
+  //     email: "",
+  //     password: "",
+  //   },
+  //   validationSchema: yup.object().shape({
+  //     email: yup.string().required().email(),
+  //     password: yup.string().required().min(8),
+  //   }),
+  //   onSubmit: (data) => {
+  //     dispatch(meTryLogin(data));
+  //       history.push("/dashboard");
+  //     });
+  //   },
+  // });
 
   return (
     <div className=" lg:w-1/2 text-center flex-col">
@@ -59,6 +59,24 @@ const Login: FC<Props> = () => {
         </h2>
       </div>
 
+      <Formik
+            initialValues={{ email: "", password: "" }}
+            validationSchema={yup.object().shape({
+              email: yup.string().required().email(),
+              password: yup.string().required().min(8),
+            })}
+            onSubmit={(data, { setSubmitting }) => {
+              dispatch(meTryLogin(data));
+            }}
+          >
+            {({
+              getFieldProps,
+              errors,
+              touched,
+              isValid,
+              handleSubmit,
+              isSubmitting,
+            }) => (
       <div className="px-3 pt-10 lg:mx-auto">
         <form className="mt-8 px-10 space-y-6 " onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
@@ -77,7 +95,7 @@ const Login: FC<Props> = () => {
 
             <Input
               id="password"
-              type={showPass ? "text" : "password"}
+              type={showPassword ? "text" : "password"}
               autoComplete="current-password"
               required
               touched={touched.password}
@@ -96,16 +114,16 @@ const Login: FC<Props> = () => {
                     Show Password
                   </Toggle.Label>
                   <Toggle
-                    checked={showPass}
-                    onChange={setShowPass}
+                    checked={showPassword}
+                    onChange={setShowPassword}
                     type="button"
                     className={
                       "h-4.5 rounded-full w-9 ml-3 flex items-center transition-color ease-in-out duration-300 " +
-                      (showPass ? "bg-blue-500" : "bg-gray-200")
+                      (showPassword ? "bg-blue-500" : "bg-gray-200")
                     }
                   >
                     <span
-                      className={`${showPass
+                      className={`${showPassword
                           ? "translate-x-5 bg-gray-300 "
                           : "translate-x-0 bg-blue-500"
                         } inline-block w-3.5 h-3.5 ease-in-out duration-200 rounded-full transform transition-all`}
@@ -147,9 +165,12 @@ const Login: FC<Props> = () => {
               Forgot Password
             </Link>
           </div>
-
+                        
         </div>
       </div>
+
+      )}
+      </Formik>
       <h1 className=" mt-8 sm:mt-20 mx-auto w-3/4 text-sm font-semibold ">
         © 2021 All Rights Reserved.
         <p className=" text-blue-700 inline "> Codeyogi </p>
