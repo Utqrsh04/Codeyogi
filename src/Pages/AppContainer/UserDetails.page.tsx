@@ -1,23 +1,21 @@
 import { FC, memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { userChangeSelected } from "../../actions/user.actions";
+import { userChangeOffset, userChangeSelected } from "../../actions/user.actions";
 import Avatar from "../../components/Avatar/Avatar";
 import {
   selectedUserErrorSelector,
-  selectedUserSelector,
   userLoadingByIdSelector,
+  usersListSelector,
 } from "../../selectors/user.selectors";
 import { useAppSelector } from "../../store";
 
 interface Props {}
 
 const UserDetails: FC<Props> = (props) => {
-
-  
   const userId = useParams<{ userId: string }>().userId;
   const id: number = +userId;
-  
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (currentUser === undefined) {
@@ -25,20 +23,27 @@ const UserDetails: FC<Props> = (props) => {
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  const currentUser = useAppSelector(selectedUserSelector);
+  // const currentUser = useAppSelector(selectedUserSelector);
   const loading = useAppSelector(userLoadingByIdSelector);
   const userDetailError = useAppSelector(selectedUserErrorSelector);
 
+  const users = useAppSelector(usersListSelector);
+  // console.log(users);
 
-  // console.log(" byIDSelector ", byIds);
-  // const userIDS = Object.keys(byIds);
-
+  useEffect(() => {
+    dispatch(userChangeOffset(0));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  
+  let idx: any = 0;
+  users && users.map((user, index) => {  // eslint-disable-line 
+    if (user.id === id) idx = index;
+  });
+  const currentUser = users && users[idx];
+  // console.log(currentUser);
   // console.log(" Current User ", byIds[id]);
-
   if (loading && currentUser === undefined) {
     return <div>Loading...</div>;
   }
-  console.log("Current User Details ", currentUser);
 
   return (
     <>
@@ -56,12 +61,11 @@ const UserDetails: FC<Props> = (props) => {
           </Link>
           <h1 className=" font-semibold">User ID - {userId}</h1>
 
-          {loading && <div className="text-red-600">Loading...</div>}
+          {loading && <div className="text-blue-800">Loading...</div>}
           {currentUser !== undefined ? (
             <>
               <div className="md:flex items-center">
                 <div className="flex flex-col items-center justify-center flex-shrink-0 pr-5">
-                  {/* <Avatar /> */}
                   <Avatar active={false} />
                 </div>
 
@@ -74,14 +78,8 @@ const UserDetails: FC<Props> = (props) => {
                       </h5>
                     </div>
                     <div>
-                      <h3 className=" font-bold">DOB</h3>
-                      <h5>
-                        {currentUser.birth_date +
-                          " " +
-                          currentUser.birth_month +
-                          " " +
-                          currentUser.birth_year}
-                      </h5>
+                      <h3 className=" font-bold">Role</h3>
+                      <h5>{currentUser.role}</h5>
                     </div>
                     <div>
                       <h3 className=" font-bold">Phone</h3>

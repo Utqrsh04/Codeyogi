@@ -10,7 +10,7 @@ const routeToSagaMapping: any = {
 
 function* handleLoactionChange(action: AnyAction) {
   const pathname = action.payload.location.pathname;
-  console.log(pathname);
+  // console.log(pathname);
 
   for (const route in routeToSagaMapping) {
     const match = matchPath(pathname, { path: route });

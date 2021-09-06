@@ -30,10 +30,14 @@ export const userResultMapSelector = createSelector(
   }
 );
 
-export const userByIdSelector = createSelector([userStateSelector], (userState) => {
-  return userState.byId;
-});
-
+export const userByIdSelector = createSelector(
+  [userStateSelector],
+  (userState) => {
+    // console.log("userByIdSelector userState " ,userState);
+    
+    return userState.byId;
+  }
+);
 
 const selectedIdSelector = createSelector([userStateSelector], (userState) => {
   return userState.selectedId;
@@ -46,11 +50,10 @@ export const selectedUserErrorSelector = createSelector(
   }
 );
 
-
 export const selectedUserSelector = createSelector(
   [userByIdSelector, selectedIdSelector],
   (byId, id) => {
-    // console.log("SELECTED USER SELECTOR ", byId, id)
+    // console.log(" byId  ", byId)
     return id !== undefined ? byId[id] : undefined;
   }
 );
@@ -63,14 +66,13 @@ export const usersListSelector = createSelector(
     }
     const userIds = usersMap[offset];
     // console.log(userIds);
-    
+
     const users = userIds.map((id) => byId[id!]);
     // console.log(users);
-    
+
     return users;
   }
 );
-
 
 const userIdSelector = createSelector([userStateSelector], (userState) => {
   return userState.byId;

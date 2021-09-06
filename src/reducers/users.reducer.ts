@@ -23,7 +23,7 @@ import {
 export interface UserState extends EntityState {
   byId: { [id: number]: User };
   offset: number;
-  usersMap: { [offset: number]: number[] };
+  usersMap: { [offset: number]: number[]};
   isUpdating: boolean;
 }
 
@@ -48,8 +48,11 @@ export const userReducer: Reducer<UserState> = (
 
     case USER_LIST_FETCHED: {
       const users = action.payload.users as User[];
-      const userIds:any = Object.keys(users);
 
+      const userIds  = Object.keys(users) as any 
+
+      // const userIds = users.map( user  => user.id )
+      // console.log(" userIds " , userIds);
       // const newState = addMany(state, users) as UserState;
 
       return {
