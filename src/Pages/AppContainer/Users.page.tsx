@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import grpImg from "../../images/grpImg.jpg";
 import { FaSpinner } from "react-icons/fa";
 import {
-  userLoadingListSelector,
   userOffSetSelector,
   usersListSelector,
 } from "../../selectors/user.selectors";
@@ -21,7 +20,6 @@ interface Props {}
 const Users: FC<Props> = () => {
   const dispatch = useDispatch();
 
-  const loading = useAppSelector(userLoadingListSelector);
   const users = useAppSelector(usersListSelector);
   const offset = useAppSelector(userOffSetSelector);
 
@@ -29,13 +27,13 @@ const Users: FC<Props> = () => {
     dispatch(userChangeOffset(0));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // console.log("Users Data ", users);
+  // console.log("Users Data ", users );
 
   return (
     <div className="  relative">
       <div>
         <span className="text-center flex justify-center ">
-          <h3>{ !users && loading && <FaSpinner className=" w-5 h-5 animate-spin " />}</h3>
+          <h3>{ users === undefined && <FaSpinner className=" w-5 h-5 animate-spin " />}</h3>
         </span>
         {users && (
           <>
@@ -44,7 +42,7 @@ const Users: FC<Props> = () => {
                 {users.map((user, index) => {
                   return (
                     <li
-                      key={user.id}
+                      key={index}
                       className={
                         " " + (index % 2 === 0 ? "bg-white" : "bg-gray-200")
                       }
