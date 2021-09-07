@@ -14,7 +14,7 @@ export interface LoginResponse {
 }
 
 export const loginAPI = (data: LoginData) => {
-  console.log( " Login Api  " ,data);
+  console.log( " called Api Login  ");
 
   const url = BASE_URL + "/login";
   return axios.post<LoginResponse>(url, data).then((response) => {

@@ -54,7 +54,7 @@ export const groupReducer: Reducer<GroupState> = (state = intialState, action) =
         // let groupIds : string[] = []
         // if(groups !== undefined)
         //   groupIds = Object.keys(groups);
-        const groupIds = Object.keys(groups);
+        const groupIds = groups && Object.keys(groups);
 
         // console.log("Groups Reducer groupids", groupIds);
         

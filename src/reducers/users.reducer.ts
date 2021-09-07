@@ -56,7 +56,7 @@ export const userReducer: Reducer<UserState> = (
     case USER_LIST_FETCHED: {
       const users = action.payload.users as User[];
 
-      const userIds = Object.keys(users) as any;
+      const userIds = users && Object.keys(users) as any;
 
       // const userIds = users.map( user  => user.id )
       // console.log(" userIds " , userIds);
