@@ -9,12 +9,33 @@ import {
   USER_UPDATING,
 } from "./action.constants";
 
+
+export const userUpdated = (user: User) => ({
+  type: USER_UPDATED,
+  payload: user,
+});
+
+export const userUpdating = (data: UpdateUserParams) => ({
+  type: USER_UPDATING,
+  payload: data,
+});
+
 export const userListFetched = (
   users: { [id: number]: User },
   offset?: number
 ) => ({
   type: USER_LIST_FETCHED,
   payload: { users, offset },
+});
+
+export const userChangeOffset = (offset: number) => ({
+  type: USER_OFFSET_CHANGED,
+  payload: offset,
+});
+
+export const userChangeSelected = (id: number) => ({
+  type: USER_SELECTED_CHANGED,
+  payload: id,
 });
 
 export const userFetchedById = (user: User) => ({
@@ -33,22 +54,3 @@ export const userFetchedByIdError = (id: number, error: string) => ({
   payload: { id, error },
 });
 
-export const userChangeOffset = (offset: number) => ({
-  type: USER_OFFSET_CHANGED,
-  payload: offset,
-});
-
-export const userChangeSelected = (id: number) => ({
-  type: USER_SELECTED_CHANGED,
-  payload: id,
-});
-
-export const userUpdated = (user: User) => ({
-  type: USER_UPDATED,
-  payload: user,
-});
-
-export const userUpdating = (data: UpdateUserParams) => ({
-  type: USER_UPDATING,
-  payload: data,
-});

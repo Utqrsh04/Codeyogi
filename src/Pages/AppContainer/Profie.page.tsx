@@ -34,27 +34,26 @@ const Profie: FC<Props> = (props) => {
       first_name: yup
         .string()
         .required("First Name is required")
-        .matches(/^[aA-zZ\s]+$/, "Numbers not allowed."),
+        .matches(/^[aA-zZ\s]+$/, "Numbers are not allowed."),
 
       last_name: yup
         .string()
         .required("Last Name is required")
-        .matches(/^[aA-zZ\s]+$/, "Numbers not allowed."),
+        .matches(/^[aA-zZ\s]+$/, "Numbers are not allowed."),
 
       phone_number: yup
         .number()
         .typeError("Enter numbers only")
-        .positive("Phone number Cannot be Negetive")
+        .positive("Phone number cannot be Negetive")
         .required("Phone Number is required")
         .moreThan(999999999, "Enter 10 digits")
         .lessThan(10000000000, "Enter 10 digits"),
-
       gender: yup.string(),
     }),
     onSubmit: (data, { setSubmitting }) => {
       dispatch(userUpdating(data));
       // console.log("Profile Page ", data);
-      window.location.href = "/profile";
+      // window.location.href = "/profile";
       // console.log("Profile Page On Submit ", data);
     },
   });
@@ -120,6 +119,47 @@ const Profie: FC<Props> = (props) => {
               </div>
             </div>
           </div>
+
+          {/* <div
+            className={
+              " my-5 px-6 py-4 bg-white items-center justify-center rounded-lg " +
+              (sidebar ? " ml-20 " : " mx-auto ")
+            }
+          > */}
+            {/* <div className="space-x-2 flex items-center sm:mx-5 ">
+              <div className=" pt-5 w-full ">
+                <div className=" flex ">
+                  <div className="mx-4 sm:w-2/6 space-y-1">
+                    <ProfileInput
+                      label="Email "
+                      id="email"
+                      touched={touched.email}
+                      error={errors.email}
+                      {...getFieldProps("email")}
+                    />
+                  </div>
+                  {/* <div className="mx-4 sm:w-2/6 space-y-1 mt-2">
+                    <ProfileInput
+                      label="Alternate Phone Number"
+                      id="alternate_phone_number"
+                      touched={touched.alternate_phone_number}
+                      error={errors.alternate_phone_number}
+                      {...getFieldProps("alternate_phone_number")}
+                    />
+                  </div> */}
+                {/* </div>
+                <div className="mx-4 sm:w-2/6 space-y-1">
+                  <ProfileInput
+                    label="Role"
+                    id="role"
+                    touched={touched.role}
+                    error={errors.role}
+                    {...getFieldProps("role")}
+                  />
+                </div>
+              </div>
+            </div>
+          </div> */} 
 
           <div
             className={

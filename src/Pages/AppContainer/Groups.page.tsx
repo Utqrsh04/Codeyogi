@@ -28,7 +28,7 @@ const Groups: FC<Props> = () => {
   // console.log("Groups Page ", groups);
 
   return (
-    <>
+    <div>
     <div className=" relative">
       <div className=" pt-3 mx-auto">
         <div className="flex justify-center m-5">
@@ -60,7 +60,7 @@ const Groups: FC<Props> = () => {
         
       </div>
     </div>
-    <div className="flex justify-between items-center px-10 pt-6">
+    <div className="flex justify-between items-center px-10 pt-6 fixed w-full bottom-10">
           <Button
             disabled={params.offset === 0}
             onClick={() => {
@@ -78,7 +78,7 @@ const Groups: FC<Props> = () => {
             Next
           </Button>
         </div>
-    </>
+    </div>
 
   );
 };

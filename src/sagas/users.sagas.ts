@@ -41,18 +41,20 @@ function* fetchById(action: AnyAction): Generator<any, any, User> {
   }
 }
 
-function* update(action: AnyAction): Generator<any, any, User> {
+function* updateUser(action: AnyAction): Generator<any, any, User> {
   try {
     const user = yield call(updateUserApi, action.payload);
+    // console.log(user);
+    
     yield put(userUpdated(user));
   } catch (e) {
-    console.error(e);
+    console.log(e);
   }
 }
 
 export function* watchUserChange() {
   yield all([
-    takeLatest(USER_UPDATING, update),
+    takeLatest(USER_UPDATING, updateUser),
     takeLatest(USER_OFFSET_CHANGED, fetchUserList),
     takeLatest(USER_SELECTED_CHANGED, fetchById),
   ]);

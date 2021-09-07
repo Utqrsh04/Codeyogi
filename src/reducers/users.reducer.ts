@@ -23,7 +23,7 @@ import {
 export interface UserState extends EntityState {
   byId: { [id: number]: User };
   offset: number;
-  usersMap: { [offset: number]: number[]};
+  usersMap: { [offset: number]: number[] };
   isUpdating: boolean;
 }
 
@@ -39,17 +39,24 @@ export const userReducer: Reducer<UserState> = (
   action
 ) => {
   switch (action.type) {
-
-
     case AUTH_FETCHED:
     case AUTH_LOGGED_IN: {
       return addOne(state, action.payload) as UserState;
+    }
+    
+    case USER_UPDATED: {
+      const newState = updateOne(state, action.payload) as UserState;
+      return { ...newState, isUpdating: false };
+    }
+
+    case USER_UPDATING: {
+      return { ...state, isUpdating: true };
     }
 
     case USER_LIST_FETCHED: {
       const users = action.payload.users as User[];
 
-      const userIds  = Object.keys(users) as any 
+      const userIds = Object.keys(users) as any;
 
       // const userIds = users.map( user  => user.id )
       // console.log(" userIds " , userIds);
@@ -60,8 +67,9 @@ export const userReducer: Reducer<UserState> = (
         byId: { ...state.byId, ...users },
         usersMap: {
           ...state.usersMap,
-          [action.payload.offset === undefined ? 0 : action.payload.offset]:
-            userIds,
+          [action.payload.offset === undefined
+            ? 0
+            : action.payload.offset]: userIds,
         },
         loadingList: false,
       };
@@ -73,7 +81,6 @@ export const userReducer: Reducer<UserState> = (
         offset: action.payload,
         loadingById: true,
       };
-
 
     case USER_SELECTED_CHANGED:
       return select(state, action.payload) as UserState;
@@ -93,15 +100,6 @@ export const userReducer: Reducer<UserState> = (
         action.payload.id,
         action.payload.error
       ) as UserState;
-    }
-
-    case USER_UPDATED: {
-      const newState = updateOne(state, action.payload) as UserState;
-      return { ...newState, isUpdating: false };
-    }
-
-    case USER_UPDATING: {
-      return { ...state, isUpdating: true };
     }
 
     default:
