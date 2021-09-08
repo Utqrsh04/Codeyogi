@@ -24,7 +24,7 @@ const Users: FC<Props> = () => {
   const offset = useAppSelector(userOffSetSelector);
 
   useEffect(() => {
-    dispatch(userChangeOffset(0));
+    dispatch(userChangeOffset(10));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // console.log("Users Data ", users );

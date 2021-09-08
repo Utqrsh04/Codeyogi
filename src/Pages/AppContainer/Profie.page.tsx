@@ -53,8 +53,7 @@ const Profie: FC<Props> = (props) => {
     onSubmit: (data, { setSubmitting }) => {
       dispatch(userUpdating(data));
       // console.log("Profile Page ", data);
-      // window.location.href = "/profile";
-      // console.log("Profile Page On Submit ", data);
+      window.location.href = "/profile";
     },
   });
 

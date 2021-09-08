@@ -59,7 +59,7 @@ const GroupDetails: FC<Props> = (props) => {
       {/* {loading && <div className="text-red-600">Loading...</div>} */}
       {group !== undefined ? (
         <div className="relative">
-          <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-5 bg-blue-300 p-5">
+          <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-4 bg-blue-300 p-5">
             <Link
               className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
               to="/groups"
@@ -136,13 +136,13 @@ const GroupDetails: FC<Props> = (props) => {
                             key={index}
                             className={
                               "border border-black " +
-                              (index % 2 === 0 ? "bg-blue-200" : "bg-gray-200")
+                              (index % 2 === 0 ? "bg-gray-200" : "bg-red-200")
                             }
                           >
-                            <div className="flex w-full py-2.5 px-3">
-                              <Avatar active={false} />
+                            <div className="flex justify-around py-2.5 px-3">
+                              <Avatar theme={"Small"} active={false} />
 
-                              <div className="text-left">
+                              <div className=" flex justify-center items-center">
                                 <h3>
                                   {member?.first_name + " " + member?.last_name}
                                 </h3>

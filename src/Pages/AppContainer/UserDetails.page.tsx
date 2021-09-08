@@ -5,8 +5,8 @@ import { userChangeOffset, userChangeSelected } from "../../actions/user.actions
 import Avatar from "../../components/Avatar/Avatar";
 import {
   selectedUserErrorSelector,
+  selectedUserSelector,
   userLoadingByIdSelector,
-  usersListSelector,
 } from "../../selectors/user.selectors";
 import { useAppSelector } from "../../store";
 
@@ -23,26 +23,17 @@ const UserDetails: FC<Props> = (props) => {
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  // const currentUser = useAppSelector(selectedUserSelector);
+  const currentUser = useAppSelector(selectedUserSelector);
   const loading = useAppSelector(userLoadingByIdSelector);
   const userDetailError = useAppSelector(selectedUserErrorSelector);
 
-  const users = useAppSelector(usersListSelector);
-  // console.log(users);
-
   useEffect(() => {
-    dispatch(userChangeOffset(0));
+    dispatch(userChangeOffset(10));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   
-  let idx: any = 0;
-  users && users.map((user, index) => {  // eslint-disable-line 
-    if (user.id === id) idx = index;
-  });
-  const currentUser = users && users[idx];
   // console.log(currentUser);
-  // console.log(" Current User ", byIds[id]);
   if (loading && currentUser === undefined) {
-    return <div>Loading...</div>;
+    return <div className=" w-full text-center font-semibold text-base">Loading...</div>;
   }
 
   return (

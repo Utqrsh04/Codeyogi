@@ -50,13 +50,6 @@ export const selectedUserErrorSelector = createSelector(
   }
 );
 
-export const selectedUserSelector = createSelector(
-  [userByIdSelector, selectedIdSelector],
-  (byId, id) => {
-    // console.log(" byId  ", byId)
-    return id !== undefined ? byId[id] : undefined;
-  }
-);
 
 export const usersListSelector = createSelector(
   [userResultMapSelector, userByIdSelector, userOffSetSelector],
@@ -74,6 +67,18 @@ export const usersListSelector = createSelector(
   }
 );
 
+export const selectedUserSelector = createSelector(
+  [usersListSelector, selectedIdSelector],
+  (users, id) => {
+    let idx: any = 0;
+    users && users.map((user, index) => {  // eslint-disable-line 
+      if (user.id === id) idx = index;
+    });
+    return users && users[idx];
+    // console.log(" byId  ", byId)
+    
+  }
+);
 const userIdSelector = createSelector([userStateSelector], (userState) => {
   return userState.byId;
 });
