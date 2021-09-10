@@ -34,7 +34,7 @@ const Button: FC<Props> = ({
       <button
         {...rest}
         className={
-          "w-auto group mx-auto relative flex items-center justify-between py-2 sm:px-3 text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2   "  +  ` ${disabled ? " cursor-not-allowed hidden " : " cursor-pointer "}`  + // eslint-disable-line no-useless-concat
+          "sm:w-auto group mx-auto w-15 relative flex items-center justify-between py-2 sm:px-3 px-2 text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2   "  +  ` ${disabled ? " cursor-not-allowed hidden " : " cursor-pointer "}`  + // eslint-disable-line no-useless-concat
           themeClasses + 
           " " +  // 
           className  

@@ -78,7 +78,7 @@ const Login: FC<Props> = () => {
               isSubmitting,
             }) => (
       <div className="px-3 pt-10 lg:mx-auto">
-        <form className="mt-8 px-10 space-y-6 " onSubmit={handleSubmit}>
+        <form className="mt-8 px-10 space-y-4 " onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="px-10 mx-5 w-11/12 space-y-3">
             <Input
@@ -106,8 +106,8 @@ const Login: FC<Props> = () => {
             />
           </div>
 
-          <div className="flex mx-auto justify-around items-center space-y-5 ">
-            <div className="text-base mx-auto pt-3 font-medium">
+          <div className="flex mx-auto justify-around items-center space-y-4 ">
+            <div className="text-base mx-auto pt-2 font-medium">
               <Toggle.Group>
                 <div className="flex items-center">
                   <Toggle.Label className="text-sm font-semibold text-dark-300">
@@ -144,7 +144,7 @@ const Login: FC<Props> = () => {
           </div>
         </form>
 
-        <div className=" mt-10 text-center space-y-3">
+        <div className=" mt-20 text-center space-y-3">
           <label
             htmlFor="keepLogged"
             className="cursor-pointer"
@@ -171,7 +171,7 @@ const Login: FC<Props> = () => {
 
       )}
       </Formik>
-      <h1 className=" mt-8 sm:mt-20 mx-auto w-3/4 text-sm font-semibold ">
+      <h1 className=" fixed bottom-5 px-7 text-sm font-semibold ">
         © 2021 All Rights Reserved.
         <p className=" text-blue-700 inline "> Codeyogi </p>
         is a product of Designreset.

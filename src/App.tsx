@@ -10,6 +10,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { meTryFetch } from "./actions/auth.actions";
 import { useDispatch } from "react-redux";
 import { loggedInUserSelector } from "./selectors/user.selectors";
+import Loader from "./components/Loader/Loader";
 
 const AuthPagelazy = lazy(() => import("./Pages/Auth/Auth.page"));
 
@@ -28,10 +29,12 @@ const App: FC<Props> = () => {
   const user = useAppSelector(loggedInUserSelector);
 
   // console.log("App Component User ", user);
-  if (!user && token) return <Loading />;
+  // if (!user && token) return <Loading />;
+  if (!user && token) return <Loader />;
+
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<Loader />}>
       <ConnectedRouter history={history}>
         <Switch>
           <Route path="/" exact>
