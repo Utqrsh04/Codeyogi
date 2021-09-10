@@ -16,6 +16,7 @@ const Button: FC<Props> = ({
   theme,
   isSubmmiting,
   Icon,
+  disabled,
   ...rest
 }) => {
   let themeClasses = "bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500";
@@ -33,11 +34,11 @@ const Button: FC<Props> = ({
       <button
         {...rest}
         className={
-          "w-auto group mx-auto relative flex items-center justify-between py-2 sm:px-3 text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2   " +
-          themeClasses +
-          " " +
-          className
-        }
+          "w-auto group mx-auto relative flex items-center justify-between py-2 sm:px-3 text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2   "  +  ` ${disabled ? " cursor-not-allowed hidden " : " cursor-pointer "}`  + // eslint-disable-line no-useless-concat
+          themeClasses + 
+          " " +  // 
+          className  
+        }  
       >
         {Icon && (
           // <span className=" left-0 px-1">

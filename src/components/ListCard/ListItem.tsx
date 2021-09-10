@@ -22,7 +22,7 @@ const ListItem: FC<Props> = ({ index, Name, Description, id }) => {
   return (
     <div
       className={
-        " px-3 h-12 w-full border border-gray-200 flex items-center " +
+        " px-3 h-12 w-full border border-gray-200 flex items-center rounded-lg " +
         themeClass
       }
     >

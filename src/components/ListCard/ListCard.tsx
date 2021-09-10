@@ -8,7 +8,7 @@ interface Props {
 
 const ListCard: FC<Props> = ({ data }) => {
   return (
-    <div className="mx-auto bg-green-300 sm:w-3/6">
+    <div className="mx-auto border-2 border-blue-600 rounded-lg sm:w-3/6 shadow-2xl">
       {data.map((data, index) => (
         <ListItem
           key={index}

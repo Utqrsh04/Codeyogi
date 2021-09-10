@@ -38,7 +38,7 @@ const Users: FC<Props> = () => {
         {users && (
           <>
             <div>
-              <ul className=" flex-col justify-center mt-5 items-center mx-auto w-2/4">
+              <ul className=" flex-col justify-center mt-5 items-center mx-auto w-2/4 border-2 border-red-400 rounded-lg p-1">
                 {users.map((user, index) => {
                   return (
                     <li
@@ -58,7 +58,7 @@ const Users: FC<Props> = () => {
                           <div className="w-9 h-9">
                             <Avatar theme={"small"} avatarSrc={grpImg} />
                           </div>
-                          <h6 className="font-bold text-sm">
+                          <h6 className="font-bold text-sm ">
                             {user.first_name + " " + user.last_name}
                           </h6>
                         </div>
@@ -70,7 +70,7 @@ const Users: FC<Props> = () => {
             </div>
           </>
         )}
-        <div className="flex justify-between items-center px-10 pt-6 fixed w-full bottom-10">
+        <div className="flex justify-between items-center px-10 pt-6 fixed w-full bottom-7">
           <Button
             disabled={offset === 0}
             onClick={() => {

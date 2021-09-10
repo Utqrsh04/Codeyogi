@@ -41,7 +41,7 @@ const UserDetails: FC<Props> = (props) => {
       <div className=" relative top-28">
         <div
           className={
-            "flex-col p-5 justify-center items-center mx-auto sm:w-2/5 space-y-5 bg-blue-300 "
+            "flex-col p-5 justify-center items-center mx-auto sm:w-2/5 space-y-5 bg-blue-300 rounded-xl shadow-2xl "
           }
         >
           <Link
@@ -57,7 +57,7 @@ const UserDetails: FC<Props> = (props) => {
             <>
               <div className="md:flex items-center">
                 <div className="flex flex-col items-center justify-center flex-shrink-0 pr-5">
-                  <Avatar active={false} />
+                  <Avatar active={true} />
                 </div>
 
                 <div className="mt-10 w-full md:mt-0 ">

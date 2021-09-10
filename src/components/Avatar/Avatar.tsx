@@ -26,7 +26,7 @@ const Avatar: FC<Props> = ({ active, theme }) => {
 
   return (
     <div className="">
-      <div className={" bg-blue-300 " + themeClass}>
+      <div className={" bg-blue-100 " + themeClass}>
         <img className=" rounded-full " src={grpImg} alt="" />
         <div
           className={

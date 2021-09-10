@@ -59,14 +59,14 @@ const GroupDetails: FC<Props> = (props) => {
       {/* {loading && <div className="text-red-600">Loading...</div>} */}
       {group !== undefined ? (
         <div className="relative">
-          <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-4 bg-blue-300 p-5">
+          <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-4 bg-blue-300 px-5 py-2 rounded-t-lg border-t-2 border-black">
             <Link
               className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
               to="/groups"
             >
               Back to Groups Page
             </Link>
-            <div className="pt-3 mx-auto">
+            <div className="pt-2 mx-auto">
               <div className="w-full">
                 <div className="">
                   <div className="flex justify-between">
@@ -74,13 +74,13 @@ const GroupDetails: FC<Props> = (props) => {
                       <h3 className="font-bold text-left">Group Name</h3>
                       <h5>{group.name}</h5>
                     </div>
-                    <div>
+                    <div className="md:pr-10">
                       <h3 className="font-bold text-left">Group ID</h3>
                       <h5>{group.id}</h5>
                     </div>
                   </div>
                 </div>
-                <div className="mb-6">
+                <div className="mb-4">
                   <div>
                     <h3 className="font-bold text-left">Description</h3>
                     <h5>{group.description}</h5>
@@ -95,39 +95,39 @@ const GroupDetails: FC<Props> = (props) => {
           </div>
 
           <div className=" ">
-            {creator && 
-            <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-5 bg-red-200 p-5">
-              <div className="mx-auto">
-                <div className="w-full">
-                  <div className="">
-                    <div>
-                      <h3 className="font-bold text-left">Creator Name</h3>
-                      <h5 className="text-left">
-                        {creator?.first_name} {creator?.last_name}
-                      </h5>
+            {creator && (
+              <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-3 bg-red-200 px-5 py-2">
+                <div className="mx-auto">
+                  <div className="w-full">
+                    <div className="">
+                      <div>
+                        <h3 className="font-bold text-left">Creator Name</h3>
+                        <h5 className="text-left">
+                          {creator?.first_name} {creator?.last_name}
+                        </h5>
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-left">Role</h3>
+                        <h5 className="text-left">{creator?.role}</h5>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-bold text-left">Role</h3>
-                      <h5 className="text-left">{creator?.role}</h5>
-                    </div>
-                  </div>
-                  <div className="flex mb-6">
-                    <div>
-                      <h3 className="font-bold text-left">Status</h3>
-                      <h5 className="text-left">{creator?.status}</h5>
+                    <div className="flex mb-3">
+                      <div>
+                        <h3 className="font-bold text-left">Status</h3>
+                        <h5 className="text-left">{creator?.status}</h5>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-}
+            )}
           </div>
-         
+
           <div>
-            <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-2 bg-blue-200 p-5">
-              {members && (
+            <div className="flex-col items-center justify-center mx-auto sm:w-2/5 space-y-2 bg-blue-200 px-5 py-2 rounded-b-lg border-b-2 border-black shadow-2xl ">
+              {members !== undefined && (
                 <div>
-                  <h1>Members List</h1>
+                  <h1 className="font-bold">Members List</h1>
                   <ul>
                     {members.map((member, index) => {
                       return (
@@ -139,7 +139,7 @@ const GroupDetails: FC<Props> = (props) => {
                               (index % 2 === 0 ? "bg-gray-200" : "bg-red-200")
                             }
                           >
-                            <div className="flex justify-around py-2.5 px-3">
+                            <div className="flex justify-around py-2 px-3">
                               <Avatar theme={"Small"} active={false} />
 
                               <div className=" flex justify-center items-center">

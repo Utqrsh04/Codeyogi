@@ -63,7 +63,7 @@ const Profie: FC<Props> = (props) => {
         <form onSubmit={handleSubmit} onReset={handleReset}>
           <div
             className={
-              " my-5 px-6 py-4 bg-white items-center rounded-lg " +
+              " my-5 px-6 py-4 bg-white items-center rounded-lg shadow-2xl " +
               (sidebar ? " ml-20 " : " mx-auto ")
             }
           >
@@ -104,15 +104,15 @@ const Profie: FC<Props> = (props) => {
                   />
                 </div>
                 <div className="mx-4 sm:w-2/6 space-y-1 mt-2">
-                  <h4 className=" text-sm font-light "> Gender</h4>
+                  <h4 className=" text-sm font-normal "> Gender</h4>
                   <select
                     id="gender"
                     {...getFieldProps("gender")}
                     className=" bg-gray-100 "
                   >
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
               </div>
@@ -168,13 +168,13 @@ const Profie: FC<Props> = (props) => {
           >
             <button
               type="reset"
-              className="px-3 h-8 shadow-lg text-white drop-shadow-2xl bg-blue-600 rounded-md "
+              className="px-3 h-8 shadow-2xl text-white drop-shadow-2xl bg-blue-600 rounded-md hover:bg-blue-500 hover:text-black "
             >
               Reset All
             </button>
             <button
               type="submit"
-              className="px-3 h-8 bg-green-600 shadow-lg drop-shadow-2xl text-white rounded-md "
+              className="px-3 h-8 bg-green-600 drop-shadow-2xl text-white rounded-md shadow-2xl hover:bg-green-500 hover:text-black"
             >
               Save Changes
             </button>

@@ -34,8 +34,8 @@ const Groups: FC<Props> = () => {
   return (
     <div>
       <div className=" relative">
-        <div className=" pt-3 mx-auto">
-          <div className="flex justify-center m-5">
+        <div className=" pt-2 mx-auto">
+          <div className="flex justify-center mx-5 mb-5 ">
             <input
               onChange={(e) =>
                 dispatch(groupChangeParams(e.target.value, params.offset))
@@ -43,7 +43,7 @@ const Groups: FC<Props> = () => {
               type="text"
               name="searchbar"
               placeholder="Search Group"
-              className="bg-gray-100 rounded-lg mx-auto h-5 p-4 "
+              className="bg-gray-100 rounded-lg mx-auto h-5 p-4 border-2 border-gray-800 "
             />
           </div>
           {!loading && groups === undefined && (
@@ -63,7 +63,7 @@ const Groups: FC<Props> = () => {
           )}
         </div>
       </div>
-      <div className="flex justify-between items-center px-10 pt-6 fixed w-full bottom-10">
+      <div className="flex justify-between items-center px-10 pt-6 fixed w-full bottom-7 ">
         <Button
           disabled={params.offset === 0}
           onClick={() => {
